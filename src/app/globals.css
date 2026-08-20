@@ -162,7 +162,9 @@ body {
   font-family: var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  /* 국문 레이블에 영문용 자간을 주면 글자가 흩어진다 */
+  letter-spacing: 0;
+  font-weight: 600;
 }
 
 /* B 의 도트 그리드 (28px, 마스크 페이드) */
@@ -171,4 +173,39 @@ body {
   background-size: 28px 28px;
   -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 35%, transparent 78%);
   mask-image: radial-gradient(ellipse at 50% 40%, #000 35%, transparent 78%);
+}
+
+/* 말풍선 꼬리 — 좌·우 교차 (뷰웰 자가진단 패턴, docs/beauwell-analysis.md §3) */
+.bubble {
+  position: relative;
+}
+.bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-top: 14px solid var(--bubble-bg, var(--color-surface));
+}
+.bubble-l::after {
+  left: 0;
+  border-right: 15px solid transparent;
+}
+.bubble-r::after {
+  right: 0;
+  border-left: 15px solid transparent;
+}
+.bubble-solid {
+  --bubble-bg: var(--color-ink);
+}
+
+/* 말풍선 분류 라벨 — 국문이라 자간을 주지 않는다 (.eyebrow 는 영문 전용) */
+.cat-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-accent);
+}
+[data-theme='b'] .cat-label {
+  font-weight: 600;
 }
