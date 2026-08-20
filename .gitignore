@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 검증용 스크린샷 (npm run shots 로 언제든 다시 만든다)
+shots/

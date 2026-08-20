@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "signature": "시그니처",
+    "antiAging": "안티에이징",
+    "stemCell": "줄기세포",
+    "about": "병원소개",
+    "reservation": "온라인 예약"
+  },
+  "common": {
+    "reserve": "예약 문의",
+    "consult": "상담 예약",
+    "call": "전화 상담",
+    "kakao": "카카오톡 상담",
+    "top": "맨 위로",
+    "more": "자세히 보기"
+  },
+  "hero": {
+    "a": {
+      "eyebrow": "Self-renewal",
+      "lead": "당신의 가장 건강했던 세포,",
+      "tail": "다시 한 번.",
+      "sub": "건강한 세포가 건강한 세포를 복제합니다.\n당신의 가장 건강했던 피부와 동일하게, 다시.",
+      "secondary": "디토셀이 하는 일"
+    },
+    "b": {
+      "badge": "ADVANCED REGENERATIVE MEDICINE · SEOUL",
+      "lead": "건강한 세포가",
+      "tail": "건강한 세포를 복제합니다",
+      "sub": "자가 줄기세포의 자가복제(self-renewal)를 그대로 이름에 담았습니다.\n디토셀은 첨단재생의료 실시기관입니다.",
+      "secondary": "진료 프로그램"
+    },
+    "c": {
+      "eyebrow": "i.",
+      "lead": "당신의 가장 건강했던 피부와",
+      "tail": "동일하게, 다시.",
+      "sub": "건강한 세포가 건강한 세포를 복제합니다.",
+      "secondary": "디토셀 소개"
+    }
+  },
+  "numbers": {
+    "sessions": {"value": "210+", "label": "누적 시술 건수 〈확인〉"},
+    "rate": {"value": "90%", "label": "재방문율 〈확인〉"},
+    "license": {"value": "첨단재생의료", "label": "실시기관"}
+  },
+  "diagnosis": {
+    "eyebrow": "Self-check",
+    "title": "지금, 어떤 고민이신가요",
+    "sub": "고민을 고르시면 어떤 진료로 이어지는지 보실 수 있습니다.",
+    "items": {
+      "sagging": {"q": "시술을 받아도 금방 처지는 것 같아요", "a": "줄기세포 재생"},
+      "subtle": {"q": "티 나는 시술은 부담스러워요", "a": "시그니처 패키지"},
+      "fatigue": {"q": "만성피로에 피부까지 푸석해요", "a": "호밍셀 IV"},
+      "lifting": {"q": "리프팅은 아플까 봐 겁나요", "a": "소프웨이브"}
+    }
+  },
+  "footer": {
+    "hours": "진료시간",
+    "address": "오시는길",
+    "bizNo": "사업자등록번호",
+    "director": "대표원장",
+    "rights": "© DITTOCELL CLINIC. All rights reserved."
+  }
+}
