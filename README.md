@@ -26,16 +26,21 @@ Node 24 이상. 환경변수는 아직 없다 (Phase 2 Payload 도입 시 `DATAB
 
 ## VI 3안 비교 (Phase 1)
 
+**레이아웃은 셋이 완전히 같다. 색만 다르다.**
+그리드·박스 위치·타이포 스케일·라운딩은 beauwell.kr 실측값으로 통일했다
+(수치는 [`docs/beauwell-analysis.md`](./docs/beauwell-analysis.md)).
+
 - 화면 왼쪽 아래 **VI 후보 비교** 스위처로 전환 (선택은 localStorage 에 남는다)
 - 링크로 바로 열려면 `?vi=a` `?vi=b` `?vi=c`
-  - a — Ditto Mark 〃 (에디토리얼)
-  - b — Bio Modern (바이오테크)
-  - c — Porcelain Gallery (사진 주도)
+  - a — 앤틱골드 (웜 베이지 + 골드)
+  - b — 딥그린 (쿨 그레이 + 그린)
+  - c — 모카골드 (포슬린 화이트 + 모카)
 
-색·서체·라운딩은 전부 `src/app/globals.css` 의 테마 토큰이다. 컴포넌트는 토큰만 쓴다.
-**확정되면** `globals.css` 에서 나머지 두 테마 블록과 `[data-hero]` 규칙을,
-`src/sections/Hero.tsx` 에서 나머지 두 히어로 함수를, 그리고 `ThemeSwitcher.tsx` 와
-`[locale]/layout.tsx` 의 복원 스크립트를 지우면 그 테마로 고정된다.
+색은 `src/app/globals.css` 위쪽 세 블록이 전부다. 컴포넌트는 토큰만 쓴다.
+**확정되면** 나머지 두 블록과 `ThemeSwitcher.tsx`,
+`[locale]/layout.tsx` 의 복원 스크립트를 지우면 그 색으로 고정된다.
+
+사진은 아직 없다. 히어로 카드는 테마 색 그라데이션 플레이스홀더다.
 
 ## 다국어
 

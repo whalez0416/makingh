@@ -6,9 +6,9 @@ export default function Footer() {
 
   return (
     <footer className="border-line text-sub border-t px-5 py-14 md:px-6 md:py-16 text-[14px]">
-      <div className="mx-auto grid max-w-[1180px] gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
+      <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <p className="font-roman text-ink mb-4 text-[19px] tracking-[0.24em]">
+          <p className="text-ink mb-4 text-[19px] font-bold tracking-[0.22em]">
             {site.nameEn}
           </p>
           <p>
@@ -58,7 +58,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className="border-line mx-auto mt-12 max-w-[1180px] border-t pt-6 text-[12px]">
+      <p className="border-line mt-12 border-t pt-6 text-[12px]">
         {t('rights')}
       </p>
     </footer>

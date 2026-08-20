@@ -7,7 +7,7 @@ import {site, telHref} from '@/lib/site';
 export default function Floating() {
   const t = useTranslations('common');
   const cls =
-    'border-line bg-surface text-sub hover:text-ink rounded-btn flex h-11 w-11 md:h-12 md:w-12 items-center justify-center border text-[11px] transition-colors';
+    'border-line bg-surface text-sub hover:text-ink rounded-[8px] flex h-11 w-11 md:h-12 md:w-12 items-center justify-center border text-[11px] transition-colors';
 
   return (
     <div className="fixed right-4 bottom-4 md:right-5 md:bottom-5 z-40 flex flex-col gap-2">

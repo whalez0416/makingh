@@ -56,7 +56,7 @@ export default function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-[1180px] items-center gap-4 px-5 md:h-18 md:gap-8 md:px-6">
+      <div className="flex h-14 items-center gap-4 px-5 lg:h-20 lg:gap-8 lg:px-10">
         <button
           type="button"
           aria-label="메뉴"
@@ -86,7 +86,7 @@ export default function Header() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="font-roman text-ink text-[17px] tracking-[0.24em] md:text-[19px]"
+          className="text-ink text-[17px] font-bold tracking-[0.22em] lg:text-[20px]"
         >
           {site.nameEn}
         </Link>
@@ -112,7 +112,7 @@ export default function Header() {
             href={site.kakao}
             target="_blank"
             rel="noreferrer"
-            className="bg-ink rounded-btn hover:bg-accent flex h-11 items-center px-4 text-[13px] text-white transition-colors md:px-5 md:text-[14px]"
+            className="bg-ink hover:bg-accent flex h-11 items-center rounded-[8px] px-4 text-[13px] text-white transition-colors lg:px-5 lg:text-[15px]"
           >
             {t('common.reserve')}
           </a>
@@ -121,14 +121,14 @@ export default function Header() {
 
       {/* 모바일 풀스크린 오버레이 */}
       {open && (
-        <div className="bg-bg fixed inset-0 top-16 z-40 flex flex-col px-5 pt-6 pb-10 lg:hidden">
+        <div className="bg-bg fixed inset-0 top-14 z-40 flex flex-col px-5 pt-6 pb-10 lg:hidden">
           <nav className="flex flex-col">
             {nav.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-line text-ink display flex min-h-14 items-center border-b text-[20px]"
+                className="border-line text-ink flex min-h-14 items-center border-b text-[20px] font-bold"
               >
                 {t(`nav.${item.key}`)}
               </Link>

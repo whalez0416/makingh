@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
-/* ── 테마 토큰 ───────────────────────────────────────────────
-   색·서체·라운딩은 전부 여기서만 정한다. 컴포넌트는 토큰만 쓴다.
-   테마 확정 후 나머지 두 블록을 지우면 그대로 고정된다. (브리프 §3)  */
+/* ── VI 3안 = 색상만 ─────────────────────────────────────────
+   레이아웃·그리드·서체·라운딩은 beauwell.kr 실측값으로 통일한다
+   (docs/beauwell-analysis.md). 테마는 색 팔레트만 갈아끼운다.       */
 @theme inline {
   --color-bg: var(--t-bg);
   --color-surface: var(--t-surface);
@@ -10,21 +10,9 @@
   --color-sub: var(--t-sub);
   --color-accent: var(--t-accent);
   --color-line: var(--t-line);
-
-  --font-display: var(--t-font-display);
-  --font-body: var(--t-font-body);
-  --font-roman: var(--t-font-roman);
-  --font-mono: var(--t-font-mono);
-
-  --radius-card: var(--t-radius-card);
-  --radius-btn: var(--t-radius-btn);
+  --font-body: 'Pretendard Variable', Pretendard, system-ui, sans-serif;
 }
 
-:root {
-  --pretendard: 'Pretendard Variable', Pretendard, system-ui, sans-serif;
-}
-
-/* A — Ditto Mark 〃 */
 :root,
 [data-theme='a'] {
   --t-bg: #f6f2ea;
@@ -33,17 +21,7 @@
   --t-sub: #6e6455;
   --t-accent: #9e7c40;
   --t-line: #eae2d2;
-  --t-font-display: 'Noto Serif KR', serif;
-  --t-font-body: var(--pretendard);
-  --t-font-roman: 'Cormorant Garamond', serif;
-  --t-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-  --t-radius-card: 0px;
-  --t-radius-btn: 0px;
-  --t-display-weight: 500;
-  --t-display-tracking: -0.02em;
 }
-
-/* B — Bio Modern */
 [data-theme='b'] {
   --t-bg: #f4f6f5;
   --t-surface: #ffffff;
@@ -51,17 +29,7 @@
   --t-sub: #4e5a55;
   --t-accent: #0e5a4a;
   --t-line: #dce3e0;
-  --t-font-display: var(--pretendard);
-  --t-font-body: var(--pretendard);
-  --t-font-roman: var(--pretendard);
-  --t-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-  --t-radius-card: 10px;
-  --t-radius-btn: 8px;
-  --t-display-weight: 800;
-  --t-display-tracking: -0.035em;
 }
-
-/* C — Porcelain Gallery */
 [data-theme='c'] {
   --t-bg: #fcfbf9;
   --t-surface: #ffffff;
@@ -69,34 +37,126 @@
   --t-sub: #7c7468;
   --t-accent: #a78b6f;
   --t-line: #ede8e0;
-  --t-font-display: 'Noto Serif KR', serif;
-  --t-font-body: var(--pretendard);
-  --t-font-roman: 'Cormorant Garamond', serif;
-  --t-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-  --t-radius-card: 0px;
-  --t-radius-btn: 0px;
-  --t-display-weight: 500;
-  --t-display-tracking: -0.01em;
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-body);
+  letter-spacing: -0.02em;
   -webkit-font-smoothing: antialiased;
 }
 
-.display {
-  font-family: var(--font-display);
-  font-weight: var(--t-display-weight);
-  letter-spacing: var(--t-display-tracking);
+/* ── 실측 타이포 스케일 ───────────────────────────────────── */
+.h1 {
+  font-size: 28px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+.h2 {
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+.eyebrow {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.card-title {
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+.q-text {
+  font-size: 15px;
+  line-height: 22.5px;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .h1 {
+    font-size: 40px;
+  }
+  .h2 {
+    font-size: 34px;
+  }
+  .card-title {
+    font-size: 22px;
+  }
+}
+@media (min-width: 1024px) {
+  .h1 {
+    font-size: 64px;
+    line-height: 83.2px;
+    letter-spacing: -1.28px;
+  }
+  .h2 {
+    font-size: 48px;
+    line-height: 60px;
+    letter-spacing: -0.96px;
+  }
+  .eyebrow {
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .card-title {
+    font-size: 28px;
+    line-height: 1.35;
+  }
+  .q-text {
+    font-size: 22px;
+    line-height: 33px;
+  }
 }
 
-[data-theme='c'] .display {
-  line-height: 1.55;
+/* ── 말풍선 (자가진단) ────────────────────────────────────── */
+.bubble {
+  position: relative;
+  border-radius: 16.6667px;
+  padding: 16px;
+}
+.bubble-l {
+  border-bottom-left-radius: 0;
+}
+.bubble-r {
+  border-bottom-right-radius: 0;
+}
+.bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-top: 16px solid var(--bubble-bg, var(--color-surface));
+}
+.bubble-l::after {
+  left: 0;
+  border-right: 17px solid transparent;
+}
+.bubble-r::after {
+  right: 0;
+  border-left: 17px solid transparent;
+}
+@media (min-width: 768px) {
+  .bubble {
+    padding: 19.2px;
+  }
+}
+@media (min-width: 1024px) {
+  .bubble {
+    border-radius: 20px;
+    padding: 30px;
+  }
+  .bubble-l {
+    border-bottom-left-radius: 0;
+  }
+  .bubble-r {
+    border-bottom-right-radius: 0;
+  }
 }
 
-/* 섹션 진입 모션: fade + 8px, 0.5s, 1회 (브리프 §3 공통) */
+/* ── 섹션 진입 모션 ───────────────────────────────────────── */
 [data-reveal] {
   opacity: 0;
   transform: translateY(8px);
@@ -106,106 +166,10 @@ body {
   opacity: 1;
   transform: none;
 }
-
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
   }
-  .spin-slow {
-    animation: none;
-  }
-}
-
-.spin-slow {
-  animation: spin 60s linear infinite;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Phase 1 전용: 히어로 3안을 한 번에 심어두고 현재 테마 것만 보인다. */
-[data-theme='a'] [data-hero]:not([data-hero='a']),
-[data-theme='b'] [data-hero]:not([data-hero='b']),
-[data-theme='c'] [data-hero]:not([data-hero='c']) {
-  display: none;
-}
-
-/* B 는 데이터 레이블(모노 대문자), C 는 로마숫자 — 마크업은 하나, 규칙만 다르다 */
-.eyebrow {
-  font-family: var(--font-roman);
-  font-size: 14px;
-  letter-spacing: 0.28em;
-  color: var(--color-accent);
-}
-[data-theme='b'] .eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
-[data-theme='c'] .eyebrow {
-  font-style: italic;
-  letter-spacing: 0.06em;
-  text-transform: none;
-}
-
-.num-label {
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: var(--color-sub);
-}
-[data-theme='b'] .num-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  /* 국문 레이블에 영문용 자간을 주면 글자가 흩어진다 */
-  letter-spacing: 0;
-  font-weight: 600;
-}
-
-/* B 의 도트 그리드 (28px, 마스크 페이드) */
-.dotgrid {
-  background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
-  background-size: 28px 28px;
-  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 35%, transparent 78%);
-  mask-image: radial-gradient(ellipse at 50% 40%, #000 35%, transparent 78%);
-}
-
-/* 말풍선 꼬리 — 좌·우 교차 (뷰웰 자가진단 패턴, docs/beauwell-analysis.md §3) */
-.bubble {
-  position: relative;
-}
-.bubble::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  width: 0;
-  height: 0;
-  border: 0 solid transparent;
-  border-top: 14px solid var(--bubble-bg, var(--color-surface));
-}
-.bubble-l::after {
-  left: 0;
-  border-right: 15px solid transparent;
-}
-.bubble-r::after {
-  right: 0;
-  border-left: 15px solid transparent;
-}
-.bubble-solid {
-  --bubble-bg: var(--color-ink);
-}
-
-/* 말풍선 분류 라벨 — 국문이라 자간을 주지 않는다 (.eyebrow 는 영문 전용) */
-.cat-label {
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: var(--color-accent);
-}
-[data-theme='b'] .cat-label {
-  font-weight: 600;
 }

@@ -1,50 +1,57 @@
 import {Link} from '@/i18n/navigation';
-import DittoMark from '@/components/DittoMark';
 
-// 뷰웰 자가진단의 말풍선 구조를 가져왔다 (docs/beauwell-analysis.md §3):
-// [분류 라벨] + [환자 고민 문장] + 우상단 따옴표, 꼬리는 좌·우 교차.
-// 따옴표 자리에는 〃 를 쓴다 — 브랜드 모티프가 곧 따옴표다.
+// 말풍선 구조는 beauwell.kr 실측 (docs/beauwell-analysis.md §3):
+// [분류 라벨] + [고민 문장] + 우상단 따옴표, 꼬리쪽 모서리만 각지게.
 // 답(치료명)은 브리프 §4-4 가 요구하는 연결이라 하단에 남긴다.
+// accent 솔리드는 쓰지 않는다 — 세 테마의 accent 명도가 달라 흰 글씨 대비가 한쪽에서 무너진다.
+const TONE = {
+  ink: 'bg-ink text-white [--bubble-bg:var(--color-ink)]',
+  surface: 'bg-surface border-line border [--bubble-bg:var(--color-surface)]'
+} as const;
+
 export default function DiagnosisCard({
   category,
   question,
   answer,
   href,
   tail,
-  size,
-  solid = false
+  tone
 }: {
   category: string;
   question: string;
   answer: string;
   href: string;
   tail: 'l' | 'r';
-  size: 1 | 2 | 3;
-  solid?: boolean;
+  tone: keyof typeof TONE;
 }) {
-  const minH = {1: 'md:min-h-[172px]', 2: 'md:min-h-[214px]', 3: 'md:min-h-[268px]'}[size];
+  const dark = tone !== 'surface';
 
   return (
     <Link
       href={href}
-      className={`bubble bubble-${tail} rounded-card group relative flex flex-col p-6 ${minH} ${
-        solid
-          ? 'bubble-solid bg-ink text-white'
-          : 'border-line bg-surface hover:border-accent border transition-colors'
-      }`}
+      className={`bubble bubble-${tail} ${TONE[tone]} group flex h-full flex-col`}
     >
-      <DittoMark
-        className={`pointer-events-none absolute top-3 right-4 text-[46px] ${
-          solid ? 'text-white/25' : 'text-accent/25'
+      <span
+        aria-hidden
+        className={`pointer-events-none absolute top-4 right-4 text-[34px] leading-none lg:top-5 lg:right-6 lg:text-[46px] ${
+          dark ? 'text-white/25' : 'text-accent/30'
         }`}
-      />
-      <p className={`cat-label mb-3 ${solid ? '!text-white/70' : ''}`}>{category}</p>
-      <p className={`text-[17px] leading-relaxed ${solid ? 'text-white' : 'text-ink'}`}>
-        {question}
-      </p>
+      >
+        &rdquo;
+      </span>
+
       <p
-        className={`mt-auto flex items-center gap-2 pt-6 text-[14px] transition-colors ${
-          solid ? 'text-white/80 group-hover:text-white' : 'text-accent group-hover:text-ink'
+        className={`text-[15px] font-bold lg:text-[18px] ${
+          dark ? 'text-white/75' : 'text-accent'
+        }`}
+      >
+        {category}
+      </p>
+      <p className={`q-text mt-1 ${dark ? 'text-white' : 'text-ink'}`}>{question}</p>
+
+      <p
+        className={`mt-auto flex items-center gap-1.5 pt-5 text-[13px] transition-opacity lg:text-[15px] ${
+          dark ? 'text-white/80 group-hover:text-white' : 'text-sub group-hover:text-ink'
         }`}
       >
         {answer}

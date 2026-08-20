@@ -1,59 +1,55 @@
 import {useTranslations} from 'next-intl';
-import SectionHeader from '@/components/SectionHeader';
 import DiagnosisCard from '@/components/DiagnosisCard';
 import ConsultCta from '@/components/ConsultCta';
 import Reveal from '@/components/Reveal';
 
-// 배치는 뷰웰 자가진단 패턴 (docs/beauwell-analysis.md §3):
-// 균등 그리드가 아니라 높이가 제각각인 말풍선을 여러 열에 지그재그로 흩뿌린다.
-// 모바일은 2열로 접힌다. 항목을 6~8개로 늘려도 columns 가 알아서 나눈다.
+// 배치는 beauwell.kr 실측 (docs/beauwell-analysis.md §3):
+// 1440 = 5열 253px / 768 = 3열 227px / 375 = 2열 160px, gap 24(모바일 16),
+// 말풍선 세로 간격 32, 높이 3단 200/268/410, 컬럼 오프셋 60·106·0·162·52.
+// 폭을 실측 그대로 고정하면 375=2열 / 768=3열 / 1440=5열 이 자동으로 맞아떨어진다.
+// 지금 항목이 4개뿐이라 1440 에서 다섯째 자리가 빈다 — reference 후기에서 문장을 더 캐면 채운다.
 const ITEMS = [
-  {key: 'sagging', href: '/stem-cell', tail: 'l', size: 3, solid: false},
-  {key: 'subtle', href: '/signature', tail: 'r', size: 1, solid: true},
-  {key: 'fatigue', href: '/stem-cell', tail: 'l', size: 2, solid: false},
-  {key: 'lifting', href: '/anti-aging', tail: 'r', size: 2, solid: false}
+  {key: 'sagging', href: '/stem-cell', tail: 'l', tone: 'ink', h: 'lg:h-[410px]', off: 'lg:mt-[60px]'},
+  {key: 'subtle', href: '/signature', tail: 'r', tone: 'surface', h: 'lg:h-[200px]', off: 'lg:mt-[106px]'},
+  {key: 'fatigue', href: '/stem-cell', tail: 'l', tone: 'surface', h: 'lg:h-[268px]', off: ''},
+  {key: 'lifting', href: '/anti-aging', tail: 'r', tone: 'surface', h: 'lg:h-[200px]', off: 'lg:mt-[162px]'}
 ] as const;
-
-// 열 안에서 시작점을 어긋내 지그재그를 만든다 (뷰웰의 q-col 세로 오프셋)
-const OFFSET = ['', 'md:mt-10', 'md:mt-4'];
 
 export default function Diagnosis() {
   const t = useTranslations('diagnosis');
 
   return (
-    <section className="px-5 py-20 md:px-6 md:py-28">
-      <div className="mx-auto max-w-[1180px]">
-        <Reveal>
-          <SectionHeader
-            eyebrow={t('eyebrow')}
-            title={t('title')}
-            sub={t('sub')}
-            action={<ConsultCta label={t('cta')} variant="underline" />}
-          />
-        </Reveal>
-
-        <Reveal className="columns-2 gap-4 md:gap-5 lg:columns-3">
-          {ITEMS.map((item, i) => (
-            <div
-              key={item.key}
-              className={`mb-7 break-inside-avoid md:mb-8 ${OFFSET[i % OFFSET.length]}`}
-            >
-              <DiagnosisCard
-                category={t(`items.${item.key}.cat`)}
-                question={t(`items.${item.key}.q`)}
-                answer={t(`items.${item.key}.a`)}
-                href={item.href}
-                tail={item.tail}
-                size={item.size}
-                solid={item.solid}
-              />
-            </div>
-          ))}
-        </Reveal>
-
-        <div className="mt-12 flex justify-center md:hidden">
-          <ConsultCta label={t('cta')} variant="underline" />
+    <section className="px-5 py-20 lg:px-10 lg:py-[120px]">
+      <Reveal className="mb-10 lg:mb-[60px]">
+        <p className="eyebrow mb-1 lg:mb-2.5">{t('eyebrow')}</p>
+        <div className="flex items-end justify-between gap-8">
+          <h2 className="h2 text-ink">{t('title')}</h2>
+          <div className="hidden shrink-0 pb-2 lg:block">
+            <ConsultCta label={t('cta')} variant="underline" />
+          </div>
         </div>
+      </Reveal>
+
+      <Reveal className="flex flex-wrap items-start gap-4 md:gap-6">
+        {ITEMS.map((item) => (
+          <div
+            key={item.key}
+            className={`w-[calc(50%-8px)] md:w-[226px] lg:w-[252px] ${item.h} ${item.off}`}
+          >
+            <DiagnosisCard
+              category={t(`items.${item.key}.cat`)}
+              question={t(`items.${item.key}.q`)}
+              answer={t(`items.${item.key}.a`)}
+              href={item.href}
+              tail={item.tail}
+              tone={item.tone}
+            />
+          </div>
+        ))}
+      </Reveal>
+
+      <div className="mt-8 flex justify-center lg:hidden">
+        <ConsultCta label={t('cta')} variant="underline" />
       </div>
     </section>
   );
