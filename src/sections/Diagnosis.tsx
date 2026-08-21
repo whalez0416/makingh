@@ -19,7 +19,7 @@ export default function Diagnosis() {
   const t = useTranslations('diagnosis');
 
   return (
-    <section className="px-5 py-20 lg:px-10 lg:py-[120px]">
+    <section className="px-5 py-24 lg:px-10 lg:py-[160px]">
       <Reveal className="mb-10 lg:mb-[60px]">
         <p className="eyebrow mb-1 lg:mb-2.5">{t('eyebrow')}</p>
         <div className="flex items-end justify-between gap-8">

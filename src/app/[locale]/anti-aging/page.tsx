@@ -60,7 +60,7 @@ function Content() {
   return (
     <>
       <PageHero title={t('title')} desc={t('desc')} en="ANTI-AGING" />
-      <section className="px-5 pb-10 lg:px-10 lg:pb-[80px]">
+      <section className="px-5 pt-14 pb-10 lg:px-10 lg:pt-[100px] lg:pb-[80px]">
         <Reveal>
           <Tabs
             labels={[

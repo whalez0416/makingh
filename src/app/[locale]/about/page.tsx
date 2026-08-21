@@ -22,7 +22,7 @@ function Content() {
     <>
       <PageHero title={t('title')} en={t('en')} />
 
-      <section className="px-5 py-10 lg:px-10 lg:py-[60px]">
+      <section className="px-5 pt-14 pb-14 lg:px-10 lg:pt-[100px] lg:pb-[80px]">
         <Reveal>
           <p className="h2 text-ink max-w-[860px]">{t('philosophy')}</p>
           <p className="text-sub mt-4 max-w-[640px] text-[14px] leading-relaxed lg:mt-6 lg:text-[17px]">
@@ -31,7 +31,7 @@ function Content() {
         </Reveal>
       </section>
 
-      <section className="px-5 py-10 lg:px-10 lg:py-[60px]">
+      <section className="px-5 py-14 lg:px-10 lg:py-[80px]">
         <Reveal>
           <p className="eyebrow mb-3">{t('greetingTitle')}</p>
           <p className="text-ink max-w-[760px] text-[15px] leading-relaxed lg:text-[19px]">

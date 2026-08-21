@@ -7,7 +7,7 @@ export default function Closing() {
   const t = useTranslations('closing');
 
   return (
-    <section className="px-5 py-24 text-center lg:px-10 lg:py-[180px]">
+    <section className="px-5 py-32 text-center lg:px-10 lg:py-[220px]">
       <Reveal>
         <p className="text-accent text-[13px] font-bold tracking-[0.18em] uppercase lg:text-[15px]">
           {t('en')}

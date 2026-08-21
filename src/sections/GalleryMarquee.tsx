@@ -8,7 +8,7 @@ export default function GalleryMarquee() {
   const doubled = [...tiles, ...tiles]; // 끊김 없는 루프용 복제
 
   return (
-    <section className="overflow-hidden py-20 lg:py-[120px]" aria-label={t('label')}>
+    <section className="overflow-hidden py-24 lg:py-[160px]" aria-label={t('label')}>
       <div className="marquee flex w-max gap-4 lg:gap-6">
         {doubled.map((name, i) => (
           <figure

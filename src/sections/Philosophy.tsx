@@ -8,7 +8,7 @@ export default function Philosophy() {
   const items = t.raw('items') as {quote: string; cat: string; line: string}[];
 
   return (
-    <section className="px-5 py-20 lg:px-10 lg:py-[120px]">
+    <section className="px-5 py-24 lg:px-10 lg:py-[160px]">
       <div className="flex flex-col gap-16 lg:gap-[120px]">
         {items.map((item, i) => (
           <Reveal

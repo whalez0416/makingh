@@ -91,7 +91,7 @@ function Content() {
   return (
     <>
       <PageHero title={t('title')} desc={t('desc')} en="STEM CELL" />
-      <section className="px-5 lg:px-10">
+      <section className="px-5 pt-14 lg:px-10 lg:pt-[100px]">
         <Reveal>
           <Tabs
             labels={[
@@ -120,7 +120,7 @@ function Content() {
         </Reveal>
       </section>
 
-      <section className="px-5 pt-20 pb-10 lg:px-10 lg:pt-[120px] lg:pb-[80px]">
+      <section className="px-5 pt-24 pb-10 lg:px-10 lg:pt-[160px] lg:pb-[80px]">
         <Reveal>
           <p className="card-title text-ink">{t('processTitle')}</p>
           <ol className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3 lg:mt-6 lg:gap-4">

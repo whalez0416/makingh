@@ -18,7 +18,7 @@ export default function ClinicGrid() {
   const shown = tab === 'all' ? items : items.filter((it) => it.tab === tab);
 
   return (
-    <section className="px-5 py-20 lg:px-10 lg:py-[120px]">
+    <section className="px-5 py-24 lg:px-10 lg:py-[160px]">
       <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
 
       <Reveal>

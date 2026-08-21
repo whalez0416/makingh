@@ -20,7 +20,7 @@ function Content() {
   return (
     <>
       <PageHero title={t('title')} desc={t('desc')} en="RESERVATION" />
-      <section className="px-5 pb-24 lg:px-10 lg:pb-[160px]">
+      <section className="px-5 pt-14 pb-24 lg:px-10 lg:pt-[100px] lg:pb-[160px]">
         <Reveal className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
           <a
             href={site.kakao}

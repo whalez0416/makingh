@@ -7,7 +7,7 @@ export default function Doctor() {
   const careers = t.raw('careers') as string[];
 
   return (
-    <section className="px-5 py-20 lg:px-10 lg:py-[120px]">
+    <section className="px-5 py-24 lg:px-10 lg:py-[160px]">
       <Reveal className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-[80px]">
         <div className="aspect-[3/4] w-full max-w-[420px] shrink-0 rounded-[20px] bg-[linear-gradient(160deg,var(--color-line),var(--color-accent)_75%,var(--color-ink))] lg:rounded-[30px]" />
 
