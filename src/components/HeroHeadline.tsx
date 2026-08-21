@@ -3,6 +3,7 @@
 import {useEffect, useState} from 'react';
 
 // 뷰웰 히어로: 헤드라인이 교체되고 오른쪽에 01/03 카운터가 붙는다.
+// 대형 히어로 사진 위에 얹히므로 화이트 톤 (2026-08-21 히어로 개편).
 export default function HeroHeadline({
   items
 }: {
@@ -17,8 +18,8 @@ export default function HeroHeadline({
   }, [items.length]);
 
   return (
-    <div className="flex items-start justify-between gap-6">
-      <h1 className="h1 text-ink relative">
+    <div className="flex items-end justify-between gap-6">
+      <h1 className="h1 relative text-white">
         {items.map((it, n) => (
           <span
             key={n}
@@ -34,13 +35,13 @@ export default function HeroHeadline({
         ))}
       </h1>
 
-      <div className="hidden shrink-0 pt-2 lg:block">
-        <p className="text-ink text-[18px] font-bold">
+      <div className="hidden shrink-0 pb-2 lg:block">
+        <p className="text-[18px] font-bold text-white">
           {String(i + 1).padStart(2, '0')}
-          <span className="text-sub font-normal"> / {String(items.length).padStart(2, '0')}</span>
+          <span className="font-normal text-white/60"> / {String(items.length).padStart(2, '0')}</span>
         </p>
-        <div className="border-ink mt-3 flex w-[120px] items-center justify-end border-b pb-1">
-          <span aria-hidden className="text-ink -mb-2 text-[16px] leading-none">
+        <div className="mt-3 flex w-[120px] items-center justify-end border-b border-white/70 pb-1">
+          <span aria-hidden className="-mb-2 text-[16px] leading-none text-white">
             ➞
           </span>
         </div>
