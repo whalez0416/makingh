@@ -35,18 +35,21 @@ export default function Header() {
     };
   }, [open]);
 
-  const localeLinks = (cls: string, active: string) =>
+  const localeLinks = (cls: string, active: string, inactive = 'hover:text-ink') =>
     routing.locales.map((l) => (
       <Link
         key={l}
         href={pathname}
         locale={l}
         onClick={() => setOpen(false)}
-        className={`${cls} ${l === locale ? active : 'hover:text-ink'}`}
+        className={`${cls} ${l === locale ? active : inactive}`}
       >
         {LOCALE_LABEL[l]}
       </Link>
     ));
+
+  // 홈 최상단은 풀스크린 히어로 사진 위라 헤더를 화이트 톤으로 (스크롤·오버레이 시 원복)
+  const overHero = pathname === '/' && !solid && !open;
 
   return (
     <header
@@ -62,21 +65,21 @@ export default function Header() {
           aria-label="메뉴"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="text-ink -ml-2 flex h-11 w-11 items-center justify-center lg:hidden"
+          className={`-ml-2 flex h-11 w-11 items-center justify-center lg:hidden ${overHero ? 'text-white' : 'text-ink'}`}
         >
           <span className="relative block h-4 w-5">
             <span
-              className={`bg-ink absolute left-0 block h-px w-5 transition-transform ${
+              className={`${overHero ? 'bg-white' : 'bg-ink'} absolute left-0 block h-px w-5 transition-transform ${
                 open ? 'top-2 rotate-45' : 'top-0'
               }`}
             />
             <span
-              className={`bg-ink absolute top-2 left-0 block h-px w-5 transition-opacity ${
+              className={`${overHero ? 'bg-white' : 'bg-ink'} absolute top-2 left-0 block h-px w-5 transition-opacity ${
                 open ? 'opacity-0' : 'opacity-100'
               }`}
             />
             <span
-              className={`bg-ink absolute left-0 block h-px w-5 transition-transform ${
+              className={`${overHero ? 'bg-white' : 'bg-ink'} absolute left-0 block h-px w-5 transition-transform ${
                 open ? 'top-2 -rotate-45' : 'top-4'
               }`}
             />
@@ -86,17 +89,23 @@ export default function Header() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="text-ink text-[17px] font-bold tracking-[0.22em] lg:text-[20px]"
+          className={`text-[17px] font-bold tracking-[0.22em] transition-colors lg:text-[20px] ${
+            overHero ? 'text-white' : 'text-ink'
+          }`}
         >
           {site.nameEn}
         </Link>
 
-        <nav className="text-sub ml-4 hidden items-center gap-7 text-[15px] lg:flex">
+        <nav
+          className={`ml-4 hidden items-center gap-7 text-[15px] lg:flex ${
+            overHero ? 'text-white/80' : 'text-sub'
+          }`}
+        >
           {nav.map((item) => (
             <Link
               key={item.key}
               href={item.href}
-              className="hover:text-ink transition-colors"
+              className={`transition-colors ${overHero ? 'hover:text-white' : 'hover:text-ink'}`}
             >
               {t(`nav.${item.key}`)}
             </Link>
@@ -104,15 +113,27 @@ export default function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-5">
-          <div className="text-sub hidden items-center gap-3 text-[12px] tracking-wider lg:flex">
-            {localeLinks('transition-colors', 'text-ink')}
+          <div
+            className={`hidden items-center gap-3 text-[12px] tracking-wider lg:flex ${
+              overHero ? 'text-white/70' : 'text-sub'
+            }`}
+          >
+            {localeLinks(
+              'transition-colors',
+              overHero ? 'text-white' : 'text-ink',
+              overHero ? 'hover:text-white' : 'hover:text-ink'
+            )}
           </div>
           {/* 예약 CTA 는 모바일에서도 유지 */}
           <a
             href={site.kakao}
             target="_blank"
             rel="noreferrer"
-            className="bg-ink hover:bg-accent flex h-11 items-center rounded-[8px] px-4 text-[13px] text-white transition-colors lg:px-5 lg:text-[15px]"
+            className={`flex h-11 items-center rounded-[8px] px-4 text-[13px] transition-colors lg:px-5 lg:text-[15px] ${
+              overHero
+                ? 'text-ink hover:bg-accent bg-white hover:text-white'
+                : 'bg-ink hover:bg-accent text-white'
+            }`}
           >
             {t('common.reserve')}
           </a>

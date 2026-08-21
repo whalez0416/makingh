@@ -174,6 +174,16 @@ body {
   }
 }
 
+/* ── 풀스크린 히어로 스크림 ────────────────────────────────────
+   상단: 투명 헤더(화이트 톤) 가독용 옅은 어둠 / 하단: 헤드라인·CTA 가독용 */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-ink) 45%, transparent), transparent 26%),
+    linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--color-ink) 72%, transparent));
+}
+
 /* ── 사진 위 텍스트 가독용 하단 스크림 ─────────────────────────
    테마 컬러 틴트(브리프 §3)는 발주자 피드백으로 제거 — 사진은 원색 그대로,
    텍스트가 얹히는 카드만 하단 ink 그라데이션. */
