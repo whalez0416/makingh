@@ -6,8 +6,20 @@ export default function ConsultCta({
   variant = 'solid'
 }: {
   label: string;
-  variant?: 'solid' | 'underline';
+  variant?: 'solid' | 'underline' | 'light'; // light = 다크 배너 위용
 }) {
+  if (variant === 'light') {
+    return (
+      <a
+        href={site.kakao}
+        target="_blank"
+        rel="noreferrer"
+        className="text-ink hover:bg-accent inline-flex h-12 items-center rounded-[8px] bg-white px-7 text-[15px] font-bold transition-colors hover:text-white"
+      >
+        {label}
+      </a>
+    );
+  }
   if (variant === 'underline') {
     return (
       <a

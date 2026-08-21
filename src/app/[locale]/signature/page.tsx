@@ -3,6 +3,7 @@ import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import PackageRow from '@/components/PackageRow';
+import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
 
 // 브리프 서브 /signature — 패키지 13종 번호 인덱스 리스트.
@@ -21,7 +22,7 @@ function Content() {
   return (
     <>
       <PageHero title={t('title')} desc={t('desc')} en="SIGNATURE" />
-      <section className="px-5 pb-24 lg:px-10 lg:pb-[160px]">
+      <section className="px-5 pb-10 lg:px-10 lg:pb-[80px]">
         <Reveal className="border-line border-t">
           {items.map((item, i) => (
             <PackageRow
@@ -34,6 +35,7 @@ function Content() {
           ))}
         </Reveal>
       </section>
+      <ConsultBanner />
     </>
   );
 }

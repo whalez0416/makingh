@@ -3,6 +3,7 @@ import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import Tabs from '@/components/Tabs';
+import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
 
 // 브리프 서브 /stem-cell — 탭 4(개요/자가혈/자가지방/고압산소) + 기능 6종 + 시술 과정.
@@ -119,7 +120,7 @@ function Content() {
         </Reveal>
       </section>
 
-      <section className="px-5 py-20 lg:px-10 lg:py-[120px]">
+      <section className="px-5 pt-20 pb-10 lg:px-10 lg:pt-[120px] lg:pb-[80px]">
         <Reveal>
           <p className="card-title text-ink">{t('processTitle')}</p>
           <ol className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3 lg:mt-6 lg:gap-4">
@@ -139,6 +140,7 @@ function Content() {
           </ol>
         </Reveal>
       </section>
+      <ConsultBanner />
     </>
   );
 }

@@ -3,6 +3,7 @@ import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import Doctor from '@/sections/Doctor';
+import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
 
 // 브리프 서브 /about — 철학 · 원장 인사말 · 시설. 의료진 블록은 메인 §4-8 섹션 재사용.
@@ -41,7 +42,7 @@ function Content() {
 
       <Doctor />
 
-      <section className="px-5 pb-24 lg:px-10 lg:pb-[160px]">
+      <section className="px-5 pb-10 lg:px-10 lg:pb-[80px]">
         <Reveal>
           <p className="eyebrow mb-6">{t('facilityTitle')}</p>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
@@ -61,6 +62,7 @@ function Content() {
           </div>
         </Reveal>
       </section>
+      <ConsultBanner />
     </>
   );
 }

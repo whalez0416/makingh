@@ -3,6 +3,7 @@ import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import Tabs from '@/components/Tabs';
+import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
 
 // 브리프 서브 /anti-aging — 탭 4: 레이저 / 주사 / 스킨부스터 / 고압산소.
@@ -59,7 +60,7 @@ function Content() {
   return (
     <>
       <PageHero title={t('title')} desc={t('desc')} en="ANTI-AGING" />
-      <section className="px-5 pb-24 lg:px-10 lg:pb-[160px]">
+      <section className="px-5 pb-10 lg:px-10 lg:pb-[80px]">
         <Reveal>
           <Tabs
             labels={[
@@ -77,6 +78,7 @@ function Content() {
           />
         </Reveal>
       </section>
+      <ConsultBanner />
     </>
   );
 }
