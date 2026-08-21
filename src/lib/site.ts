@@ -23,6 +23,11 @@ export const site = {
 
 export const telHref = `tel:+82-2-564-7774`;
 
+// public/ 정적 파일 경로 접두어. images.unoptimized 모드의 next/image 는 basePath 를
+// 안 붙여주므로(빈 박스 사고, 2026-08-21) public 자산 src 는 반드시 이걸 거친다.
+export const assetBase =
+  process.env.GITHUB_PAGES === 'true' ? '/makingh' : '';
+
 export const nav = [
   {key: 'signature', href: '/signature'},
   {key: 'antiAging', href: '/anti-aging'},
