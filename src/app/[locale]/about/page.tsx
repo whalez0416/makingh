@@ -1,5 +1,7 @@
 import {use} from 'react';
+import Image from 'next/image';
 import {useTranslations} from 'next-intl';
+import {assetBase} from '@/lib/site';
 import {setRequestLocale} from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import Doctor from '@/sections/Doctor';
@@ -46,9 +48,19 @@ function Content() {
         <Reveal>
           <p className="eyebrow mb-6">{t('facilityTitle')}</p>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
-            {facilities.map((f) => (
+            {/* 사진은 갤러리 마퀴와 같은 임시 스톡 재사용 — 순서는 facilities 배열과 짝 */}
+            {facilities.map((f, i) => (
               <figure key={f.name}>
-                <div className="aspect-[4/3] rounded-[16px] bg-[linear-gradient(145deg,var(--color-line),var(--color-accent)_80%)]" />
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] bg-[linear-gradient(145deg,var(--color-line),var(--color-accent)_80%)]">
+                  <Image
+                    src={`${assetBase}/facility/${['consult', 'treat', 'waiting'][i]}.jpg`}
+                    alt=""
+                    fill
+                    sizes="(min-width:768px) 33vw, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="photo-veil" />
+                </div>
                 <figcaption className="mt-3">
                   <p className="text-ink text-[15px] font-bold lg:text-[18px]">
                     {f.name}
