@@ -15,8 +15,16 @@ export default function Philosophy() {
             key={item.cat}
             className={i % 2 === 1 ? 'lg:text-right' : ''}
           >
-            <blockquote className="h2 text-ink whitespace-pre-line">
+            {/* 디토 에코: 골드 잔상이 따라붙었다 본체로 합쳐진다 (globals.css .echo-ghost) */}
+            <blockquote
+              className={`h2 text-ink relative w-fit whitespace-pre-line ${
+                i % 2 === 1 ? 'lg:ml-auto' : ''
+              }`}
+            >
               {item.quote}
+              <span aria-hidden className="echo-ghost whitespace-pre-line">
+                {item.quote}
+              </span>
             </blockquote>
             <p className="eyebrow mt-4 lg:mt-6">{item.cat}</p>
             <p

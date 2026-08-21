@@ -174,6 +174,139 @@ body {
   }
 }
 
+/* ── 브랜드 모션 (전부 Reveal 의 data-reveal 상태에 연동) ──────
+   배치 원칙: 페이지 전체에 흩뿌리지 않고 섹션당 하나.
+   철학=에코 / 숫자=카운트업(JS) / 의료진=아이리스 / 클로징=goo+초점 / CTA=밑줄. */
+
+/* 디토 에코 — 골드 복제 잔상이 반 박자 뒤에 나타나 본체로 합쳐진다 */
+.echo-ghost {
+  position: absolute;
+  inset: 0;
+  color: var(--color-accent);
+  opacity: 0;
+  pointer-events: none;
+}
+[data-reveal='in'] .echo-ghost {
+  animation: echo-ghost 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
+}
+@keyframes echo-ghost {
+  0%,
+  20% {
+    opacity: 0;
+    transform: translate(20px, 12px);
+  }
+  45% {
+    opacity: 0.4;
+    transform: translate(11px, 7px);
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/* 초점 회복 — 흐림에서 선명함으로 ("가장 건강했던 피부와 동일하게, 다시") */
+[data-reveal] .focus-in {
+  filter: blur(14px);
+  opacity: 0.35;
+  transition: filter 1.4s ease, opacity 1.4s ease;
+}
+[data-reveal='in'] .focus-in {
+  filter: none;
+  opacity: 1;
+}
+
+/* 원형 아이리스 리빌 — 세포(작은 원)에서 시작해 이미지가 드러난다 */
+[data-reveal] .iris-in {
+  clip-path: circle(10% at 50% 40%);
+  transition: clip-path 1.4s cubic-bezier(0.3, 0.6, 0.2, 1) 0.1s;
+}
+[data-reveal='in'] .iris-in {
+  clip-path: circle(120% at 50% 40%);
+}
+
+/* gooey 두 세포 — GooOrb.tsx. data-run 일 때만 재생(화면 밖 정지) */
+.goo-orb {
+  position: relative;
+  width: 150px;
+  height: 90px;
+  filter: url(#goo-cell);
+}
+.goo-orb i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+.goo-orb[data-run='1'] i:nth-child(1) {
+  animation: cell-split-a 5.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+.goo-orb[data-run='1'] i:nth-child(2) {
+  animation: cell-split-b 5.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+@keyframes cell-split-a {
+  0%,
+  12% {
+    transform: translateX(0);
+  }
+  48%,
+  62% {
+    transform: translateX(-36px);
+  }
+  96%,
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes cell-split-b {
+  0%,
+  12% {
+    transform: translateX(0);
+  }
+  48%,
+  62% {
+    transform: translateX(36px);
+  }
+  96%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* CTA 밑줄 드로잉 — hover 시 왼→오로 선이 다시 그어진다 */
+.draw-line {
+  transform-origin: left center;
+}
+.group:hover .draw-line {
+  animation: draw-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes draw-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal='in'] .echo-ghost,
+  .goo-orb[data-run='1'] i,
+  .group:hover .draw-line {
+    animation: none;
+  }
+  [data-reveal] .focus-in {
+    filter: none;
+    opacity: 1;
+    transition: none;
+  }
+  [data-reveal] .iris-in {
+    clip-path: none;
+    transition: none;
+  }
+}
+
 /* ── 섹션 진입 모션 ───────────────────────────────────────── */
 [data-reveal] {
   opacity: 0;

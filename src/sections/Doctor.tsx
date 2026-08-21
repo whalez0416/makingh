@@ -9,7 +9,8 @@ export default function Doctor() {
   return (
     <section className="px-5 py-24 lg:px-10 lg:py-[160px]">
       <Reveal className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-[80px]">
-        <div className="aspect-[3/4] w-full max-w-[420px] shrink-0 rounded-[20px] bg-[linear-gradient(160deg,var(--color-line),var(--color-accent)_75%,var(--color-ink))] lg:rounded-[30px]" />
+        {/* 아이리스 리빌: 세포(작은 원)에서 시작해 초상이 드러난다 (globals.css .iris-in) */}
+        <div className="iris-in aspect-[3/4] w-full max-w-[420px] shrink-0 rounded-[20px] bg-[linear-gradient(160deg,var(--color-line),var(--color-accent)_75%,var(--color-ink))] lg:rounded-[30px]" />
 
         <div className="min-w-0">
           <p className="eyebrow mb-1 lg:mb-2.5">{t('eyebrow')}</p>

@@ -1,5 +1,6 @@
 import {useTranslations} from 'next-intl';
 import Reveal from '@/components/Reveal';
+import CountUp from '@/components/CountUp';
 
 // 뷰웰에 대응 섹션이 없는 디토셀 고유 추가라, 섹션 리듬(상하 160·컨테이너 40)만 맞춘다.
 // 상하 여백은 뷰웰 실측 120이었으나 발주자 피드백으로 160으로 벌렸다 (사진 없는 구성이라 밀도가 높아 보임).
@@ -15,8 +16,8 @@ export default function NumbersStrip() {
         {KEYS.map((k) => (
           <div key={k}>
             <p className="text-sub text-[14px] lg:text-[16px]">{t(`${k}.label`)}</p>
-            <p className="text-ink mt-2 text-[36px] leading-none font-bold lg:mt-4 lg:text-[56px]">
-              {t(`${k}.value`)}
+            <p className="text-ink mt-2 text-[36px] leading-none font-bold tabular-nums lg:mt-4 lg:text-[56px]">
+              <CountUp value={t(`${k}.value`)} />
             </p>
           </div>
         ))}

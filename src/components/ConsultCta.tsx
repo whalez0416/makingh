@@ -29,7 +29,9 @@ export default function ConsultCta({
         className="text-ink group inline-block"
       >
         <span className="text-[16px] lg:text-[22px]">{label}</span>
-        <span className="border-ink mt-2 flex w-[140px] items-center justify-end border-b pb-1 lg:w-[200px]">
+        {/* 밑줄 드로잉: hover 시 선이 왼→오로 다시 그어진다 (globals.css .draw-line) */}
+        <span className="relative mt-2 flex w-[140px] items-center justify-end pb-1 lg:w-[200px]">
+          <span aria-hidden className="draw-line bg-ink absolute inset-x-0 bottom-0 h-px" />
           <span aria-hidden className="text-ink -mb-2 text-[16px] leading-none">
             ➞
           </span>
