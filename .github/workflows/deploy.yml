@@ -28,6 +28,8 @@ jobs:
         env:
           GITHUB_PAGES: 'true'
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true # 저장소에 Pages 가 꺼져 있으면 켠다 — 최초 설정 클릭 불필요
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
