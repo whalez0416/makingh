@@ -54,8 +54,8 @@ Node 24 이상. 환경변수는 아직 없다 (Phase 2 Payload 도입 시 `DATAB
 
 ```
 src/
-  app/[locale]/     레이아웃(헤더·푸터·플로팅) + 메인
-  sections/         메인 섹션 (Hero / NumbersStrip / Diagnosis)
+  app/[locale]/     레이아웃(헤더·푸터·플로팅) + 메인 + 서브 5p (signature / anti-aging / stem-cell / about / reservation)
+  sections/         메인 섹션 (Hero / NumbersStrip / Philosophy / Diagnosis / Packages / ClinicGrid / Doctor / GalleryMarquee / Closing)
   components/       공용 컴포넌트
   i18n/             next-intl 설정
   lib/site.ts       ★ 전화·주소·진료시간 단일 출처 (Phase 2 에 Payload site-settings 로 이관)

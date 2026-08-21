@@ -156,6 +156,24 @@ body {
   }
 }
 
+/* ── 시설 갤러리 마퀴 (§4-10) ─────────────────────────────── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%); /* 타일을 2배 복제했으므로 절반 이동 = 한 바퀴 */
+  }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+}
+
 /* ── 섹션 진입 모션 ───────────────────────────────────────── */
 [data-reveal] {
   opacity: 0;
