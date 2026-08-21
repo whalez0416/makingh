@@ -59,7 +59,6 @@ function Content() {
                     sizes="(min-width:768px) 33vw, 100vw"
                     className="object-cover"
                   />
-                  <div className="photo-veil" />
                 </div>
                 <figcaption className="mt-3">
                   <p className="text-ink text-[15px] font-bold lg:text-[18px]">

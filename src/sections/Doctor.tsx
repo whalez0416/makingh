@@ -21,7 +21,6 @@ export default function Doctor() {
             sizes="420px"
             className="object-cover"
           />
-          <div className="photo-veil" />
         </div>
 
         <div className="min-w-0">
