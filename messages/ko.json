@@ -433,5 +433,10 @@
   "reviews": {
     "eyebrow": "REVIEW",
     "title": "다녀가신 분들의 이야기"
+  },
+  "reviewsPage": {
+    "title": "후기",
+    "desc": "디토셀을 다녀가신 분들이 남겨주신 이야기입니다.",
+    "empty": "등록된 후기가 없습니다."
   }
 }
