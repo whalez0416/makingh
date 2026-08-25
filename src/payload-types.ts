@@ -230,7 +230,13 @@ export interface Popup {
   } | null;
   link?: string | null;
   startAt: string;
+  /**
+   * 이 날짜 당일까지 보입니다. 다음 날 자동으로 사라집니다.
+   */
   endAt: string;
+  /**
+   * 켜 둔 것 중 기간에 든 팝업 하나만 첫 화면에 뜹니다.
+   */
   enabled?: boolean | null;
   updatedAt: string;
   createdAt: string;

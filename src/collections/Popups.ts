@@ -14,10 +14,32 @@ export const Popups: CollectionConfig = {
     {
       type: 'row',
       fields: [
-        {name: 'startAt', type: 'date', label: '노출 시작', required: true, admin: {width: '50%'}},
-        {name: 'endAt', type: 'date', label: '노출 종료', required: true, admin: {width: '50%'}}
+        {
+          name: 'startAt',
+          type: 'date',
+          label: '노출 시작',
+          required: true,
+          admin: {width: '50%', date: {pickerAppearance: 'dayOnly'}}
+        },
+        {
+          name: 'endAt',
+          type: 'date',
+          label: '노출 종료',
+          required: true,
+          admin: {
+            width: '50%',
+            date: {pickerAppearance: 'dayOnly'},
+            description: '이 날짜 당일까지 보입니다. 다음 날 자동으로 사라집니다.'
+          }
+        }
       ]
     },
-    {name: 'enabled', type: 'checkbox', label: '사용', defaultValue: true}
+    {
+      name: 'enabled',
+      type: 'checkbox',
+      label: '사용',
+      defaultValue: true,
+      admin: {description: '켜 둔 것 중 기간에 든 팝업 하나만 첫 화면에 뜹니다.'}
+    }
   ]
 };

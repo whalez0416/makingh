@@ -12,7 +12,8 @@
     "generate:types": "payload generate:types",
     "generate:importmap": "payload generate:importmap",
     "payload": "payload",
-    "build:pages": "node scripts/build-pages.mjs"
+    "build:pages": "node scripts/build-pages.mjs",
+    "check:popup": "tsx scripts/popup-check.ts"
   },
   "dependencies": {
     "@payloadcms/db-sqlite": "^3.88.0",
