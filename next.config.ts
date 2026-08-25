@@ -1,16 +1,15 @@
 import type {NextConfig} from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import {withPayload} from '@payloadcms/next/withPayload';
 
-// GitHub Pages 는 서버를 못 돌린다 → 정적 내보내기.
-// 미들웨어(proxy)를 쓸 수 없어 지웠다. locale 은 URL 접두어로만 정해진다.
-// basePath 는 Pages 빌드에서만 붙인다 — 로컬은 localhost:3000/ko 그대로.
-const basePath = process.env.GITHUB_PAGES === 'true' ? '/makingh' : undefined;
+// GitHub Pages 는 서버를 못 돌린다 → 그 빌드에서만 정적 내보내기.
+// Payload 관리자·API 는 서버가 있어야 하므로 로컬·Vercel 은 서버 모드로 둔다.
+const isPages = process.env.GITHUB_PAGES === 'true';
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  ...(isPages ? {output: 'export' as const, basePath: '/makingh'} : {}),
   trailingSlash: true,
-  basePath,
   images: {unoptimized: true}
 };
 
-export default createNextIntlPlugin()(nextConfig);
+export default withPayload(createNextIntlPlugin()(nextConfig));

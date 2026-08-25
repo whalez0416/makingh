@@ -9,7 +9,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Floating from '@/components/Floating';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
-import '../globals.css';
+import '@/app/globals.css';
 
 export const metadata: Metadata = {
   title: `${site.name} | DITTOCELL`,

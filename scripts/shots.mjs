@@ -29,6 +29,15 @@ for (const theme of THEMES) {
       {name: 'prefers-reduced-motion', value: 'reduce'}
     ]);
     await page.goto(`${BASE}?vi=${theme}`, {waitUntil: 'networkidle0'});
+    // next/image 는 지연 로딩이라 끝까지 훑어야 뷰포트 밖 사진이 들어온다
+    await page.evaluate(async () => {
+      for (let y = 0; y < document.body.scrollHeight; y += innerHeight) {
+        scrollTo(0, y);
+        await new Promise((r) => setTimeout(r, 150));
+      }
+      scrollTo(0, 0);
+    });
+    await page.waitForNetworkIdle({idleTime: 500, timeout: 15000}).catch(() => {});
     await new Promise((r) => setTimeout(r, 400));
     const file = `shots/${theme}-${width}.png`;
     await page.screenshot({path: file, fullPage: true});

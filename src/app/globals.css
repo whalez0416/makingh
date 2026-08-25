@@ -347,3 +347,16 @@ body {
     transition: none;
   }
 }
+
+/* CMS 리치텍스트 본문 — 관리자가 넣은 태그를 받는 최소 서식만 (Tailwind preflight 가 지운 것 복구) */
+.rich p { margin-block: 0.9em; }
+.rich p:first-child { margin-top: 0; }
+.rich h2 { font-size: 1.35em; font-weight: 700; margin-block: 1.4em 0.5em; }
+.rich h3 { font-size: 1.15em; font-weight: 700; margin-block: 1.2em 0.4em; }
+.rich ul, .rich ol { margin-block: 0.9em; padding-left: 1.4em; }
+.rich ul { list-style: disc; }
+.rich ol { list-style: decimal; }
+.rich li { margin-block: 0.3em; }
+.rich a { color: var(--color-accent); text-decoration: underline; }
+.rich strong { font-weight: 700; }
+.rich blockquote { border-left: 3px solid var(--color-line); padding-left: 1em; color: var(--color-sub); }
