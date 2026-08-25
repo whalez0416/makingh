@@ -72,6 +72,8 @@ export interface Config {
     notices: Notice;
     popups: Popup;
     reviews: Review;
+    reservations: Reservation;
+    inquiries: Inquiry;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +86,8 @@ export interface Config {
     notices: NoticesSelect<false> | NoticesSelect<true>;
     popups: PopupsSelect<false> | PopupsSelect<true>;
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
+    reservations: ReservationsSelect<false> | ReservationsSelect<true>;
+    inquiries: InquiriesSelect<false> | InquiriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -248,6 +252,59 @@ export interface Review {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reservations".
+ */
+export interface Reservation {
+  id: number;
+  name: string;
+  phone: string;
+  treatment: 'signature' | 'laser' | 'injection' | 'hbot' | 'stemBlood' | 'stemFat' | 'etc';
+  gender?: ('female' | 'male') | null;
+  preferredDate: string;
+  preferredTime:
+    | '10:00'
+    | '10:30'
+    | '11:00'
+    | '11:30'
+    | '12:00'
+    | '12:30'
+    | '14:00'
+    | '14:30'
+    | '15:00'
+    | '15:30'
+    | '16:00'
+    | '16:30'
+    | '17:00'
+    | '17:30'
+    | '18:00'
+    | '18:30'
+    | '19:00'
+    | '19:30';
+  message?: string | null;
+  status: 'new' | 'confirmed' | 'cancelled';
+  agreePrivacy: boolean;
+  agreeMarketing?: boolean | null;
+  website?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "inquiries".
+ */
+export interface Inquiry {
+  id: number;
+  name: string;
+  phone: string;
+  message: string;
+  status: 'new' | 'done';
+  agreePrivacy: boolean;
+  website?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -289,6 +346,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'reviews';
         value: number | Review;
+      } | null)
+    | ({
+        relationTo: 'reservations';
+        value: number | Reservation;
+      } | null)
+    | ({
+        relationTo: 'inquiries';
+        value: number | Inquiry;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -412,6 +477,39 @@ export interface ReviewsSelect<T extends boolean = true> {
   thumbnail?: T;
   order?: T;
   published?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reservations_select".
+ */
+export interface ReservationsSelect<T extends boolean = true> {
+  name?: T;
+  phone?: T;
+  treatment?: T;
+  gender?: T;
+  preferredDate?: T;
+  preferredTime?: T;
+  message?: T;
+  status?: T;
+  agreePrivacy?: T;
+  agreeMarketing?: T;
+  website?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "inquiries_select".
+ */
+export interface InquiriesSelect<T extends boolean = true> {
+  name?: T;
+  phone?: T;
+  message?: T;
+  status?: T;
+  agreePrivacy?: T;
+  website?: T;
   updatedAt?: T;
   createdAt?: T;
 }

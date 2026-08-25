@@ -1,4 +1,5 @@
 import {getTranslations} from 'next-intl/server';
+import {Link} from '@/i18n/navigation';
 import {site} from '@/lib/site';
 import {getSettings} from '@/lib/settings';
 import type {Locale} from '@/i18n/routing';
@@ -52,6 +53,17 @@ export default async function Footer({locale}: {locale: Locale}) {
               </div>
             ))}
           </dl>
+          <div className="border-line mt-6 flex gap-4 border-t pt-4">
+            <Link href="/consult" className="hover:text-ink">
+              {t('consult')}
+            </Link>
+            <Link href="/notice" className="hover:text-ink">
+              {t('notice')}
+            </Link>
+            <Link href="/reviews" className="hover:text-ink">
+              {t('reviews')}
+            </Link>
+          </div>
           <div className="mt-4 flex gap-4">
             <a href={s.instagram} target="_blank" rel="noreferrer" className="hover:text-ink">
               Instagram
