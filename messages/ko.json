@@ -422,5 +422,16 @@
     "event": "이벤트",
     "empty": "등록된 소식이 없습니다.",
     "back": "목록으로"
+  },
+  "news": {
+    "eyebrow": "NEWS",
+    "title": "디토셀 소식",
+    "more": "전체 보기",
+    "notice": "공지",
+    "event": "이벤트"
+  },
+  "reviews": {
+    "eyebrow": "REVIEW",
+    "title": "다녀가신 분들의 이야기"
   }
 }

@@ -1,8 +1,12 @@
-import {useTranslations} from 'next-intl';
-import {site, telHref} from '@/lib/site';
+import {getTranslations} from 'next-intl/server';
+import {site} from '@/lib/site';
+import {getSettings} from '@/lib/settings';
+import type {Locale} from '@/i18n/routing';
 
-export default function Footer() {
-  const t = useTranslations('footer');
+// 브리프 §4-12 오시는길 정보 블록 — 주소·지도·대표전화·진료시간은 CMS site-settings 에서 온다.
+export default async function Footer({locale}: {locale: Locale}) {
+  const t = await getTranslations('footer');
+  const s = await getSettings(locale);
 
   return (
     <footer className="border-line text-sub border-t px-5 py-14 md:px-6 md:py-16 text-[14px]">
@@ -18,18 +22,18 @@ export default function Footer() {
             {t('bizNo')} {site.bizNo}
           </p>
           <p className="mt-4">
-            <a href={telHref} className="hover:text-ink">
-              T. {site.tel}
+            <a href={s.telHref} className="hover:text-ink">
+              T. {s.tel}
             </a>{' '}
-            · F. {site.fax}
+            · F. {s.fax}
           </p>
         </div>
 
         <div>
           <p className="text-ink mb-3">{t('address')}</p>
-          <p>{site.address}</p>
+          <p>{s.address}</p>
           <a
-            href={site.mapUrl}
+            href={s.mapUrl}
             target="_blank"
             rel="noreferrer"
             className="hover:text-ink mt-2 inline-block underline underline-offset-4"
@@ -41,7 +45,7 @@ export default function Footer() {
         <div>
           <p className="text-ink mb-3">{t('hours')}</p>
           <dl className="grid grid-cols-[3.5rem_1fr] gap-y-1">
-            {site.hours.map((h) => (
+            {s.hours.map((h) => (
               <div key={h.days} className="contents">
                 <dt>{h.days}</dt>
                 <dd>{h.time}</dd>
@@ -49,10 +53,10 @@ export default function Footer() {
             ))}
           </dl>
           <div className="mt-4 flex gap-4">
-            <a href={site.instagram} target="_blank" rel="noreferrer" className="hover:text-ink">
+            <a href={s.instagram} target="_blank" rel="noreferrer" className="hover:text-ink">
               Instagram
             </a>
-            <a href={site.kakao} target="_blank" rel="noreferrer" className="hover:text-ink">
+            <a href={s.kakao} target="_blank" rel="noreferrer" className="hover:text-ink">
               KakaoTalk
             </a>
           </div>

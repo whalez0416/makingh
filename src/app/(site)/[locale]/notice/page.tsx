@@ -1,7 +1,8 @@
 import {setRequestLocale, getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/navigation';
-import {getCms} from '@/lib/payload';
+import {cmsFind} from '@/lib/cms';
 import type {Locale} from '@/i18n/routing';
+import type {Notice} from '@/payload-types';
 import PageHero from '@/components/PageHero';
 import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
@@ -12,8 +13,7 @@ export default async function NoticePage({params}: PageProps<'/[locale]/notice'>
   setRequestLocale(locale);
 
   const t = await getTranslations('noticePage');
-  const cms = await getCms();
-  const {docs} = await cms.find({
+  const docs = await cmsFind<Notice>({
     collection: 'notices',
     locale: locale as Locale,
     where: {published: {equals: true}},

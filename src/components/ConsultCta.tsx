@@ -1,17 +1,19 @@
-import {site} from '@/lib/site';
+import {getSettings} from '@/lib/settings';
 
 // 예약은 Phase 5 전까지 카카오톡 채널로 보낸다 (브리프 §4 서브페이지).
-export default function ConsultCta({
+export default async function ConsultCta({
   label,
   variant = 'solid'
 }: {
   label: string;
   variant?: 'solid' | 'underline' | 'light'; // light = 다크 배너 위용
 }) {
+  const s = await getSettings();
+
   if (variant === 'light') {
     return (
       <a
-        href={site.kakao}
+        href={s.kakao}
         target="_blank"
         rel="noreferrer"
         className="text-ink hover:bg-accent inline-flex h-12 items-center rounded-[8px] bg-white px-7 text-[15px] font-bold transition-colors hover:text-white"
@@ -23,7 +25,7 @@ export default function ConsultCta({
   if (variant === 'underline') {
     return (
       <a
-        href={site.kakao}
+        href={s.kakao}
         target="_blank"
         rel="noreferrer"
         className="text-ink group inline-block"
@@ -42,7 +44,7 @@ export default function ConsultCta({
 
   return (
     <a
-      href={site.kakao}
+      href={s.kakao}
       target="_blank"
       rel="noreferrer"
       className="bg-ink hover:bg-accent inline-flex h-12 items-center rounded-[8px] px-7 text-[15px] text-white transition-colors"

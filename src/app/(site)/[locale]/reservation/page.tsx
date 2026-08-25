@@ -1,19 +1,21 @@
-import {use} from 'react';
 import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import Reveal from '@/components/Reveal';
-import {site, telHref} from '@/lib/site';
+import {getSettings, type Settings} from '@/lib/settings';
+import type {Locale} from '@/i18n/routing';
 
 // 브리프 서브 /reservation — Phase 5(예약 시스템) 전까지 카카오톡·전화 예약 안내.
-export default function ReservationPage({params}: PageProps<'/[locale]/reservation'>) {
-  const {locale} = use(params);
+export default async function ReservationPage({params}: PageProps<'/[locale]/reservation'>) {
+  const {locale} = await params;
   setRequestLocale(locale);
 
-  return <Content />;
+  // 훅(useTranslations)은 async 컴포넌트에서 못 쓴다 → CMS 는 여기서 읽어 내린다.
+  const s = await getSettings(locale as Locale);
+  return <Content s={s} />;
 }
 
-function Content() {
+function Content({s}: {s: Settings}) {
   const t = useTranslations('reservationPage');
   const tc = useTranslations('common');
 
@@ -23,7 +25,7 @@ function Content() {
       <section className="px-5 pt-14 pb-24 lg:px-10 lg:pt-[100px] lg:pb-[160px]">
         <Reveal className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
           <a
-            href={site.kakao}
+            href={s.kakao}
             target="_blank"
             rel="noreferrer"
             className="border-line bg-surface group rounded-[16px] border p-6 transition-colors hover:border-[color:var(--color-accent)] lg:p-10"
@@ -38,12 +40,12 @@ function Content() {
           </a>
 
           <a
-            href={telHref}
+            href={s.telHref}
             className="border-line bg-surface group rounded-[16px] border p-6 transition-colors hover:border-[color:var(--color-accent)] lg:p-10"
           >
             <p className="card-title text-ink">{t('telTitle')}</p>
             <p className="text-ink mt-2 text-[24px] font-bold lg:text-[32px]">
-              {site.tel}
+              {s.tel}
             </p>
             <p className="text-accent mt-6 text-[15px] font-bold lg:mt-10">
               {tc('call')} <span aria-hidden>➞</span>
@@ -54,7 +56,7 @@ function Content() {
         <Reveal className="mt-10 lg:mt-16">
           <p className="eyebrow mb-4">{t('hoursTitle')}</p>
           <dl className="max-w-[420px]">
-            {site.hours.map((h) => (
+            {s.hours.map((h) => (
               <div
                 key={h.days}
                 className="border-line flex justify-between border-b py-3 text-[14px] lg:text-[16px]"

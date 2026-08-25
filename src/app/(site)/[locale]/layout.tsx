@@ -5,6 +5,7 @@ import {setRequestLocale} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 import {DEFAULT_THEME} from '@/lib/themes';
 import {site} from '@/lib/site';
+import {getSettings} from '@/lib/settings';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Floating from '@/components/Floating';
@@ -36,6 +37,9 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
+  // Header·Floating 은 클라이언트 컴포넌트라 CMS 를 직접 못 읽는다 — 여기서 받아 내린다.
+  const s = await getSettings(locale);
+
   return (
     <html lang={locale} data-theme={DEFAULT_THEME} suppressHydrationWarning>
       <head>
@@ -48,10 +52,10 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider>
           <ThemeSwitcher />
-          <Header />
+          <Header kakao={s.kakao} />
           <main>{children}</main>
-          <Footer />
-          <Floating />
+          <Footer locale={locale} />
+          <Floating kakao={s.kakao} telHref={s.telHref} />
         </NextIntlClientProvider>
       </body>
     </html>

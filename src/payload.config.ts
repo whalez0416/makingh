@@ -10,6 +10,9 @@ import sharp from 'sharp';
 import {Users} from './collections/Users';
 import {Media} from './collections/Media';
 import {Notices} from './collections/Notices';
+import {Popups} from './collections/Popups';
+import {Reviews} from './collections/Reviews';
+import {SiteSettings} from './globals/SiteSettings';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -17,7 +20,8 @@ export default buildConfig({
   // 관리자는 병원 직원이 쓴다 — UI 기본 한국어.
   i18n: {supportedLanguages: {ko, en}, fallbackLanguage: 'ko'},
   admin: {user: Users.slug},
-  collections: [Users, Media, Notices],
+  collections: [Users, Media, Notices, Popups, Reviews],
+  globals: [SiteSettings],
   editor: lexicalEditor(),
   // ko 만 필수. en·zh·ja 는 비워두면 ko 가 대신 나간다 (브리프 §5).
   localization: {

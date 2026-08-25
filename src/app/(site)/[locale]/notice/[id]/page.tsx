@@ -2,15 +2,15 @@ import {notFound} from 'next/navigation';
 import {setRequestLocale, getTranslations} from 'next-intl/server';
 import {RichText} from '@payloadcms/richtext-lexical/react';
 import {Link} from '@/i18n/navigation';
-import {getCms} from '@/lib/payload';
+import {cmsFind, cmsFindByID} from '@/lib/cms';
 import {routing, type Locale} from '@/i18n/routing';
+import type {Notice} from '@/payload-types';
 import PageHero from '@/components/PageHero';
 import ConsultBanner from '@/components/ConsultBanner';
 
 // 정적 내보내기에서도 상세가 나오도록 전 언어 × 전 글을 빌드 시점에 펼친다.
 export async function generateStaticParams() {
-  const cms = await getCms();
-  const {docs} = await cms.find({
+  const docs = await cmsFind<Notice>({
     collection: 'notices',
     where: {published: {equals: true}},
     limit: 500,
@@ -26,10 +26,12 @@ export default async function NoticeDetail({params}: PageProps<'/[locale]/notice
   setRequestLocale(locale);
 
   const t = await getTranslations('noticePage');
-  const cms = await getCms();
-  const doc = await cms
-    .findByID({collection: 'notices', id, locale: locale as Locale, depth: 0})
-    .catch(() => null);
+  const doc = await cmsFindByID<Notice>({
+    collection: 'notices',
+    id,
+    locale: locale as Locale,
+    depth: 0
+  });
 
   if (!doc || !doc.published) notFound();
 

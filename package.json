@@ -11,7 +11,8 @@
     "preview": "npx --yes serve@latest out",
     "generate:types": "payload generate:types",
     "generate:importmap": "payload generate:importmap",
-    "payload": "payload"
+    "payload": "payload",
+    "build:pages": "node scripts/build-pages.mjs"
   },
   "dependencies": {
     "@payloadcms/db-sqlite": "^3.88.0",

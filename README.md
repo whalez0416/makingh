@@ -10,14 +10,27 @@ npm install
 npm run dev        # http://localhost:3000  → /ko 로 리다이렉트
 ```
 
-Node 24 이상. 환경변수는 아직 없다 (Phase 2 Payload 도입 시 `DATABASE_URI`, `PAYLOAD_SECRET` 추가 예정).
+Node 24 이상.
+
+`.env` 두 줄이 필요하다 (커밋하지 않는다):
+
+```
+PAYLOAD_SECRET=<임의의 긴 문자열>
+DATABASE_URI=file:./dittocell.db
+```
+
+`PAYLOAD_SECRET` 은 로그인 토큰 서명 키다. 바꾸면 기존 로그인 세션이 전부 끊긴다.
+DB 는 SQLite 파일 하나(`dittocell.db`)이고 첫 실행 때 스키마가 자동으로 생긴다.
+운영에서 Postgres 로 옮길 때는 `payload.config.ts` 의 어댑터만 갈아끼우면 된다.
 
 ## 명령
 
 | 명령 | 하는 일 |
 | --- | --- |
 | `npm run dev` | 개발 서버 |
-| `npm run build` | 정적 내보내기 (`out/` 생성) |
+| `npm run build` | 서버 빌드 (관리자·API 포함) |
+| `npm run build:pages` | GitHub Pages 용 정적 내보내기 (`out/` 생성) |
+| `npm run generate:types` | CMS 스키마 → `src/payload-types.ts` 갱신 |
 | `npm run preview` | 내보낸 `out/` 을 그대로 열어보기 |
 | `npm run check` | 언어 폴백(ko 로 메우기) 자체검사 |
 | `npm run shots` | 375 / 768 / 1440 세 폭 × VI 3안 = 9장을 `shots/` 에 저장 (dev 서버가 떠 있어야 함) |
@@ -43,6 +56,41 @@ Node 24 이상. 환경변수는 아직 없다 (Phase 2 Payload 도입 시 `DATAB
 
 사진은 아직 없다. 히어로 카드는 테마 색 그라데이션 플레이스홀더다.
 
+## 관리자 (Payload CMS)
+
+`npm run dev` 뒤 **http://localhost:3000/admin**. 화면은 전부 한국어다.
+
+첫 접속이면 계정 생성 화면이 뜬다. 이미 만들어 둔 로컬 개발 계정:
+
+| 이메일 | 비밀번호 |
+| --- | --- |
+| `admin@dittocell.com` | `dittocell2026!` |
+
+> 로컬 DB 전용이다. 병원에 넘길 때는 새 계정을 만들고 이 계정은 지운다.
+
+### 무엇을 관리하나
+
+| 메뉴 | 내용 | 화면 어디에 |
+| --- | --- | --- |
+| 소식 | 제목·본문·분류(공지/이벤트)·게시일·노출 | 메인 소식 피드 + `/notice` 목록·상세 |
+| 후기 | 하이라이트·설명·인스타 주소·썸네일·정렬 | 메인 후기 슬라이더 |
+| 팝업 | 제목·이미지·내용·노출기간·on/off | (노출 컴포넌트는 아직 없음) |
+| 이미지 | 업로드 | 후기·팝업에서 고른다 |
+| 병원 기본정보 | 전화·팩스·주소·지도·진료시간·SNS | 푸터, 예약 페이지, 플로팅 전화 버튼 |
+
+**소식·후기는 등록된 것이 없으면 그 섹션이 화면에서 통째로 빠진다.** 빈 제목만 남지 않는다.
+
+### 4개 언어 입력
+
+편집 화면 우상단 `locale` 을 바꾸면 그 언어의 칸이 열린다.
+**한국어만 필수**다. 나머지를 비워두면 그 자리에 한국어가 그대로 나간다.
+언어와 무관한 값(분류·게시일·노출·정렬)은 언어를 바꿔도 하나로 공유된다.
+
+### 전화번호
+
+화면의 모든 `tel:` 링크는 **병원 기본정보의 대표전화 한 곳**에서 나온다 (브리프 §6-2).
+`lib/site.ts` 의 값은 DB 를 못 읽을 때 쓰는 폴백으로만 남아 있다.
+
 ## 다국어
 
 - `ko` / `en` / `zh` / `ja`, URL 은 `/ko/...` 형태 (`src/i18n/routing.ts`)
@@ -58,13 +106,21 @@ src/
   sections/         메인 섹션 (Hero / NumbersStrip / Philosophy / Diagnosis / Packages / ClinicGrid / Doctor / GalleryMarquee / Closing)
   components/       공용 컴포넌트
   i18n/             next-intl 설정
-  lib/site.ts       ★ 전화·주소·진료시간 단일 출처 (Phase 2 에 Payload site-settings 로 이관)
+  app/(site)/       사이트 (위 라우트 전부 이 그룹 안에 있다)
+  app/(payload)/    관리자·API — Payload 가 만든 파일이라 직접 고치지 않는다
+  payload.config.ts CMS 설정 (컬렉션·언어·DB)
+  collections/      소식·후기·팝업·이미지·관리자
+  globals/          병원 기본정보
+  lib/settings.ts   ★ 병원 기본정보 읽기 (CMS → 없으면 site.ts 폴백)
+  lib/cms.ts        CMS 조회 안전 래퍼 (DB 가 없으면 빈 값)
+  lib/site.ts       폴백용 고정값
   lib/themes.ts     VI 테마 목록
 messages/           언어별 문구
 scripts/            자체검사·스크린샷
 ```
 
-전화번호는 반드시 `lib/site.ts` 에서 가져온다. 하드코딩 금지 (브리프 §6-2).
+전화번호는 반드시 `lib/settings.ts` 의 `getSettings()` 로 가져온다. 하드코딩 금지 (브리프 §6-2).
+클라이언트 컴포넌트(Header·Floating)는 CMS 를 직접 못 읽으므로 layout 이 props 로 내린다.
 
 
 ## 배포 — GitHub Pages
@@ -73,8 +129,13 @@ scripts/            자체검사·스크린샷
 `.github/workflows/deploy.yml` 이 빌드해서 배포한다.
 
 - 주소: **https://whalez0416.github.io/makingh/**
-- `next.config.ts` 가 `output: 'export'`. Pages 는 서버를 못 돌리므로 미들웨어(proxy)는 쓰지 않는다.
+- `output: 'export'` 는 **`GITHUB_PAGES=true` 일 때만** 켜진다. 그래야 로컬·Vercel 에서 관리자가 살아 있다.
+  Pages 는 서버를 못 돌리므로 미들웨어(proxy)는 쓰지 않는다.
   locale 은 URL 접두어로만 정해진다 (`/ko/`, `/en/` …). 브라우저 언어 자동 감지는 없다.
+- **관리자·API 는 정적 사이트에 담기지 않는다.** `npm run build:pages` 가 빌드 동안만
+  `src/app/(payload)` 를 치웠다가 되돌린다. Pages 주소에는 `/admin` 이 없다.
+- Actions 러너에는 DB 파일이 없다. 그래서 **Pages 사본의 소식·후기는 비어 있다** — 그 섹션이 빠진 채로 나온다.
+  콘텐츠까지 보이는 사본이 필요하면 Vercel 로 배포한다.
 - `basePath: '/makingh'` 는 **Pages 빌드에서만** 붙는다 (`GITHUB_PAGES=true`).
   로컬은 `localhost:3000/ko` 그대로다.
 - `/` 로 들어오면 `src/app/page.tsx` 가 `./ko/` 로 넘긴다. 상대경로라 basePath 유무와 무관하다.
