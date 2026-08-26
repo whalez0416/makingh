@@ -1,1 +1,362 @@
-{}
+{
+  "packages": {
+    "items": [
+      {
+        "name": "Novastem 3CC + Ulthera 500 Shots + HBOT",
+        "tagline": "Skin Regeneration + Lifting + Oxygen Recovery",
+        "desc": "Total anti-aging with skin regeneration, ultrasound lifting, and oxygen recovery"
+      },
+      {
+        "name": "Novastem 3CC + Thermage 600 Shots + HBOT",
+        "tagline": "Skin Regeneration + Skin Density & Elasticity + Oxygen Recovery",
+        "desc": "Total anti-aging with skin regeneration, RF elasticity, and oxygen recovery"
+      },
+      {
+        "name": "Ulthera 300 Shots + Thermage 600 Shots + HBOT",
+        "tagline": "Lifting + Skin Density & Elasticity + Oxygen Recovery",
+        "desc": "Strong lifting, dense elasticity, fast recovery"
+      },
+      {
+        "name": "Sofwave 200 Shots + Ulthera 500 Shots + HBOT",
+        "tagline": "Dual Lifting + Oxygen Recovery",
+        "desc": "Different layers, definite results! Dual lifting program"
+      },
+      {
+        "name": "Ulthera 600 Shots + Neoface + Neoface 2 Sessions (7-Day Interval)",
+        "tagline": "Firming Lift + Pulling Lift",
+        "desc": "Lifting program with enhanced elasticity improvement and powerful lifting effect maintenance"
+      },
+      {
+        "name": "SVF 5CC IV + Novastem 3CC + HBOT + Sofwave 200 Shots",
+        "tagline": "Cell Regeneration + Skin Regeneration + Oxygen Recovery + Lifting",
+        "desc": "Premium anti-aging from regeneration to lifting and recovery"
+      },
+      {
+        "name": "Ulthera 600 Shots + Onda 6J + Neoface 2 Sessions Recommended",
+        "tagline": "Lifting + Contour Care + Regeneration Care",
+        "desc": "Ultrasound lifting with fat & contour care and regeneration management!"
+      },
+      {
+        "name": "Sofwave 200 Shots + Ulthera 300 Shots",
+        "tagline": "Elasticity + Lifting",
+        "desc": "Dual ultrasound lifting for simultaneous elasticity and lifting improvement"
+      },
+      {
+        "name": "Sofwave 100 Shots + Ulthera 200 Shots",
+        "tagline": "Elasticity + Lifting",
+        "desc": "Dual ultrasound lifting for simultaneous elasticity and lifting improvement"
+      },
+      {
+        "name": "Thermage 600 Shots + Sofwave 200 Shots",
+        "tagline": "Skin Density & Elasticity + Contour Improvement",
+        "desc": "Skin density and contour improvement together! Combined elasticity care"
+      },
+      {
+        "name": "Sofwave 200 Shots + Alltight or Onda",
+        "tagline": "Elasticity + Lifting + Contour Care + Fat Care",
+        "desc": "Ultrasound lifting + microwave or RF customized program"
+      },
+      {
+        "name": "Novastem + Ulthera",
+        "tagline": "Full Body Conditioning + Powerful Lifting",
+        "desc": "High-end anti-aging designed for full body conditioning and powerful lifting simultaneously"
+      },
+      {
+        "name": "Novastem + Thermage FLX",
+        "tagline": "Full Body Conditioning + Skin Density & Elasticity Enhancement",
+        "desc": "High-end anti-aging that elevates full body conditioning and skin elasticity density simultaneously"
+      }
+    ]
+  },
+  "signaturePage": {
+    "title": "Signature Package Treatments",
+    "desc": "Dittocell's special signature package programs"
+  },
+  "nav": {
+    "signature": "Signature",
+    "antiAging": "Anti-Aging",
+    "stemCell": "Stem Cell",
+    "about": "About Us",
+    "reservation": "Reservation",
+    "consult": "Online Consultation"
+  },
+  "common": {
+    "reserve": "Book Consultation",
+    "consult": "Book Consultation",
+    "call": "Phone Consultation",
+    "kakao": "KakaoTalk Chat",
+    "top": "Back to Top",
+    "more": "View More"
+  },
+  "footer": {
+    "hours": "Consultation Hours",
+    "address": "Address",
+    "bizNo": "Business No.",
+    "director": "CEO",
+    "rights": "Copyright © 2024 Dittocell Clinic. All Rights Reserved.",
+    "consult": "Online Consultation",
+    "notice": "Notice",
+    "reviews": "Reviews"
+  },
+  "antiAgingPage": {
+    "laser": {
+      "intro": "Skin aging involves not just wrinkles but also structural changes in skin thickness, collagen, fat layers, and elasticity. Dittocell uses precise diagnosis with the latest equipment and customized programs to deliver safer, more satisfying results.",
+      "items": [
+        {
+          "name": "Ultherapy Prime",
+          "desc": "DeepSEE™ technology expands the treatment screen by 35% with 2x larger ultrasound field for more precise customized treatment. With depth-specific tips (1.5mm, 3.0mm, 4.5mm), it precisely improves nasolabial folds, sagging cheeks, double chin, and neck wrinkles."
+        },
+        {
+          "name": "Thermage FLX",
+          "desc": "Pre-heats the dermis with Genesis laser before Thermage treatment for therapeutic effects from the very first shot. At optimal 60-65℃ temperature, it activates collagen contraction and regeneration to tighten cheeks, nasolabial folds, and jawline."
+        },
+        {
+          "name": "Sofwave",
+          "desc": "SUPERB™ ultrasound technology precisely heats the mid-dermis at 1.5mm depth. 7 parallel ultrasound beams deliver uniform energy while Sofcool™ cooling system protects the skin surface and promotes collagen production."
+        },
+        {
+          "name": "Neoface",
+          "desc": "Three types of energy (high, mid, low frequency) work at different depths to induce stretched collagen contraction and regeneration. Delicate design creates natural and elegant beauty."
+        },
+        {
+          "name": "Shrink Universe",
+          "desc": "Two ultrasound modes (dot & line type) with 7 cartridges enable customized treatment. Ultra booster handpiece precisely cares for narrow and curved areas with 2.5x faster treatment speed while reducing pain and increasing effectiveness."
+        },
+        {
+          "name": "Oligio X",
+          "desc": "Delivers 6.78MHz RF energy with up to 400W output to dermis and muscle layers. Real-time impedance measurement ensures accurate energy delivery with 2.25x enhanced cooling system for safe and effective lifting."
+        },
+        {
+          "name": "Sylfirm X",
+          "desc": "US FDA and Korean KFDA certified dual RF microneedling device. CW (continuous wave) and PW (pulse wave) modes improve melasma, redness, pores, and acne scars with 15-20 minute treatment allowing immediate return to daily activities."
+        },
+        {
+          "name": "Alltight",
+          "desc": "Next-generation lifting device with DLTD® technology minimizing cheek sagging and pain. Simultaneously targets dermis and fascia layers for immediate lifting effect and sustained elasticity through collagen remodeling."
+        },
+        {
+          "name": "Onda",
+          "desc": "Italy's DEKA patented Coolwaves™ microwave technology (2.45GHz) delivers 80% of energy directly to the fat layer and only 20% to the skin. The cooling system protects the skin surface while achieving fat reduction and contouring simultaneously."
+        }
+      ]
+    },
+    "injection": {
+      "intro": "Skin changes are not just surface-level issues but result from complex interactions between skin structure, muscles, fat, and moisture balance. Fillers, Botox, skin boosters, and fat-dissolving injections each address different causes, helping manage wrinkles, loss of elasticity, contour changes, and skin condition decline. Dittocell provides injection treatments based on authentic products and proper dosages with both safety and satisfaction in mind.",
+      "items": [
+        {
+          "name": "Filler",
+          "desc": "We perform customized filler treatments by comprehensively analyzing skin thickness, fat distribution, and facial structure to apply precisely where needed."
+        },
+        {
+          "name": "Botox",
+          "desc": "We provide customized Botox treatments that preserve natural expression while refining lines, considering muscle movement and facial balance.",
+          "sub": "Hytox, Botulax, Xeomin"
+        },
+        {
+          "name": "Fat Dissolving Injection",
+          "desc": "We provide customized fat-dissolving solutions that consider contours and balance, not just simple reduction."
+        }
+      ]
+    },
+    "booster": {
+      "intro": "Skin boosters deliver nutrients directly into the skin, enhancing skin regeneration and restoring elasticity and hydration. With products like Juvelook, Radiesse, Revive, and Rejuran, we provide customized solutions for individual skin concerns.",
+      "items": [
+        {
+          "name": "Juvelook",
+          "desc": "US FDA and Korean KFDA approved collagen-stimulating skin booster. PDLLA and hyaluronic acid work together with effects visible from 3-4 days post-treatment, excellent for pore reduction, acne scar improvement, and skin texture refinement."
+        },
+        {
+          "name": "Radiesse",
+          "desc": "Calcium Hydroxylapatite (CaHA) stimulates fibroblast cell activity. Fills volume immediately upon injection while calcium particles act as scaffolding, continuously inducing collagen and elastin production with 27% dermis thickness increase at 7 months."
+        },
+        {
+          "name": "Revive",
+          "desc": "Dual-action skin booster combining hyaluronic acid and glycerol. Glycerol's anti-inflammatory and anti-irritation effects with hyaluronic acid's moisturizing benefits restore sensitive skin barrier and create smooth, radiant skin."
+        },
+        {
+          "name": "Rejuran",
+          "desc": "Salmon-derived PN with 95%+ DNA compatibility with humans minimizes foreign body reactions. Actively cares for damaged skin barrier, increases skin density and thickness, effective for collagen production, oil-moisture balance, and pore reduction."
+        }
+      ]
+    },
+    "hbot": {
+      "name": "High-Concentration Oxygen Energy Deep Into Your Skin",
+      "tagline": "From post-treatment recovery to daily anti-aging!",
+      "intro": "Hyperbaric oxygen therapy is designed to inhale high-concentration oxygen of 90%+ purity in a high-pressure environment of 2-3 atmospheres, delivering deep into the skin to help restore its natural healthy rhythm.",
+      "desc": "Oxygen absorbed in the high-pressure environment reaches each skin cell through blood and tissue, naturally enhancing recovery, calming, and regeneration processes.",
+      "featuresTitle": "Key Features of Hyperbaric Oxygen Therapy",
+      "features": [
+        "Personalized high-concentration oxygen therapy",
+        "Non-irritating care that feels like relaxation, not treatment",
+        "Synergy program to help recovery after PRP/stem cell treatment",
+        "Maximized skin radiance when combined with aesthetic care and skin boosters"
+      ]
+    },
+    "title": "Anti-Aging",
+    "desc": "Restore your youthful, elastic skin",
+    "tabs": {
+      "laser": "Laser Treatment",
+      "injection": "Injection Treatment",
+      "booster": "Skin Booster",
+      "hbot": "Hyperbaric Oxygen Therapy"
+    }
+  },
+  "stemCellPage": {
+    "overview": {
+      "definition": "Stem cells are undifferentiated cells capable of self-replication and can develop into over 210 types of tissue cells that make up the human body.",
+      "features": "Stem cells possess self-renewal, differentiation, and homing capabilities.",
+      "traitsTitle": "Stem Cell Characteristics",
+      "traits": [
+        {
+          "name": "Self-Renewal Ability",
+          "desc": "Stem cells can replicate themselves with identical characteristics."
+        },
+        {
+          "name": "Differentiation Ability",
+          "desc": "They can transform into various tissue cells as required by the body."
+        },
+        {
+          "name": "Homing Effect",
+          "desc": "After intravenous administration, they find damaged areas and help regeneration."
+        }
+      ],
+      "functionsTitle": "Stem Cell Functions",
+      "functions": [
+        {
+          "name": "Differentiation Function",
+          "desc": "Regenerates damaged cells into normal cells."
+        },
+        {
+          "name": "Immune Regulation",
+          "desc": "Normalizes immune organ function to regulate immunity."
+        },
+        {
+          "name": "Wound Healing",
+          "desc": "Regenerates damaged cells to heal the body."
+        },
+        {
+          "name": "Cell Death Prevention",
+          "desc": "Prevents cell death within the body."
+        },
+        {
+          "name": "Signal Transmission",
+          "desc": "Promotes growth factors like collagen and hormones to improve body tissues."
+        },
+        {
+          "name": "Blood Supply via Angiogenesis",
+          "desc": "Regenerates damaged blood vessels for normal blood supply."
+        }
+      ]
+    },
+    "blood": {
+      "desc": "Hematopoietic stem cells and vascular cells extracted from peripheral blood are activated using Dittocell's technology and injected into veins, skin, and hair loss areas.",
+      "features": [
+        {
+          "name": "IV / Skin / Hair Loss Injection",
+          "desc": "After simple blood collection, cells are activated and injected into veins, skin, and hair loss areas."
+        },
+        {
+          "name": "Skin Regeneration / Fatigue / Inflammation Relief",
+          "desc": "After simple blood collection, cells are activated and injected into veins, skin, and hair loss areas."
+        },
+        {
+          "name": "Same-Day Treatment Available",
+          "desc": "Convenient and effective cell therapy completed on the same day as blood collection."
+        }
+      ],
+      "processTitle": "Treatment Process",
+      "process": [
+        {
+          "name": "Blood Collection",
+          "desc": "Blood is safely collected in a sterile operating room."
+        },
+        {
+          "name": "Cell Extraction",
+          "desc": "Cells are extracted using FDA-approved 'Smart M Cell'."
+        },
+        {
+          "name": "Injection Treatment",
+          "desc": "Injected into skin or veins."
+        }
+      ],
+      "name": "Homing Cell (Peripheral Blood)"
+    },
+    "adipose": {
+      "desc": "Mesenchymal stem cells derived from adipose tissue are extracted from a small amount of fat and activated for injection into veins and targeted areas.",
+      "features": [
+        {
+          "name": "IV / Skin / Joint / Hair Loss Injection",
+          "desc": "Small amount of fat is collected, stem cells extracted and activated, then injected into veins and needed areas."
+        },
+        {
+          "name": "Fatigue / Inflammation / Reverse Aging",
+          "desc": "Replacing weakened cells with stem cells helps improve aging and intractable conditions."
+        },
+        {
+          "name": "Safe Cell Storage",
+          "desc": "Treatment on extraction day or storage available. (Storage fee separate)"
+        }
+      ],
+      "processTitle": "Treatment Process",
+      "process": [
+        {
+          "name": "Examination",
+          "desc": "Immune function, tumor marker testing"
+        },
+        {
+          "name": "Fat Collection",
+          "desc": "Small amount of fat collection"
+        },
+        {
+          "name": "Cell Extraction",
+          "desc": "SVF purification"
+        },
+        {
+          "name": "Injection Treatment",
+          "desc": "Injection into needed areas"
+        }
+      ],
+      "name": "Homing Cell (Adipose Tissue)"
+    },
+    "hbot": {
+      "name": "High-Concentration Oxygen Energy Deep Into Your Skin",
+      "tagline": "From post-treatment recovery to daily anti-aging!",
+      "desc": "Hyperbaric oxygen therapy delivers 90%+ pure oxygen deep into the skin in a 2-3 atmosphere environment, helping restore the skin's natural healthy rhythm.",
+      "extra": "Oxygen absorbed in the high-pressure environment reaches each skin cell through blood and tissue, naturally enhancing recovery, calming, and regeneration. It helps speed recovery after PRP, stem cell, and laser treatments, relieves inflammation, and activates cell regeneration to improve overall skin condition.",
+      "featuresTitle": "Key Features of Hyperbaric Oxygen Therapy",
+      "features": [
+        "Personalized high-concentration oxygen therapy",
+        "Non-irritating care that feels like relaxation",
+        "Synergy program to help recovery after PRP/stem cell treatment",
+        "Maximized skin radiance when combined with aesthetic care and skin boosters"
+      ]
+    },
+    "dittocellTitle": "Dittocell Homing Cell Stem Cell Treatment",
+    "dittocell": [
+      {
+        "name": "Cell Extraction via Sterile Automation",
+        "desc": "Complete sterile automation from collection to separation and activation for safe, effective treatment."
+      },
+      {
+        "name": "Accurate and Safe Treatment",
+        "desc": "Designated as an advanced regeneration facility for safe and precise procedures."
+      },
+      {
+        "name": "Complete Anti-Aging Treatment",
+        "desc": "Complete regeneration therapy using adipose and peripheral blood stem cells."
+      },
+      {
+        "name": "Proprietary Cell Activation Technology",
+        "desc": "Maintains cell regeneration ability to effectively improve damaged skin."
+      }
+    ],
+    "title": "Stem Cell Therapy",
+    "desc": "Fundamental skin improvement through cutting-edge stem cell regeneration",
+    "tabs": {
+      "overview": "What is Stem Cell?",
+      "blood": "Homing Cell (Peripheral Blood)",
+      "adipose": "Homing Cell (Adipose Tissue)",
+      "hbot": "Hyperbaric Oxygen Therapy"
+    }
+  }
+}

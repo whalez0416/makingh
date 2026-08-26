@@ -4,10 +4,12 @@ export function fillFromKo(base, over) {
   const out = {...base};
   for (const [k, v] of Object.entries(over)) {
     const b = out[k];
-    out[k] =
-      v && typeof v === 'object' && b && typeof b === 'object'
-        ? fillFromKo(b, v)
-        : v;
+    // 목록(배열)은 통째로 갈아끼운다. 사전처럼 병합하면 {0:…,1:…} 객체가 되어
+    // 화면에서 .map 이 터진다 — en·zh·ja 가 빈 파일일 때는 드러나지 않던 함정.
+    const mergeable =
+      v && typeof v === 'object' && !Array.isArray(v) &&
+      b && typeof b === 'object' && !Array.isArray(b);
+    out[k] = mergeable ? fillFromKo(b, v) : v;
   }
   return out;
 }

@@ -7,7 +7,7 @@ import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
 
 // 브리프 서브 /anti-aging — 탭 4: 레이저 / 주사 / 스킨부스터 / 고압산소.
-// 주사·스킨부스터 세부 시술명은 구 사이트에서 추출 불가 — 원고 수급 전까지 〈확인〉 (§9 의료광고).
+// 시술 설명은 전부 병원 원문 그대로다(§9 의료광고 — 효과 문구를 새로 짓지 않는다).
 export default function AntiAgingPage({params}: PageProps<'/[locale]/anti-aging'>) {
   const {locale} = use(params);
   setRequestLocale(locale);
@@ -15,46 +15,78 @@ export default function AntiAgingPage({params}: PageProps<'/[locale]/anti-aging'
   return <Content />;
 }
 
-function PendingNote({text}: {text: string}) {
+type Item = {name: string; desc: string; sub?: string};
+
+function TreatmentList({intro, items}: {intro: string; items: Item[]}) {
   return (
-    <p className="border-line text-sub rounded-[16px] border border-dashed p-8 text-center text-[14px] lg:p-12 lg:text-[16px]">
-      {text}
-    </p>
-  );
-}
-
-function Content() {
-  const t = useTranslations('antiAgingPage');
-  const devices = t.raw('laser.devices') as string[];
-
-  const laser = (
     <div>
-      <article className="border-line bg-surface rounded-[16px] border p-6 lg:p-10">
-        <p className="card-title text-ink">{t('laser.featured.name')}</p>
-        <p className="text-sub mt-3 max-w-[720px] text-[14px] leading-relaxed lg:text-[16px]">
-          {t('laser.featured.desc')}
-        </p>
-      </article>
-      <ul className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:mt-6 lg:grid-cols-4 lg:gap-4">
-        {devices.map((name) => (
+      <p className="text-sub max-w-[820px] text-[14px] leading-relaxed lg:text-[17px]">
+        {intro}
+      </p>
+      <ul className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:mt-8 lg:gap-4">
+        {items.map((it) => (
           <li
-            key={name}
-            className="border-line bg-surface text-ink flex min-h-[72px] items-center justify-center rounded-[12px] border text-[14px] font-bold lg:min-h-[96px] lg:text-[17px]"
+            key={it.name}
+            className="border-line bg-surface rounded-[16px] border p-6 lg:p-8"
           >
-            {name}
+            <p className="card-title text-ink">{it.name}</p>
+            {it.sub ? (
+              <p className="text-accent mt-1 text-[13px] font-bold lg:text-[15px]">
+                {it.sub}
+              </p>
+            ) : null}
+            <p className="text-sub mt-3 text-[13px] leading-relaxed lg:text-[15px]">
+              {it.desc}
+            </p>
           </li>
         ))}
       </ul>
     </div>
   );
+}
+
+function Content() {
+  const t = useTranslations('antiAgingPage');
+  const tab = (key: string) => (
+    <TreatmentList
+      intro={t(`${key}.intro`)}
+      items={t.raw(`${key}.items`) as Item[]}
+    />
+  );
 
   const hbot = (
-    <article className="border-line bg-surface rounded-[16px] border p-6 lg:p-10">
-      <p className="card-title text-ink">{t('hbot.name')}</p>
-      <p className="text-sub mt-3 text-[14px] leading-relaxed lg:text-[16px]">
-        {t('hbot.desc')}
+    <div>
+      <article className="border-line bg-surface rounded-[16px] border p-6 lg:p-10">
+        <p className="text-accent text-[13px] font-bold lg:text-[15px]">
+          {t('hbot.tagline')}
+        </p>
+        <p className="card-title text-ink mt-2">{t('hbot.name')}</p>
+        <p className="text-sub mt-4 max-w-[820px] text-[14px] leading-relaxed lg:text-[17px]">
+          {t('hbot.intro')}
+        </p>
+        <p className="text-sub mt-3 max-w-[820px] text-[14px] leading-relaxed lg:text-[17px]">
+          {t('hbot.desc')}
+        </p>
+      </article>
+      <p className="card-title text-ink mt-10 lg:mt-14">
+        {t('hbot.featuresTitle')}
       </p>
-    </article>
+      <ul className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2 lg:mt-6 lg:gap-4">
+        {(t.raw('hbot.features') as string[]).map((f, i) => (
+          <li
+            key={f}
+            className="border-line bg-surface rounded-[12px] border p-5 lg:p-7"
+          >
+            <p className="text-accent text-[13px] font-bold lg:text-[15px]">
+              {String(i + 1).padStart(2, '0')}
+            </p>
+            <p className="text-ink mt-1 text-[14px] leading-relaxed lg:text-[17px]">
+              {f}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 
   return (
@@ -69,12 +101,7 @@ function Content() {
               t('tabs.booster'),
               t('tabs.hbot')
             ]}
-            panels={[
-              laser,
-              <PendingNote key="i" text={t('injection.note')} />,
-              <PendingNote key="b" text={t('booster.note')} />,
-              hbot
-            ]}
+            panels={[tab('laser'), tab('injection'), tab('booster'), hbot]}
           />
         </Reveal>
       </section>

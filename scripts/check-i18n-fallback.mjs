@@ -16,4 +16,11 @@ assert.deepEqual(fillFromKo(ko, {}), ko);
 fillFromKo(ko, {nav: {a: 'A'}});
 assert.equal(ko.nav.a, '가');
 
+// 목록은 병합이 아니라 교체 — 배열로 돌아와야 한다(.map 이 도는 자리)
+const koList = {p: {items: [{name: '가'}, {name: '나'}]}};
+const merged = fillFromKo(koList, {p: {items: [{name: 'A'}]}});
+assert.ok(Array.isArray(merged.p.items), '목록은 배열로 남아야 한다');
+assert.deepEqual(merged.p.items, [{name: 'A'}]);
+assert.ok(Array.isArray(fillFromKo(koList, {}).p.items), '번역이 없어도 배열');
+
 console.log('i18n fallback OK');
