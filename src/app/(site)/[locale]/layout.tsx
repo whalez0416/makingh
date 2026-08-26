@@ -49,7 +49,9 @@ export default async function LocaleLayout({
         />
         <script dangerouslySetInnerHTML={{__html: restoreTheme}} />
       </head>
-      <body>
+      {/* 확장 프로그램(번역기·문법검사 등)이 hydration 전에 body 에 속성을 붙인다.
+          우리 서버 출력은 <body> 뿐이라 그 경고만 끈다 — 자식 요소 경고는 그대로 뜬다. */}
+      <body suppressHydrationWarning>
         <NextIntlClientProvider>
           <ThemeSwitcher />
           <Header kakao={s.kakao} />
