@@ -179,6 +179,12 @@ scripts/            자체검사·스크린샷
 클라이언트 컴포넌트(Header·Floating)는 CMS 를 직접 못 읽으므로 layout 이 props 로 내린다.
 
 
+## 위키 미리보기 (`public/docs/`)
+
+`public/docs/` 는 **aeo-sync 가 만든 디토셀 Q&A 위키의 미리보기 사본**이다(한국어 `/docs/`, 간체 `/docs/zh/`, 번체 `/docs/zh-hant/`).
+위키 서버가 정해질 때까지 Pages 에 얹어 둔 것이고, 전 페이지 noindex 다. 손으로 고치지 않는다 —
+`C:\pythoneo-sync` 에서 다시 빌드해 통째로 덮어쓴다(빌드 명령은 그쪽 CLAUDE.md 디토셀 행).
+
 ## 배포 — GitHub Pages
 
 정적 사이트로 내보내 GitHub Pages 로 올린다. `master` 에 푸시하면

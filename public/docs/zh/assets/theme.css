@@ -1,0 +1,372 @@
+/* 디자인 톤 (병원 config theme 기반) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+:root {
+  --md-text-font: "Pretendard Variable", Pretendard, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --md-primary-fg-color: #221D14;
+  --md-primary-fg-color--light: #9E7C40;
+  --md-primary-fg-color--dark: #221D14;
+  --md-accent-fg-color: #9E7C40;
+  --brand-accent: #9E7C40;
+  --brand-ink: #221D14;
+  --brand-rgb: 158,124,64;
+}
+body, input, .md-typeset { font-family: var(--md-text-font); }
+.md-typeset { font-size: .78rem; line-height: 1.75; color: #25313b; }
+
+/* ── 헤더: 흰 로고 줄 + 잉크 탭 밴드 (공공 신뢰형) ──
+   본사이트 로고가 흰 배경 JPG 라 로고 줄은 흰색이어야 한다. Material 팔레트가
+   [data-md-color-primary=black] .md-header (특이도 0,2,0)로 색을 칠하므로 같은
+   특이도로 맞춰야 이긴다 — 맨몸 .md-header 는 로드 순서와 무관하게 진다(라이브 실증). */
+[data-md-color-primary] .md-header {
+  background: #fff; color: var(--brand-ink);
+  box-shadow: none; border-bottom: 1px solid #e3e9ee;
+}
+[data-md-color-primary] .md-header__button { color: var(--brand-ink); }
+.md-header__button.md-logo { padding: .2rem .4rem; }
+.md-header__button.md-logo img { height: 1.5rem; width: auto; }
+[data-md-color-primary] .md-header__topic,
+[data-md-color-primary] .md-header__title { color: var(--brand-ink); font-weight: 700; }
+/* 검색창 — 색 헤더용 반투명 흰색은 흰 헤더에서 안 보인다 */
+[data-md-color-primary] .md-search__form { background: #f0f3f6; }
+[data-md-color-primary] .md-search__form:hover { background: #e8edf2; }
+[data-md-color-primary] .md-search__input { color: var(--brand-ink); }
+[data-md-color-primary] .md-search__input::placeholder { color: #6d7a85; }
+[data-md-color-primary] .md-search__icon,
+[data-md-color-primary] .md-search__options { color: #6d7a85; }
+/* 탭: 잉크 밴드 + 흰 글자 — 흰 로고 줄과 위아래로 짝을 이룬다 */
+[data-md-color-primary] .md-tabs { background: var(--brand-ink); }
+.md-tabs__link { opacity: .85; font-weight: 600; color: #fff; }
+.md-tabs__link--active, .md-tabs__link:hover { opacity: 1; color: #fff; }
+
+/* 링크/네비 */
+.md-typeset a { color: #1f4fbf; text-underline-offset: 3px; }
+.md-typeset a:hover { color: var(--brand-accent); }
+.md-nav__link--active,
+.md-nav__item--active > .md-nav__link { color: var(--brand-accent) !important; font-weight: 700; }
+
+/* ── 본문 제목: 색 막대·밑줄 대신 위쪽 헤어라인으로 구획 ── */
+.md-typeset h1 { font-weight: 800; letter-spacing: -.02em; line-height: 1.3; }
+.md-typeset h2 {
+  font-weight: 800; margin-top: 2.2em; padding-top: 1.1em;
+  border-top: 1px solid #dde4e9;
+}
+
+/* ── 빵부스러기(현재 위치) ── */
+.md-typeset .crumbs {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .3rem;
+  margin: 0 0 1.4rem; font-size: .68rem; font-weight: 600; color: #8a98a3;
+}
+.md-typeset .crumbs > * + *::before {
+  content: "›"; margin-right: .3rem; color: #c3cdd5; font-weight: 700;
+}
+.md-typeset .crumbs a { color: var(--brand-accent); text-decoration: none; }
+.md-typeset .crumbs a:hover { text-decoration: underline; }
+.md-typeset .crumbs > span:last-child { color: #5b6b78; }
+
+/* ── 히어로(홈 상단): 단색 잉크 밴드 — 그라데이션·라운드·그림자 없음 ── */
+.md-typeset .hero {
+  margin: -1rem -.6rem 2.2rem;
+  padding: 2.6rem 2rem 2.4rem;
+  background: var(--brand-ink);
+  color: #fff;
+}
+.md-typeset .hero h1 { color: #fff; margin: 0 0 .5rem; font-size: 2rem; }
+.md-typeset .hero p { color: rgba(255,255,255,.88); font-size: .92rem; margin: 0; max-width: 46rem; }
+.md-typeset .hero .badges { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: .45rem; }
+.md-typeset .hero .badges span {
+  border: 1px solid rgba(255,255,255,.45);
+  padding: .28rem .7rem; font-size: .72rem; font-weight: 600;
+}
+
+/* ── 진료과 카드 가로 슬라이드(스와이프) ── */
+.md-typeset .cards {
+  display: flex; gap: 1rem; margin: 1rem 0 .5rem;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+  padding: .25rem .15rem 1rem; scroll-padding-left: .15rem;
+}
+.md-typeset .cards::-webkit-scrollbar { height: 8px; }
+.md-typeset .cards::-webkit-scrollbar-track { background: transparent; }
+.md-typeset .cards::-webkit-scrollbar-thumb { background: #c3cdd5; }
+.md-typeset .card {
+  flex: 0 0 300px; max-width: 86vw; scroll-snap-align: start;
+  max-height: 470px; overflow-y: auto;
+  border: 1px solid #d7dee4; padding: 0 1.3rem 1.1rem;
+  background: #fff;
+  transition: border-color .15s ease;
+}
+.md-typeset .card:hover { border-color: var(--brand-ink); }
+.md-typeset .card h3 {
+  position: sticky; top: 0; z-index: 1; background: #fff;
+  margin: 0 0 .7rem; padding: 1.1rem 0 .55rem; font-size: .92rem; font-weight: 700;
+  border-bottom: 2px solid var(--brand-ink); color: var(--brand-ink);
+}
+.md-typeset .card ul { margin: 0; padding: 0; list-style: none; }
+.md-typeset .card li { margin: .35rem 0; padding-left: 1rem; position: relative; }
+.md-typeset .card li::before {
+  content: "›"; position: absolute; left: 0; color: var(--brand-accent); font-weight: 800;
+}
+.md-typeset .card a { color: #2a3742; font-weight: 500; }
+.md-typeset .card a:hover { color: var(--brand-accent); }
+.md-typeset .cards-hint {
+  margin: .2rem 0 -.2rem; font-size: .78rem; color: #8a98a3; font-weight: 600;
+}
+
+/* ── 직답 박스: 각진 단색 면 — 그라데이션·그림자·라운드 없음 ── */
+.md-typeset .admonition.tip, .md-typeset details.tip {
+  border: 1px solid rgba(var(--brand-rgb),.30); border-radius: 0;
+  background: rgba(var(--brand-rgb),.06);
+  box-shadow: none;
+}
+.md-typeset .tip > .admonition-title, .md-typeset .tip > summary {
+  background: transparent; font-weight: 800; color: var(--brand-ink);
+}
+.md-typeset .tip > .admonition-title::before, .md-typeset .tip > summary::before {
+  background-color: var(--brand-ink);
+}
+
+/* ── 표: 각진 실선 격자 + 연회색 헤더 — 줄무늬·hover·그림자 없음 ── */
+.md-typeset table:not([class]) {
+  border: 1px solid #d7dee4; border-radius: 0;
+  box-shadow: none; border-collapse: collapse;
+}
+.md-typeset table:not([class]) th {
+  background: #f0f3f6; color: var(--brand-ink); font-weight: 700; border: 1px solid #d7dee4;
+}
+.md-typeset table:not([class]) td { border: 1px solid #e3e9ee; }
+
+/* 체크리스트 */
+.md-typeset .task-list-indicator::before { background-color: var(--brand-ink); }
+.md-typeset .task-list-item { margin: .3rem 0; }
+
+/* 관련 문서 등 카드 느낌 강화 */
+.md-typeset hr { border-bottom: 1px solid #e9eef2; }
+
+/* ── 상단 백링크 배너(위키 → 병원 본사이트) ── */
+/* Material 이 announce 영역을 <aside class="md-banner"> 로 렌더한다 — .md-announce 는 없는 클래스라
+   그 이름으로 쓰면 규칙이 통째로 죽는다(백링크가 민짜 링크로 보임). */
+.md-banner { background: var(--brand-ink); padding: .25rem 0; }
+.md-banner__inner { font-size: .72rem; margin: .2rem auto; }
+.md-banner .ann-warn { color: #ffe9c2; margin-right: .8rem; }
+.md-banner a.home-link {
+  display: inline-block; border: 1px solid rgba(255,255,255,.55); color: #fff !important;
+  font-weight: 700; text-decoration: none; padding: .22rem .8rem;
+}
+.md-banner a.home-link:hover { background: rgba(255,255,255,.12); color: #fff !important; }
+
+/* nav 탭의 병원 홈 백링크 강조(상시 노출) — 외부 http 링크 탭만 매칭.
+   잉크 밴드 위라 강조색 대신 흰색+밑줄(강조색은 남색 잉크와 대비가 안 나온다). */
+.md-tabs__link[href^="http"] {
+  font-weight: 800; color: #fff !important; opacity: 1;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ── 하단 고정 CTA 퀵바 (config site.cta) ──
+   헤더가 잉크→강조색 그라데이션이라 퀵바도 잉크 계열로 깔아 페이지를 위아래로 닫는다.
+   흰 바탕에 회색 바를 얹으면 본문과 섞여 '떠 있는 위젯'처럼 보인다.
+   바탕은 잉크를 한 번 더 어둡게 — 민병원처럼 잉크가 남색이면 강조색(파랑)이 안 뜬다.
+   모바일=화면 폭 전체, 데스크톱=오른쪽 아래 패널(가운데에 두면 읽는 단을 가린다). */
+.cta-bar {
+  /* z-index 2 = 본문 위, 모바일 서랍·오버레이(Material 5) 아래.
+     더 높이면 메뉴/검색을 열었을 때 퀵바가 그 위로 떠버린다. */
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 2;
+  display: flex; align-items: center; gap: .15rem;
+  padding: .4rem .45rem calc(.4rem + env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--brand-ink) 86%, #000);
+  box-shadow: 0 -1px 0 rgba(255,255,255,.09), 0 -10px 30px rgba(0,0,0,.22);
+  /* 스크롤 연동 — 상단에선 내려가 있다가 읽어 내려가면 올라온다(.is-in 은 JS 가 붙인다).
+     JS 가 안 돌면 noscript 스타일이 바로 펼친다. */
+  transform: translateY(calc(100% + 1.6rem));
+  transition: transform .42s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+  will-change: transform;
+}
+.cta-bar.is-in { transform: none; }
+
+/* 읽기 진행도 — 등장 모션의 근거이자 '답이 얼마나 남았나'를 알려주는 정보 */
+.cta-bar .cta-prog {
+  position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: var(--brand-accent);
+  transition: transform .12s linear;
+}
+.cta-bar .cta-item {
+  flex: 1 1 0; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .26rem; padding: .5rem .3rem .45rem; border-radius: 10px;
+  font-size: .645rem; font-weight: 600; line-height: 1.15; letter-spacing: -.015em;
+  color: rgba(255,255,255,.74) !important; text-decoration: none !important;
+  white-space: nowrap;
+  transition: background .15s ease, color .15s ease, transform .15s ease;
+}
+.cta-bar .cta-item:hover { background: rgba(255,255,255,.09); color: #fff !important; }
+.cta-bar .cta-item:active { transform: translateY(1px); }
+.cta-bar .cta-item:focus-visible {
+  outline: 2px solid var(--brand-accent); outline-offset: 2px;
+}
+.cta-bar svg {
+  width: 18px; height: 18px; flex: none; stroke-width: 1.65;
+  transition: transform .15s ease;
+}
+.cta-bar .cta-item:hover svg { transform: translateY(-1px); }
+
+/* 강조 1개 — 강조색은 여기서만 쓴다(나머지가 조용해야 이게 산다).
+   바에 꽉 채우지 않고 안쪽에 뜬 알약으로 두는 편이 정돈돼 보인다. */
+.cta-bar .cta-primary {
+  flex: 1.3 1 0;
+  background: var(--brand-accent); color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 2px 10px rgba(0,0,0,.25);
+}
+.cta-bar .cta-primary:hover {
+  background: var(--brand-accent); filter: brightness(1.08); color: #ffffff !important;
+}
+.cta-bar .cta-primary .cta-lab::after { content: " →"; font-weight: 600; }
+
+/* 대표번호 — 모바일은 '전화상담', 데스크톱은 번호 자체를 보여준다.
+   데스크톱에선 누를 수 없는 번호라 라벨보다 숫자가 실제 정보다. */
+.cta-bar .cta-num { display: none; }
+
+/* 바가 마지막 줄과 푸터를 가리지 않게 자리를 비운다 */
+.md-main__inner { padding-bottom: 4.6rem; }
+
+@media screen and (min-width: 60em) {
+  .cta-bar {
+    left: auto; right: 1.5rem; bottom: 1.5rem; width: auto;
+    gap: .2rem; padding: .35rem;
+    border-radius: 15px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.08) inset,
+                0 16px 40px rgba(0,0,0,.32), 0 0 0 1px rgba(255,255,255,.07);
+    transform: translateY(calc(100% + 2.2rem));
+  }
+  /* 둥근 패널이라 진행도 선을 모서리 안쪽으로 넣는다(안 그러면 라운드 밖으로 삐져나온다) */
+  .cta-bar .cta-prog {
+    left: .35rem; right: .35rem; top: .22rem; height: 2px; border-radius: 2px;
+  }
+  .cta-bar .cta-item {
+    flex: 0 0 auto; flex-direction: row; gap: .45rem;
+    padding: .62rem .95rem; font-size: .695rem; border-radius: 11px;
+  }
+  .cta-bar .cta-primary { flex: 0 0 auto; padding: .62rem 1.1rem; }
+  .cta-bar .cta-tel { padding-right: 1.05rem; }
+  .cta-bar .cta-tel .cta-lab { display: none; }
+  .cta-bar .cta-tel .cta-num {
+    display: inline; font-size: .855rem; font-weight: 700;
+    font-variant-numeric: tabular-nums; letter-spacing: .015em; color: #fff;
+  }
+  .md-main__inner { padding-bottom: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-bar, .cta-bar .cta-item, .cta-bar svg, .cta-bar .cta-prog { transition: none; }
+  .cta-bar .cta-item:active { transform: none; }
+}
+@media print { .cta-bar { display: none; } }
+
+/* 관련 영상 — 클릭 전엔 썸네일만(외부 플레이어 로딩 없음) */
+.ytcard { margin: 1.1rem 0 1.4rem; max-width: 480px; }
+.ytcard__play {
+  display: block; position: relative; width: 100%; padding: 0; border: 0;
+  background: #000; border-radius: 10px; overflow: hidden; cursor: pointer;
+  aspect-ratio: 16 / 9; line-height: 0;
+}
+.ytcard__play img {
+  /* hqdefault(480x360, 4:3)는 위아래 45px 레터박스 — 16:9 컨테이너의 cover 가
+     정확히 그만큼만 잘라낸다. 추가 scale 을 얹으면 실제 화면까지 잘린다(라이브 실증). */
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.ytcard__play::after {
+  content: ""; position: absolute; inset: 0; margin: auto;
+  width: 62px; height: 44px; border-radius: 11px; background: rgba(0,0,0,.72);
+  transition: background .15s ease;
+}
+.ytcard__play::before {
+  content: ""; position: absolute; inset: 0; margin: auto; z-index: 1;
+  width: 0; height: 0; border-style: solid; border-width: 10px 0 10px 17px;
+  border-color: transparent transparent transparent #fff;
+}
+.ytcard__play:hover::after, .ytcard__play:focus-visible::after { background: #e62117; }
+.ytcard__play:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: 3px; }
+.ytcard iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; display: block; }
+.ytcard__meta { margin: .5rem 0 0; font-size: .82rem; line-height: 1.5; }
+.ytcard__meta span { color: var(--md-default-fg-color--light); font-size: .78rem; }
+@media print { .ytcard__play { display: none; } }
+
+/* ═══ template=clinic — 병원 브랜드형 ═══
+   기본 wiki 가 '공공 신뢰형'(각진 무채색 + 잉크 밴드)이라 병원마다 룩이 같아진다.
+   이 템플릿은 config theme 의 강조색을 헤더·히어로·카드에 전면으로 끌어올려
+   병원 브랜드가 드러나게 한다. 골드만 앰버처럼 색이 뚜렷한 곳에 맞는다. */
+
+/* 헤더: 브랜드 강조색 밴드 + 잉크 탭 (wiki 는 흰 로고줄 + 잉크 탭) */
+[data-md-color-primary] .md-header {
+  background: var(--brand-accent); border-bottom: 0;
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+}
+[data-md-color-primary] .md-header__button,
+[data-md-color-primary] .md-header__topic,
+[data-md-color-primary] .md-header__title { color: #fff; }
+[data-md-color-primary] .md-search__form { background: rgba(255,255,255,.22); border-radius: 8px; }
+[data-md-color-primary] .md-search__form:hover { background: rgba(255,255,255,.3); }
+[data-md-color-primary] .md-search__input { color: #fff; }
+[data-md-color-primary] .md-search__input::placeholder,
+[data-md-color-primary] .md-search__icon { color: rgba(255,255,255,.8); }
+[data-md-color-primary] .md-tabs { background: var(--brand-ink); }
+
+/* 히어로: 잉크 단색 → 강조색 틴트 지면 + 좌측 두꺼운 강조 바 */
+.md-typeset .hero {
+  background: rgba(var(--brand-rgb), .09);
+  color: var(--brand-ink);
+  border-left: 6px solid var(--brand-accent);
+  border-radius: 0 16px 16px 0;
+  margin: -1rem -.6rem 2.2rem; padding: 2.4rem 2rem 2.2rem;
+}
+.md-typeset .hero h1 { color: var(--brand-ink); }
+.md-typeset .hero p { color: #4a5560; }
+.md-typeset .hero .badges span {
+  background: #fff; border: 1px solid rgba(var(--brand-rgb), .45);
+  color: var(--brand-ink); border-radius: 999px;
+}
+
+/* 제목: 헤어라인 → 강조색 짧은 밑줄 */
+.md-typeset h2 {
+  border-top: 0; padding-top: 0; margin-top: 2.4em;
+  padding-bottom: .35em; border-bottom: 3px solid rgba(var(--brand-rgb), .35);
+}
+
+/* 카드: 가로 슬라이드 → 그리드, 상단 강조 라인 + 부드러운 그림자 */
+.md-typeset .cards {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem; overflow: visible; padding: .25rem 0 .5rem;
+}
+.md-typeset .card {
+  flex: none; max-width: none; max-height: none; overflow: visible;
+  border: 1px solid #e6ebef; border-top: 4px solid var(--brand-accent);
+  border-radius: 14px; box-shadow: 0 2px 10px rgba(20,30,40,.05);
+  padding: 0 1.3rem 1.1rem;
+}
+.md-typeset .card:hover {
+  border-color: #e6ebef; border-top-color: var(--brand-accent);
+  box-shadow: 0 8px 22px rgba(20,30,40,.10); transform: translateY(-2px);
+}
+.md-typeset .card h3 {
+  position: static; border-bottom: 0; color: var(--brand-ink); font-weight: 700;
+}
+.md-typeset .cards-hint { display: none; }
+
+/* 직답 박스: 라운드 + 강조색 좌측 바 */
+.md-typeset .admonition.tip, .md-typeset details.tip {
+  border: 1px solid rgba(var(--brand-rgb), .28);
+  border-left: 5px solid var(--brand-accent);
+  border-radius: 12px; background: rgba(var(--brand-rgb), .07);
+}
+
+/* 표: 라운드 + 강조색 헤더 */
+.md-typeset table:not([class]) {
+  border: 1px solid #e6ebef; border-radius: 12px; overflow: hidden;
+}
+.md-typeset table:not([class]) th {
+  background: rgba(var(--brand-rgb), .14); color: var(--brand-ink); border: 0;
+  border-bottom: 1px solid rgba(var(--brand-rgb), .3);
+}
+.md-typeset table:not([class]) td { border: 0; border-bottom: 1px solid #eef2f5; }
+.md-typeset table:not([class]) tr:hover td { background: rgba(var(--brand-rgb), .05); }
