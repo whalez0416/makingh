@@ -9,7 +9,8 @@ import {nav, site} from '@/lib/site';
 const LOCALE_LABEL: Record<string, string> = {
   ko: 'KO',
   en: 'EN',
-  zh: '中文',
+  zh: '简体中文',
+  'zh-Hant': '繁體中文',
   ja: '日本語'
 };
 

@@ -1,5 +1,119 @@
 {
+  "nav": {
+    "signature": "招牌项目",
+    "antiAging": "抗衰老",
+    "stemCell": "干细胞",
+    "about": "医院介绍",
+    "reservation": "在线预约",
+    "consult": "在线咨询"
+  },
+  "common": {
+    "reserve": "预约咨询",
+    "consult": "预约咨询",
+    "call": "电话咨询",
+    "kakao": "KakaoTalk咨询",
+    "top": "返回顶部",
+    "more": "查看更多"
+  },
+  "hero": {
+    "tagline": "自体血·自体脂肪干细胞再生医学 — 先进再生医疗实施机构 DITTOCELL 医院",
+    "cta": "预约咨询",
+    "headlines": [
+      {
+        "lead": "健康的细胞",
+        "tail": "复制出健康的细胞"
+      },
+      {
+        "lead": "与您最健康时的肌肤",
+        "tail": "同样地，再一次。"
+      },
+      {
+        "lead": "在先进再生医疗实施机构",
+        "tail": "以自体干细胞"
+      }
+    ],
+    "main": {
+      "cat": "干细胞门诊",
+      "title": "自体血·自体脂肪干细胞",
+      "desc": "医院名称正取自自体干细胞的自我复制（self-renewal）"
+    },
+    "sub1": {
+      "cat": "招牌门诊",
+      "title": "针对不同困扰设计的\n13 种招牌套餐",
+      "desc": "不着痕迹，却清晰可见"
+    },
+    "sub2": {
+      "cat": "抗衰老门诊",
+      "title": "激光 · 注射 · 皮肤助推器",
+      "desc": "并配合高压氧疗法"
+    }
+  },
+  "numbers": {
+    "eyebrow": "DITTOCELL 的数字",
+    "title": "用数字看 DITTOCELL",
+    "sessions": {
+      "value": "210+",
+      "label": "累计治疗次数 〈确认〉"
+    },
+    "rate": {
+      "value": "90%",
+      "label": "回访率 〈确认〉"
+    },
+    "license": {
+      "value": "先进再生医疗",
+      "label": "实施机构"
+    }
+  },
+  "philosophy": {
+    "items": [
+      {
+        "quote": "与您最健康时的肌肤\n同样地，再一次。",
+        "cat": "干细胞门诊",
+        "line": "以自体血·自体脂肪干细胞的自我复制（self-renewal）为基础，追求从根本上改善肌肤"
+      },
+      {
+        "quote": "比起短期变化，\n更重视自然的改善与稳定的结果。",
+        "cat": "抗衰老门诊",
+        "line": "将 Ulthera · 热玛吉 · 索夫波等激光与注射 · 皮肤助推器，乃至高压氧疗法一同规划"
+      },
+      {
+        "quote": "不着痕迹，\n却清晰可见。",
+        "cat": "招牌门诊",
+        "line": "以针对不同困扰设计的 13 种招牌套餐，追求自然而和谐的美"
+      }
+    ]
+  },
+  "diagnosis": {
+    "eyebrow": "通过自我诊断了解",
+    "title": "现在，您有哪些困扰",
+    "cta": "预约咨询",
+    "items": {
+      "sagging": {
+        "cat": "干细胞门诊",
+        "q": "做了治疗也好像很快又松弛",
+        "a": "干细胞再生"
+      },
+      "subtle": {
+        "cat": "招牌门诊",
+        "q": "看得出来的治疗让我有负担",
+        "a": "招牌套餐"
+      },
+      "fatigue": {
+        "cat": "干细胞门诊",
+        "q": "慢性疲劳，连皮肤都变得粗糙",
+        "a": "归巢细胞 IV"
+      },
+      "lifting": {
+        "cat": "抗衰老门诊",
+        "q": "担心提升治疗会痛",
+        "a": "索夫波"
+      }
+    }
+  },
   "packages": {
+    "eyebrow": "SIGNATURE",
+    "title": "针对不同困扰设计的\n招牌套餐",
+    "more": "查看全部 13 种",
     "items": [
       {
         "name": "Novastem 3CC + Ulthera 500发 + HBOT",
@@ -68,37 +182,105 @@
       }
     ]
   },
+  "clinics": {
+    "eyebrow": "CLINIC",
+    "title": "DITTOCELL 的专科门诊",
+    "tabs": {
+      "all": "全部",
+      "signature": "招牌",
+      "antiAging": "抗衰老",
+      "stemCell": "干细胞"
+    },
+    "items": [
+      {
+        "tab": "signature",
+        "cat": "招牌门诊",
+        "name": "13 种招牌套餐",
+        "desc": "不着痕迹，却清晰可见",
+        "href": "/signature"
+      },
+      {
+        "tab": "antiAging",
+        "cat": "抗衰老门诊",
+        "name": "激光提升",
+        "desc": "Ultherapy Prime · 热玛吉 FLX · 索夫波等",
+        "href": "/anti-aging"
+      },
+      {
+        "tab": "antiAging",
+        "cat": "抗衰老门诊",
+        "name": "注射 · 皮肤助推器",
+        "desc": "皮肤再生与营养管理",
+        "href": "/anti-aging"
+      },
+      {
+        "tab": "antiAging",
+        "cat": "抗衰老门诊",
+        "name": "高压氧疗法 HBOT",
+        "desc": "治疗后的氧气恢复护理",
+        "href": "/anti-aging"
+      },
+      {
+        "tab": "stemCell",
+        "cat": "干细胞门诊",
+        "name": "归巢细胞 自体血干细胞",
+        "desc": "皮肤再生 · 慢性疲劳 · 缓解炎症",
+        "href": "/stem-cell"
+      },
+      {
+        "tab": "stemCell",
+        "cat": "干细胞门诊",
+        "name": "归巢细胞 自体脂肪干细胞",
+        "desc": "逆龄 · 缓解炎症 · 增强体力",
+        "href": "/stem-cell"
+      }
+    ]
+  },
+  "doctor": {
+    "eyebrow": "医疗团队",
+    "title": "代表院长 Sung Yong-wan",
+    "sub": "医学博士",
+    "quote": "我们不把皮肤老化的原因简单归结为皱纹或松弛，\n而是从皮肤结构与弹性、胶原蛋白减少、脂肪变化等\n多重因素进行综合分析。",
+    "fields": "干细胞研究 · 再生医学 · 抗衰老",
+    "careers": [
+      "前 NB Clinic 光明铁山店 院长",
+      "曾任韩一医院 · 富川世宗医院 科长",
+      "大韩肥胖学会 · 大韩肥胖美容学会 正式会员",
+      "大韩美容医科学会 · 大韩女性肥胖抗衰老学会 正式会员"
+    ]
+  },
+  "gallery": {
+    "label": "DITTOCELL CLINIC",
+    "tiles": [
+      "私人诊室",
+      "治疗室",
+      "候诊室",
+      "咨询室",
+      "恢复室"
+    ]
+  },
+  "closing": {
+    "en": "True beauty is discovered, not created",
+    "quote": "美不是被创造的，\n而是被发现的。",
+    "cta": "预约咨询"
+  },
+  "consultBanner": {
+    "quote": "与您最健康时的肌肤\n同样地，再一次。",
+    "cta": "预约咨询"
+  },
   "signaturePage": {
     "title": "招牌套餐治疗",
     "desc": "Dittocell特别招牌套餐项目"
   },
-  "nav": {
-    "signature": "招牌项目",
-    "antiAging": "抗衰老",
-    "stemCell": "干细胞",
-    "about": "医院介绍",
-    "reservation": "在线预约",
-    "consult": "在线咨询"
-  },
-  "common": {
-    "reserve": "预约咨询",
-    "consult": "预约咨询",
-    "call": "电话咨询",
-    "kakao": "KakaoTalk咨询",
-    "top": "返回顶部",
-    "more": "查看更多"
-  },
-  "footer": {
-    "hours": "咨询时间",
-    "address": "地址",
-    "bizNo": "营业执照号",
-    "director": "代表",
-    "rights": "Copyright © 2024 Dittocell Clinic. All Rights Reserved.",
-    "consult": "在线咨询",
-    "notice": "公告",
-    "reviews": "顾客评价"
-  },
   "antiAgingPage": {
+    "title": "抗衰老",
+    "desc": "恢复年轻弹性的肌肤",
+    "tabs": {
+      "laser": "激光治疗",
+      "injection": "注射治疗",
+      "booster": "皮肤助推器",
+      "hbot": "高压氧疗法"
+    },
     "laser": {
       "intro": "皮肤老化不仅仅是皱纹， 还包括皮肤厚度、胶原蛋白、脂肪层和弹性等多种结构性变化。 Dittocell通过精确诊断，使用最新设备和定制方案， 提供更安全、更满意的效果。",
       "items": [
@@ -191,35 +373,20 @@
         "PRP/干细胞治疗后帮助恢复的协同程序",
         "与美容护理和皮肤助推器结合时最大化皮肤光泽效果"
       ]
-    },
-    "title": "抗衰老",
-    "desc": "恢复年轻弹性的肌肤",
-    "tabs": {
-      "laser": "激光治疗",
-      "injection": "注射治疗",
-      "booster": "皮肤助推器",
-      "hbot": "高压氧疗法"
     }
   },
   "stemCellPage": {
+    "title": "干细胞治疗",
+    "desc": "通过尖端干细胞再生从根本上改善皮肤",
+    "tabs": {
+      "overview": "什么是干细胞？",
+      "blood": "归巢细胞（自体血）",
+      "adipose": "归巢细胞（自体脂肪）",
+      "hbot": "高压氧疗法"
+    },
     "overview": {
       "definition": "干细胞是未分化的细胞，能够自我复制， 并可发育成构成人体的210多种组织细胞。",
       "features": "干细胞具有自我更新、分化和归巢能力。",
-      "traitsTitle": "干细胞特征",
-      "traits": [
-        {
-          "name": "自我更新能力",
-          "desc": "干细胞可以复制出具有相同特性的干细胞。"
-        },
-        {
-          "name": "分化能力",
-          "desc": "可根据身体需求转化为各种组织细胞。"
-        },
-        {
-          "name": "归巢效应",
-          "desc": "静脉注射后，自动找到受损部位并帮助再生。"
-        }
-      ],
       "functionsTitle": "干细胞功能",
       "functions": [
         {
@@ -246,9 +413,26 @@
           "name": "通过血管新生供血",
           "desc": "再生受损血管 以正常供血。"
         }
+      ],
+      "traitsTitle": "干细胞特征",
+      "traits": [
+        {
+          "name": "自我更新能力",
+          "desc": "干细胞可以复制出具有相同特性的干细胞。"
+        },
+        {
+          "name": "分化能力",
+          "desc": "可根据身体需求转化为各种组织细胞。"
+        },
+        {
+          "name": "归巢效应",
+          "desc": "静脉注射后，自动找到受损部位并帮助再生。"
+        }
       ]
     },
     "blood": {
+      "name": "归巢细胞（自体血）",
+      "en": "Peripheral Blood",
       "desc": "从外周血中提取的造血干细胞和血管细胞， 通过Dittocell技术激活后 注射到静脉、皮肤和脱发部位。",
       "features": [
         {
@@ -278,10 +462,11 @@
           "name": "注射治疗",
           "desc": "注射到皮肤或静脉。"
         }
-      ],
-      "name": "归巢细胞（自体血）"
+      ]
     },
     "adipose": {
+      "name": "归巢细胞（自体脂肪）",
+      "en": "Adipose Tissue",
       "desc": "从少量脂肪中提取的脂肪来源间充质干细胞， 经激活后注射到静脉和目标部位。",
       "features": [
         {
@@ -315,13 +500,12 @@
           "name": "注射治疗",
           "desc": "注射到所需部位"
         }
-      ],
-      "name": "归巢细胞（自体脂肪）"
+      ]
     },
     "hbot": {
       "name": "深入皮肤的高浓度氧气能量",
-      "tagline": "从术后恢复到日常抗衰老！",
       "desc": "高压氧疗法在2-3个大气压的环境下 将90%以上纯度的氧气深入皮肤， 帮助恢复皮肤的自然健康节奏。",
+      "tagline": "从术后恢复到日常抗衰老！",
       "extra": "在高压环境中吸收的氧气通过血液和组织到达每个皮肤细胞， 自然增强恢复、镇静和再生过程。 它有助于加速PRP、干细胞和激光治疗后的恢复， 缓解炎症，激活细胞再生以改善整体皮肤状况。",
       "featuresTitle": "高压氧疗法主要特点",
       "features": [
@@ -349,14 +533,127 @@
         "name": "独特的细胞激活技术",
         "desc": "保持细胞再生能力， 有效改善受损皮肤。"
       }
-    ],
-    "title": "干细胞治疗",
-    "desc": "通过尖端干细胞再生从根本上改善皮肤",
-    "tabs": {
-      "overview": "什么是干细胞？",
-      "blood": "归巢细胞（自体血）",
-      "adipose": "归巢细胞（自体脂肪）",
-      "hbot": "高压氧疗法"
-    }
+    ]
+  },
+  "aboutPage": {
+    "title": "医院介绍",
+    "en": "True beauty is discovered, not created",
+    "philosophy": "美不是被创造的，而是被发现的。",
+    "philosophyDesc": "DITTOCELL 尊重每个人独有的气质，追求完成自然而和谐的美。",
+    "greetingTitle": "院长致辞",
+    "greeting": "DITTOCELL 的医疗团队基于对抗衰老治疗的深入理解，不把皮肤老化的原因简单归结为皱纹或松弛，而是从皮肤结构与弹性、胶原蛋白减少、脂肪变化等多重因素进行综合分析。我们以数十年的临床经验为基础，为每个人设计个性化治疗方案，比起短期变化，更重视自然的改善与稳定的结果。",
+    "facilityTitle": "设施介绍",
+    "facilities": [
+      {
+        "name": "私人诊室",
+        "desc": "以卫生与安全为最优先的舒适环境"
+      },
+      {
+        "name": "治疗室",
+        "desc": "配备最新激光设备"
+      },
+      {
+        "name": "候诊室",
+        "desc": "舒适的等候空间"
+      }
+    ]
+  },
+  "reservationPage": {
+    "title": "在线预约",
+    "desc": "在线提交申请后，医院确认后会与您联系。",
+    "kakaoTitle": "KakaoTalk 咨询·预约",
+    "kakaoDesc": "添加频道后留言，我们会按顺序为您安排。",
+    "telTitle": "电话咨询·预约",
+    "hoursTitle": "门诊时间",
+    "formTitle": "在线预约申请",
+    "otherTitle": "如需通过其他方式预约",
+    "toConsult": "想了解治疗项目，请使用在线咨询"
+  },
+  "footer": {
+    "hours": "咨询时间",
+    "address": "地址",
+    "bizNo": "营业执照号",
+    "director": "代表",
+    "rights": "Copyright © 2024 Dittocell Clinic. All Rights Reserved.",
+    "consult": "在线咨询",
+    "notice": "公告",
+    "reviews": "顾客评价"
+  },
+  "noticePage": {
+    "title": "公告",
+    "en": "NEWS",
+    "notice": "公告",
+    "event": "活动",
+    "empty": "暂无公告。",
+    "back": "返回列表"
+  },
+  "news": {
+    "eyebrow": "NEWS",
+    "title": "DITTOCELL 公告",
+    "more": "查看全部",
+    "notice": "公告",
+    "event": "活动"
+  },
+  "reviews": {
+    "eyebrow": "REVIEW",
+    "title": "到访者的分享"
+  },
+  "reviewsPage": {
+    "title": "顾客评价",
+    "desc": "这是到访 DITTOCELL 的顾客留下的分享。",
+    "empty": "暂无评价。"
+  },
+  "reservationForm": {
+    "name": "姓名",
+    "phone": "联系方式",
+    "treatment": "希望的治疗项目",
+    "gender": "性别",
+    "female": "女",
+    "male": "男",
+    "date": "希望日期",
+    "time": "希望时间",
+    "message": "备注",
+    "choose": "请选择",
+    "privacy": "同意收集及使用个人信息",
+    "privacyDetail": "收集项目：姓名、联系方式、性别、希望的治疗项目·日期·时间、备注\n收集目的：确认预约申请及联系告知\n保存期限：预约处理完成后 1 年 〈确认〉，期限届满后立即销毁\n\n您可以拒绝同意。但在此情况下，在线预约申请将受到限制，您可以通过电话或 KakaoTalk 预约。",
+    "marketing": "同意接收营销信息",
+    "marketingDetail": "收集项目：姓名、联系方式\n使用目的：发送活动·诊疗介绍等营销信息\n保存期限：直至撤回同意\n\n此为可选项目，不同意也不影响预约申请。",
+    "needConsent": "请同意收集及使用个人信息。",
+    "submit": "提交预约申请",
+    "sending": "提交中…",
+    "failed": "提交失败。请稍后重试，或",
+    "useKakao": "通过 KakaoTalk 预约",
+    "confirmNote": "提交申请后，医院会与您联系确认。仅提交申请并不代表预约已确定。",
+    "doneTitle": "预约申请已提交",
+    "doneDesc": "医院确认后会与您联系。仅提交申请并不代表预约已确定，请等待我们的联系。"
+  },
+  "inquiryForm": {
+    "name": "姓名",
+    "phone": "联系方式",
+    "message": "咨询内容",
+    "privacy": "同意收集及使用个人信息",
+    "privacyDetail": "收集项目：姓名、联系方式、咨询内容\n收集目的：确认咨询内容及回复联系\n保存期限：咨询完成后 1 年 〈确认〉，期限届满后立即销毁\n\n您可以拒绝同意。但在此情况下，在线咨询申请将受到限制，您可以通过电话或 KakaoTalk 咨询。",
+    "needConsent": "请同意收集及使用个人信息。",
+    "submit": "提交咨询",
+    "sending": "提交中…",
+    "failed": "提交失败。请稍后重试，或",
+    "useKakao": "通过 KakaoTalk 咨询",
+    "doneTitle": "咨询已提交",
+    "doneDesc": "医院确认后会与您联系。"
+  },
+  "consultPage": {
+    "title": "在线咨询",
+    "desc": "请留下您的疑问，我们确认后会与您联系。",
+    "formTitle": "咨询申请",
+    "otherTitle": "如需立即咨询",
+    "kakaoDesc": "通过 KakaoTalk 频道咨询，我们会在门诊时间内回复。",
+    "telDesc": "也可以通过电话咨询。",
+    "toReservation": "治疗预约请使用在线预约"
+  },
+  "popup": {
+    "label": "通知弹窗",
+    "today": "今天不再显示",
+    "close": "关闭",
+    "more": "查看详情"
   }
 }

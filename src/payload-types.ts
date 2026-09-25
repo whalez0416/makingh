@@ -97,14 +97,18 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale:
-    ('false' | 'none' | 'null') | false | null | ('ko' | 'en' | 'zh' | 'ja') | ('ko' | 'en' | 'zh' | 'ja')[];
+    | ('false' | 'none' | 'null')
+    | false
+    | null
+    | ('ko' | 'en' | 'zh' | 'zh-Hant' | 'ja')
+    | ('ko' | 'en' | 'zh' | 'zh-Hant' | 'ja')[];
   globals: {
     'site-settings': SiteSetting;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
-  locale: 'ko' | 'en' | 'zh' | 'ja';
+  locale: 'ko' | 'en' | 'zh' | 'zh-Hant' | 'ja';
   widgets: {
     collections: CollectionsWidget;
   };

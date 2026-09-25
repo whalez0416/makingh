@@ -30,7 +30,8 @@ export default buildConfig({
     locales: [
       {label: '한국어', code: 'ko'},
       {label: 'English', code: 'en'},
-      {label: '中文', code: 'zh'},
+      {label: '简体中文', code: 'zh'},
+      {label: '繁體中文', code: 'zh-Hant'},
       {label: '日本語', code: 'ja'}
     ],
     defaultLocale: 'ko',

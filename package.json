@@ -13,7 +13,8 @@
     "generate:importmap": "payload generate:importmap",
     "payload": "payload",
     "build:pages": "node scripts/build-pages.mjs",
-    "check:popup": "tsx scripts/popup-check.ts"
+    "check:popup": "tsx scripts/popup-check.ts",
+    "zh-hant": "node scripts/zh-hant.mjs"
   },
   "dependencies": {
     "@payloadcms/db-sqlite": "^3.88.0",
@@ -32,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "opencc-js": "^1.4.2",
     "puppeteer-core": "^25.8.0",
     "tailwindcss": "^4",
     "typescript": "^5"
