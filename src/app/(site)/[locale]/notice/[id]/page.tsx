@@ -16,9 +16,9 @@ export async function generateStaticParams() {
     limit: 500,
     depth: 0
   });
-  return routing.locales.flatMap((locale) =>
-    docs.map((n) => ({locale, id: String(n.id)}))
-  );
+  // ponytail: output:'export' 는 빈 배열을 거부한다 (DB 없는 Pages 러너). 자리표시 id 하나 → notFound 로 404 가 나간다.
+  const ids = docs.length ? docs.map((n) => String(n.id)) : ['0'];
+  return routing.locales.flatMap((locale) => ids.map((id) => ({locale, id})));
 }
 
 export default async function NoticeDetail({params}: PageProps<'/[locale]/notice/[id]'>) {
