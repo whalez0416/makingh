@@ -11,7 +11,7 @@ export default function NumbersStrip() {
   const t = useTranslations('numbers');
 
   return (
-    <section className="border-line mt-24 border-t px-5 py-20 lg:mt-[160px] lg:px-10 lg:py-[160px]">
+    <section className="band-surface px-5 py-20 lg:px-10 lg:py-[120px]">
       <Reveal className="grid gap-10 md:grid-cols-3 lg:gap-6">
         {KEYS.map((k) => (
           <div key={k}>

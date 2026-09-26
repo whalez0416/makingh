@@ -9,7 +9,7 @@ export default function Doctor() {
   const careers = t.raw('careers') as string[];
 
   return (
-    <section className="px-5 py-24 lg:px-10 lg:py-[160px]">
+    <section className="band-surface px-5 py-24 lg:px-10 lg:py-[140px]">
       <Reveal className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-[80px]">
         {/* 아이리스 리빌: 세포(작은 원)에서 시작해 초상이 드러난다 (globals.css .iris-in) */}
         {/* 원장 프로필 사진 수급 전 임시 스톡(청진기 정물) — 타인 얼굴 스톡은 원장으로 오인될 수 있어 쓰지 않는다 */}

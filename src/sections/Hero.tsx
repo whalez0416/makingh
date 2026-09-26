@@ -37,7 +37,7 @@ export default function Hero() {
       </section>
 
       {/* 클리닉 3카드 벤토 */}
-      <section className="px-5 pt-4 lg:px-10 lg:pt-6">
+      <section className="px-5 pt-4 pb-20 lg:px-10 lg:pt-6 lg:pb-[120px]">
         <div className="flex flex-col gap-4 lg:h-[748px] lg:flex-row lg:gap-6">
           {/* 좌: 큰 카드 (884 / 1360) — 줄기세포 */}
           <article className="relative flex min-h-[300px] items-end overflow-hidden rounded-[20px] bg-[linear-gradient(150deg,var(--color-line),var(--color-accent)_58%,var(--color-ink))] p-6 lg:h-full lg:flex-[884] lg:rounded-[30px] lg:p-10">

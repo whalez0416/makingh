@@ -9,7 +9,7 @@ export default function Closing() {
   const t = useTranslations('closing');
 
   return (
-    <section className="px-5 py-32 text-center lg:px-10 lg:py-[220px]">
+    <section className="band-ink px-5 py-32 text-center lg:px-10 lg:py-[220px]">
       <Reveal>
         <GooOrb />
         <p className="text-accent mt-6 text-[13px] font-bold tracking-[0.18em] uppercase lg:mt-10 lg:text-[15px]">

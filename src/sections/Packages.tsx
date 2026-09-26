@@ -23,7 +23,7 @@ export default function Packages() {
   const items = t.raw('items') as {name: string; tagline: string}[];
 
   return (
-    <section className="px-5 py-24 lg:px-10 lg:py-[160px]">
+    <section className="band-surface px-5 py-24 lg:px-10 lg:py-[140px]">
       <SectionHeader
         eyebrow={t('eyebrow')}
         title={t('title')}

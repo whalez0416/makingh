@@ -23,7 +23,7 @@ export default async function Reviews({locale}: {locale: Locale}) {
   if (docs.length === 0) return null;
 
   return (
-    <section className="py-20 lg:py-[120px]">
+    <section className="band-tint py-20 lg:py-[120px]">
       <div className="px-5 lg:px-10">
         <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
       </div>

@@ -21,7 +21,7 @@ export default async function NewsFeed({locale}: {locale: Locale}) {
   if (docs.length === 0) return null;
 
   return (
-    <section className="px-5 py-20 lg:px-10 lg:py-[120px]">
+    <section className="band-tint px-5 py-20 lg:px-10 lg:py-[120px]">
       <SectionHeader
         eyebrow={t('eyebrow')}
         title={t('title')}

@@ -21,6 +21,12 @@
   --t-sub: #6e6455;
   --t-accent: #9e7c40;
   --t-line: #eae2d2;
+  --d-bg: #221d14;
+  --d-surface: #2c261b;
+  --d-ink: #f6f2ea;
+  --d-sub: #b8ad9b;
+  --d-accent: #c9a86a;
+  --d-line: rgba(246, 242, 234, 0.14);
 }
 [data-theme='b'] {
   --t-bg: #f4f6f5;
@@ -29,6 +35,12 @@
   --t-sub: #4e5a55;
   --t-accent: #0e5a4a;
   --t-line: #dce3e0;
+  --d-bg: #101614;
+  --d-surface: #1a2320;
+  --d-ink: #f4f6f5;
+  --d-sub: #a3b0ab;
+  --d-accent: #6fb8a3;
+  --d-line: rgba(244, 246, 245, 0.14);
 }
 [data-theme='c'] {
   --t-bg: #fcfbf9;
@@ -37,6 +49,34 @@
   --t-sub: #7c7468;
   --t-accent: #a78b6f;
   --t-line: #ede8e0;
+  --d-bg: #26221d;
+  --d-surface: #312c25;
+  --d-ink: #fcfbf9;
+  --d-sub: #b9b0a4;
+  --d-accent: #cdb39a;
+  --d-line: rgba(252, 251, 249, 0.14);
+}
+
+/* ── 섹션 밴드 ──────────────────────────────────────────────
+   한 톤으로 이어지던 섹션에 리듬을 준다(발주자 피드백 2026-09-26).
+   band-ink 는 토큰을 통째로 다크 변형으로 바꾸므로 안의 컴포넌트(text-ink·border-line·
+   bg-surface·버튼)가 손대지 않아도 그대로 따라온다. 순서: 사진 / 흰 띠 / 다크 / 바탕 / 흰 띠 … */
+.band-surface {
+  background: var(--t-surface);
+}
+.band-tint {
+  background: color-mix(in srgb, var(--t-accent) 7%, var(--t-bg));
+}
+.band-ink {
+  --t-bg: var(--d-bg);
+  --t-surface: var(--d-surface);
+  --t-ink: var(--d-ink);
+  --t-sub: var(--d-sub);
+  --t-accent: var(--d-accent);
+  --t-line: var(--d-line);
+  /* --color-* 는 :root 에서 이미 계산돼 내려오므로 여기서 다시 안 풀린다 — 원본 토큰을 직접 쓴다 */
+  background: var(--t-bg);
+  color: var(--t-ink);
 }
 
 body {

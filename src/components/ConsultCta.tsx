@@ -47,7 +47,7 @@ export default async function ConsultCta({
       href={s.kakao}
       target="_blank"
       rel="noreferrer"
-      className="bg-ink hover:bg-accent inline-flex h-12 items-center rounded-[8px] px-7 text-[15px] text-white transition-colors"
+      className="bg-ink text-bg hover:bg-accent inline-flex h-12 items-center rounded-[8px] px-7 text-[15px] transition-colors"
     >
       {label}
     </a>
