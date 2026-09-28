@@ -1,0 +1,59 @@
+# 서버 배포 — dittocellseoul.com (알리바바 홍콩 VPS, host nginx 뒤 Node 앱). 접수·관리자가 실제로 도는 판.
+# GitHub Pages(deploy.yml)는 정적 미리보기라 폼이 안 돈다 — 이 워크플로가 본판.
+# 빌드는 여기(Actions, Ubuntu x64 = 서버와 같음)서 하고 standalone 폴더만 tar|ssh 로 보낸다. 서버는 node 만 있으면 된다.
+#
+# 필요한 Secrets: DITTOCELL_SSH_KEY(개인키 전문), PAYLOAD_SECRET(서버 /etc/dittocell.env 와 같은 값)
+# 필요한 Variables: DITTOCELL_HOST(서버 IP)
+# 서버 쪽 준비: aeo-sync/deploy/dittocell_server/setup.sh (폴더·systemd·nginx)
+
+name: deploy-server
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-server
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HOST: ${{ vars.DITTOCELL_HOST }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      # 빌드 시점엔 DB 가 없다 — cms.ts 안전 래퍼가 빈 값으로 넘어가고, prodMigrations 가 임시 DB 에 표를 만든다.
+      - name: 서버 빌드 (standalone)
+        run: npm run build
+        env:
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          DATABASE_URI: file:./build.db
+          NODE_ENV: production
+
+      - name: 묶기 (standalone + static + public)
+        run: |
+          cp -r .next/static .next/standalone/.next/static
+          cp -r public .next/standalone/public
+          tar -C .next/standalone -czf app.tgz .
+
+      # 폴더 교체(app.new → app) 뒤 재시작. DB·업로드는 /data/dittocell/{data,media} 라 배포에 안 쓸린다.
+      - name: 서버로 보내고 재시작
+        env:
+          KEY: ${{ secrets.DITTOCELL_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh && printf '%s\n' "$KEY" > ~/.ssh/dittocell_hk && chmod 600 ~/.ssh/dittocell_hk
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          S="ssh -i ~/.ssh/dittocell_hk root@$HOST"
+          $S "rm -rf /data/dittocell/app.new && mkdir -p /data/dittocell/app.new"
+          cat app.tgz | $S "tar xzf - -C /data/dittocell/app.new"
+          $S "rm -rf /data/dittocell/app.old; [ -d /data/dittocell/app ] && mv /data/dittocell/app /data/dittocell/app.old; mv /data/dittocell/app.new /data/dittocell/app && systemctl restart dittocell && sleep 5 && systemctl is-active dittocell"
+          # HTTPS 전(certbot 이전)에도 통과하게 http 로 들어가 리다이렉트를 따라간다.
+          curl -sfLk --resolve dittocellseoul.com:80:$HOST --resolve dittocellseoul.com:443:$HOST http://dittocellseoul.com/ko/ | grep -qi "dittocell" || { echo "서버 응답 확인 실패"; exit 1; }

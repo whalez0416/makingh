@@ -16,7 +16,8 @@ const lanHosts = Object.values(networkInterfaces())
   .map((n) => n!.address);
 
 const nextConfig: NextConfig = {
-  ...(isPages ? {output: 'export' as const, basePath: '/makingh'} : {}),
+  // 서버 모드는 standalone — node_modules 없이 server.js 한 폴더로 서버에 올린다(.github/workflows/deploy-server.yml).
+  ...(isPages ? {output: 'export' as const, basePath: '/makingh'} : {output: 'standalone' as const}),
   trailingSlash: true,
   images: {unoptimized: true},
   allowedDevOrigins: lanHosts

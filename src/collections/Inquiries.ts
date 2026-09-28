@@ -1,5 +1,6 @@
 import type {CollectionConfig} from 'payload';
 import {APIError} from 'payload';
+import {slackAlert} from '@/lib/alert';
 
 // 온라인 상담 문의함. 공개되지 않는다 — 병원만 본다.
 export const Inquiries: CollectionConfig = {
@@ -23,6 +24,13 @@ export const Inquiries: CollectionConfig = {
           throw new APIError('invalid submission', 400);
         }
         return data;
+      }
+    ],
+    afterChange: [
+      async ({doc, operation}) => {
+        if (operation === 'create') {
+          await slackAlert('디토셀 상담 문의 새 접수', {이름: doc.name, 연락처: doc.phone, 문의: doc.message});
+        }
       }
     ]
   },

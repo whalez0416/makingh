@@ -15,6 +15,7 @@ import {Reviews} from './collections/Reviews';
 import {Reservations} from './collections/Reservations';
 import {Inquiries} from './collections/Inquiries';
 import {SiteSettings} from './globals/SiteSettings';
+import {migrations} from './migrations';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -39,7 +40,10 @@ export default buildConfig({
   },
   secret: process.env.PAYLOAD_SECRET || '',
   db: sqliteAdapter({
-    client: {url: process.env.DATABASE_URI || 'file:./dittocell.db'}
+    client: {url: process.env.DATABASE_URI || 'file:./dittocell.db'},
+    // 서버(NODE_ENV=production)에서는 dev 의 자동 스키마 반영이 꺼진다 — 빈 DB 에 표를 만드는 건 이 마이그레이션.
+    // 필드를 바꾸면 `npx payload migrate:create <이름>` 으로 한 장 더 만든다(src/migrations/).
+    prodMigrations: migrations
   }),
   sharp,
   typescript: {outputFile: path.resolve(dirname, 'payload-types.ts')}

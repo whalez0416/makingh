@@ -1,6 +1,7 @@
 import type {CollectionConfig} from 'payload';
 import {APIError} from 'payload';
 import {TREATMENTS, TIME_SLOTS} from '@/lib/treatments';
+import {slackAlert} from '@/lib/alert';
 
 // 온라인 예약 신청함. 방문자가 넣고 병원이 본다.
 // 개인정보가 들어오는 곳이라 create 만 열고 조회·수정·삭제는 로그인한 관리자로 잠근다.
@@ -26,6 +27,16 @@ export const Reservations: CollectionConfig = {
           throw new APIError('invalid submission', 400);
         }
         return data;
+      }
+    ],
+    afterChange: [
+      async ({doc, operation}) => {
+        if (operation === 'create') {
+          await slackAlert('디토셀 예약 신청 새 접수', {
+            이름: doc.name, 연락처: doc.phone, 시술: doc.treatment,
+            희망일: `${doc.preferredDate ?? ''} ${doc.preferredTime ?? ''}`.trim(), 요청: doc.message
+          });
+        }
       }
     ]
   },
