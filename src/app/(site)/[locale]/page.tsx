@@ -2,6 +2,7 @@ import {setRequestLocale} from 'next-intl/server';
 import type {Locale} from '@/i18n/routing';
 import Popups from '@/components/Popups';
 import Hero from '@/sections/Hero';
+import IntroLogo from '@/components/IntroLogo';
 import NumbersStrip from '@/sections/NumbersStrip';
 import Philosophy from '@/sections/Philosophy';
 import Diagnosis from '@/sections/Diagnosis';
@@ -21,6 +22,7 @@ export default async function HomePage({params}: PageProps<'/[locale]'>) {
 
   return (
     <>
+      <IntroLogo />
       <Popups locale={locale as Locale} />
       <Hero />
       <NumbersStrip />

@@ -4,6 +4,9 @@ import {useEffect, useState} from 'react';
 
 // 뷰웰 히어로: 헤드라인이 교체되고 오른쪽에 01/03 카운터가 붙는다.
 // 대형 히어로 사진 위에 얹히므로 화이트 톤 (2026-08-21 히어로 개편).
+// 2026-09-29 모션 보강: 줄마다 마스크 안에서 올라오고, 카운터 밑줄이 다음 교체까지 채워진다.
+const INTERVAL = 5000;
+
 export default function HeroHeadline({
   items
 }: {
@@ -13,7 +16,7 @@ export default function HeroHeadline({
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const t = setInterval(() => setI((v) => (v + 1) % items.length), 5000);
+    const t = setInterval(() => setI((v) => (v + 1) % items.length), INTERVAL);
     return () => clearInterval(t);
   }, [items.length]);
 
@@ -24,13 +27,14 @@ export default function HeroHeadline({
           <span
             key={n}
             aria-hidden={n !== i}
-            className={`block transition-opacity duration-700 ${
-              n === i ? 'opacity-100' : 'absolute inset-0 opacity-0'
-            }`}
+            className={`hero-head block ${n === i ? 'is-on' : 'absolute inset-0'}`}
           >
-            {it.lead}
-            <br />
-            {it.tail}
+            <span className="hero-line">
+              <span>{it.lead}</span>
+            </span>
+            <span className="hero-line">
+              <span>{it.tail}</span>
+            </span>
           </span>
         ))}
       </h1>
@@ -40,7 +44,13 @@ export default function HeroHeadline({
           {String(i + 1).padStart(2, '0')}
           <span className="font-normal text-white/60"> / {String(items.length).padStart(2, '0')}</span>
         </p>
-        <div className="mt-3 flex w-[120px] items-center justify-end border-b border-white/70 pb-1">
+        <div className="relative mt-3 flex w-[120px] items-center justify-end border-b border-white/30 pb-1">
+          <span
+            key={i}
+            aria-hidden
+            className="hero-progress"
+            style={{animationDuration: `${INTERVAL}ms`}}
+          />
           <span aria-hidden className="-mb-2 text-[16px] leading-none text-white">
             ➞
           </span>

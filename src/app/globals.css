@@ -224,6 +224,129 @@ body {
     linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--color-ink) 72%, transparent));
 }
 
+/* ── 히어로 모션 (2026-09-29) ─────────────────────────────────
+   transform·opacity 만 움직인다(CLS 0). 줄이는 설정이면 전부 정지 상태. */
+.hero-photo {
+  animation:
+    hero-settle 2.8s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+    hero-drift 18s ease-in-out 2.8s infinite alternate;
+}
+@keyframes hero-settle {
+  from { transform: scale(1.12); opacity: 0.6; }
+  to { transform: scale(1.04); opacity: 1; }
+}
+@keyframes hero-drift {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to { transform: scale(1.08) translate3d(-1.2%, -0.8%, 0); }
+}
+
+/* 헤드라인: 줄마다 마스크 안에서 올라온다. 교체될 때 이전 문장은 옅어진다. */
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em; /* 한글 받침이 마스크에 잘리지 않게 */
+}
+.hero-line > span { display: inline-block; }
+.hero-head { opacity: 0; transition: opacity 0.3s ease; }
+.hero-head.is-on { opacity: 1; transition: none; }
+.hero-head.is-on .hero-line > span {
+  animation: hero-line-up 1s cubic-bezier(0.2, 0.75, 0.15, 1) 0.25s both; /* 이전 문장이 빠진 뒤 */
+}
+.hero-head.is-on .hero-line + .hero-line > span { animation-delay: 0.37s; }
+@keyframes hero-line-up {
+  from { transform: translate3d(0, 105%, 0); }
+  to { transform: none; }
+}
+
+/* 카운터 밑줄: 다음 교체까지 채워진다 */
+.hero-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: #fff;
+  transform-origin: left;
+  animation: hero-progress linear both;
+}
+@keyframes hero-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* 태그라인·CTA: 첫 진입 때 순서대로 떠오른다 */
+.hero-rise { animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.45s both; }
+.hero-rise-2 { animation-delay: 0.6s; }
+@keyframes hero-rise {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo,
+  .hero-head.is-on .hero-line > span,
+  .hero-rise {
+    animation: none;
+  }
+  .hero-progress { display: none; }
+}
+
+/* ── 홈 인트로 (IntroLogo.tsx) ──────────────────────────────── */
+.intro { display: none; }
+/* 인라인 스크립트가 첫 진입이라고 판단했을 때만 보인다 (다른 페이지에서 넘어오면 안 뜸) */
+.intro-on .intro,
+.intro-fly .intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--color-ink);
+  pointer-events: none;
+  /* JS 가 안 돌아도 막이 걷히는 안전장치 */
+  animation: intro-failsafe 0.6s ease 3.5s forwards;
+}
+@keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
+
+.intro-word {
+  position: relative;
+  display: inline-block;
+  transform-origin: left center; /* 헤더 로고 왼쪽 끝으로 맞춰 날아간다 */
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(30px, 7vw, 64px);
+  letter-spacing: 0.22em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.intro-word > span:not(.intro-echo) {
+  display: inline-block;
+  animation: intro-letter 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes intro-letter {
+  from { opacity: 0; transform: translate3d(0, 0.35em, 0); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+/* 옅은 복제본이 아래에서 겹쳐 들어와 하나가 된다 (Ditto = 다시 한 번) */
+.intro-echo {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: intro-echo 0.9s cubic-bezier(0.3, 0.6, 0.2, 1) 0.6s both;
+}
+@keyframes intro-echo {
+  0% { opacity: 0; transform: translate3d(0, 0.9em, 0); }
+  45% { opacity: 0.35; }
+  100% { opacity: 0; transform: none; }
+}
+
+.intro-on [data-site-logo],
+.intro-fly [data-site-logo] { visibility: hidden; }
+/* 인트로가 덮고 있는 동안 히어로 모션은 멈춰 있다가 막이 걷힐 때 시작 */
+.intro-on .hero-photo,
+.intro-on .hero-rise,
+.intro-on .hero-head.is-on .hero-line > span { animation-play-state: paused; }
+
 /* ── 사진 위 텍스트 가독용 하단 스크림 ─────────────────────────
    테마 컬러 틴트(브리프 §3)는 발주자 피드백으로 제거 — 사진은 원색 그대로,
    텍스트가 얹히는 카드만 하단 ink 그라데이션. */

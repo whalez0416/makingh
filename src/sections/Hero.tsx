@@ -15,22 +15,24 @@ export default function Hero() {
   return (
     <>
       {/* 풀스크린 히어로 */}
-      <section className="relative h-[92svh] min-h-[560px]">
-        <Image
-          src={`${assetBase}/hero/main.jpg`}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+      <section className="relative h-[92svh] min-h-[560px] overflow-hidden">
+        <div className="hero-photo absolute inset-0">
+          <Image
+            src={`${assetBase}/hero/main.jpg`}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
         <div className="hero-scrim" />
         <div className="absolute inset-x-0 bottom-0 px-5 pb-14 lg:px-10 lg:pb-20">
           <HeroHeadline items={headlines} />
-          <p className="mt-4 max-w-[560px] text-[14px] leading-relaxed text-white/85 lg:mt-6 lg:text-[17px]">
+          <p className="hero-rise mt-4 max-w-[560px] text-[14px] leading-relaxed text-white/85 lg:mt-6 lg:text-[17px]">
             {t('tagline')}
           </p>
-          <div className="mt-7 lg:mt-9">
+          <div className="hero-rise hero-rise-2 mt-7 lg:mt-9">
             <ConsultCta label={t('cta')} variant="light" />
           </div>
         </div>

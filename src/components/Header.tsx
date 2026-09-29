@@ -89,6 +89,7 @@ export default function Header({kakao}: {kakao: string}) {
 
         <Link
           href="/"
+          data-site-logo
           onClick={() => setOpen(false)}
           className={`text-[17px] font-bold tracking-[0.22em] transition-colors lg:text-[20px] ${
             overHero ? 'text-white' : 'text-ink'
