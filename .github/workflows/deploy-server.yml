@@ -19,6 +19,8 @@ concurrency:
 
 jobs:
   deploy:
+    # ponytail: 서버 IP 변수 등록 전엔 건너뜀 (등록하면 자동으로 켜짐)
+    if: vars.DITTOCELL_HOST != ''
     runs-on: ubuntu-latest
     env:
       HOST: ${{ vars.DITTOCELL_HOST }}
