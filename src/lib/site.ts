@@ -21,6 +21,9 @@ export const site = {
   ]
 } as const;
 
+// 정식 주소 (2026-09-29 오픈). sitemap·robots 의 절대 URL 기준.
+export const siteUrl = 'https://dittocellseoul.com';
+
 export const telHref = `tel:+82-2-564-7774`;
 
 // public/ 정적 파일 경로 접두어. images.unoptimized 모드의 next/image 는 basePath 를
