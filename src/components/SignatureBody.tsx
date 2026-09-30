@@ -19,12 +19,14 @@ const CONCERN_OF: number[][] = [
   [0, 1, 2, 3, 5, 6, 11, 12],
   [6, 9, 10]
 ];
-// 점 위치: public/signature/model.jpg(고개를 든 옆모습) 기준 비율 — 사진을 바꾸면 같이 옮길 것
+// 점 위치: public/signature/model.jpg(1200×1593, 고개를 든 옆모습) 자체의 비율.
+// 사진 상자가 늘 사진과 같은 비율이라(아래가 잘릴 뿐) 화면 크기가 달라도 점이 얼굴에서 벗어나지 않는다.
+// 사진을 바꾸면 같이 옮길 것 (2026-09-30: 칸 비율 기준으로 두었다가 넓은 화면에서 3번이 코로 간 사고)
 const SPOTS = [
-  {x: 44, y: 22},
-  {x: 50, y: 37},
-  {x: 27, y: 55},
-  {x: 52, y: 50}
+  {x: 40, y: 21}, // 이마 — 눈썹 위
+  {x: 47, y: 37}, // 뺨 — 주름·탄력
+  {x: 27, y: 53}, // 턱 아래 — 이중턱
+  {x: 49, y: 50} //  아래턱 가장자리 — 턱선
 ] as const;
 const ROMAN = ['I', 'II', 'III'];
 
@@ -79,7 +81,8 @@ export default function SignatureBody({items, t, kakao}: {items: Pkg[]; t: T; ka
       <section ref={stage} className="sig-stage relative" style={{height: `calc(100svh + ${SPOTS.length * 55}vh)`}}>
         <div className="sticky top-14 grid h-[calc(100svh-56px)] grid-rows-[minmax(0,1fr)_auto] lg:top-[72px] lg:h-[calc(100svh-72px)] lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:grid-rows-1">
           <div className="relative overflow-hidden">
-            <Image src={`${assetBase}/signature/model.jpg`} alt="" fill priority sizes="(min-width:1024px) 52vw, 100vw" className="object-cover object-top" />
+            <div className="absolute inset-x-0 top-0 aspect-[1200/1593]">
+            <Image src={`${assetBase}/signature/model.jpg`} alt="" fill priority sizes="(min-width:1024px) 52vw, 100vw" className="object-cover" />
             {SPOTS.map((p, i) => (
               <span
                 key={i}
@@ -95,6 +98,7 @@ export default function SignatureBody({items, t, kakao}: {items: Pkg[]; t: T; ka
                 </span>
               </span>
             ))}
+            </div>
           </div>
           <div className="flex flex-col px-5 pt-5 pb-6 lg:px-16 lg:pt-16 lg:pb-14">
             <p className="sig-italic text-accent text-[44px] leading-[0.9] lg:text-[104px]">Signature</p>
