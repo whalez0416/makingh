@@ -6,9 +6,15 @@ import Reveal from '@/components/Reveal';
 import ReservationForm from '@/components/ReservationForm';
 import {getSettings, type Settings} from '@/lib/settings';
 import type {Locale} from '@/i18n/routing';
+import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /reservation — 예약 신청 폼(Phase 5). 신청을 받고 병원이 전화로 확정한다.
 // 카카오톡·전화는 그대로 남긴다. 폼이 막히거나 급한 사람에게는 그쪽이 빠르다.
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  return pageMeta(locale, 'reservation', 'reservation/');
+}
+
 export default async function ReservationPage({params}: PageProps<'/[locale]/reservation'>) {
   const {locale} = await params;
   setRequestLocale(locale);

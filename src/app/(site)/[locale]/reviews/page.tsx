@@ -6,8 +6,14 @@ import type {Review} from '@/payload-types';
 import PageHero from '@/components/PageHero';
 import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
+import {pageMeta} from '@/lib/meta';
 
 // 브리프 §4 서브 /reviews — CMS reviews 카드 그리드. 메인 슬라이더와 같은 자료를 전부 편다.
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  return pageMeta(locale, 'reviews', 'reviews/');
+}
+
 export default async function ReviewsPage({params}: PageProps<'/[locale]/reviews'>) {
   const {locale} = await params;
   setRequestLocale(locale);

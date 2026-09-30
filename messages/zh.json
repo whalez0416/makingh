@@ -735,5 +735,45 @@
     "today": "今天不再显示",
     "close": "关闭",
     "more": "查看详情"
+  },
+  "meta": {
+    "siteName": "DITTOCELL 医院",
+    "ogAlt": "DITTOCELL 医院",
+    "home": {
+      "title": "DITTOCELL 医院 · 自体干细胞再生医学",
+      "desc": "首尔江南区彦州路 DITTOCELL 医院。提供自体血·自体脂肪干细胞再生医学、招牌套餐与抗衰老诊疗的先进再生医疗实施机构。"
+    },
+    "signature": {
+      "title": "13款招牌套餐",
+      "desc": "按需求组合 Ulthera、热玛吉、索夫波、Novastem 与 HBOT 的 DITTOCELL 招牌套餐13款。"
+    },
+    "antiAging": {
+      "title": "抗衰老诊所",
+      "desc": "Ulthera·热玛吉·索夫波等激光与注射·水光，以及高压氧，一并设计。"
+    },
+    "stemCell": {
+      "title": "干细胞诊所",
+      "desc": "以自体血·自体脂肪干细胞的自我更新，追求从根本上改善肌肤。"
+    },
+    "about": {
+      "title": "医院介绍",
+      "desc": "介绍 DITTOCELL 医院的诊疗理念、院长与医院空间。"
+    },
+    "reviews": {
+      "title": "顾客评价",
+      "desc": "这是到访 DITTOCELL 的顾客留下的分享。"
+    },
+    "notice": {
+      "title": "公告",
+      "desc": "DITTOCELL 医院的公告与活动消息。"
+    },
+    "consult": {
+      "title": "在线咨询",
+      "desc": "请留下您的疑问，我们确认后会与您联系。"
+    },
+    "reservation": {
+      "title": "在线预约",
+      "desc": "在线提交申请后，医院确认后会与您联系。"
+    }
   }
 }

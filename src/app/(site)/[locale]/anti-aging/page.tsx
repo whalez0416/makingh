@@ -5,9 +5,15 @@ import PageHero from '@/components/PageHero';
 import Tabs from '@/components/Tabs';
 import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
+import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /anti-aging — 탭 4: 레이저 / 주사 / 스킨부스터 / 고압산소.
 // 시술 설명은 전부 병원 원문 그대로다(§9 의료광고 — 효과 문구를 새로 짓지 않는다).
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  return pageMeta(locale, 'antiAging', 'anti-aging/');
+}
+
 export default function AntiAgingPage({params}: PageProps<'/[locale]/anti-aging'>) {
   const {locale} = use(params);
   setRequestLocale(locale);

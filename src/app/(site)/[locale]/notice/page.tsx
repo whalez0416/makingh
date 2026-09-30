@@ -6,8 +6,14 @@ import type {Notice} from '@/payload-types';
 import PageHero from '@/components/PageHero';
 import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
+import {pageMeta} from '@/lib/meta';
 
 // 브리프 §4 서브 /notice — CMS notices 목록. 노출 켜진 것만, 게시일 내림차순.
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  return pageMeta(locale, 'notice', 'notice/');
+}
+
 export default async function NoticePage({params}: PageProps<'/[locale]/notice'>) {
   const {locale} = await params;
   setRequestLocale(locale);

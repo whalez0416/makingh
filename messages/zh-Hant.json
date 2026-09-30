@@ -735,5 +735,45 @@
     "today": "今天不再顯示",
     "close": "關閉",
     "more": "檢視詳情"
+  },
+  "meta": {
+    "siteName": "DITTOCELL 醫院",
+    "ogAlt": "DITTOCELL 醫院",
+    "home": {
+      "title": "DITTOCELL 醫院 · 自體幹細胞再生醫學",
+      "desc": "首爾江南區彥州路 DITTOCELL 醫院。提供自體血·自體脂肪幹細胞再生醫學、招牌套餐與抗衰老診療的先進再生醫療實施機構。"
+    },
+    "signature": {
+      "title": "13款招牌套餐",
+      "desc": "按需求組合 Ulthera、熱瑪吉、索夫波、Novastem 與 HBOT 的 DITTOCELL 招牌套餐13款。"
+    },
+    "antiAging": {
+      "title": "抗衰老診所",
+      "desc": "Ulthera·熱瑪吉·索夫波等雷射與注射·水光，以及高壓氧，一併設計。"
+    },
+    "stemCell": {
+      "title": "幹細胞診所",
+      "desc": "以自體血·自體脂肪幹細胞的自我更新，追求從根本上改善肌膚。"
+    },
+    "about": {
+      "title": "醫院介紹",
+      "desc": "介紹 DITTOCELL 醫院的診療理念、院長與醫院空間。"
+    },
+    "reviews": {
+      "title": "顧客評價",
+      "desc": "這是到訪 DITTOCELL 的顧客留下的分享。"
+    },
+    "notice": {
+      "title": "公告",
+      "desc": "DITTOCELL 醫院的公告與活動訊息。"
+    },
+    "consult": {
+      "title": "線上諮詢",
+      "desc": "請留下您的疑問，我們確認後會與您聯絡。"
+    },
+    "reservation": {
+      "title": "線上預約",
+      "desc": "線上提交申請後，醫院確認後會與您聯絡。"
+    }
   }
 }

@@ -436,5 +436,45 @@
       "adipose": "Homing Cell (Adipose Tissue)",
       "hbot": "Hyperbaric Oxygen Therapy"
     }
+  },
+  "meta": {
+    "siteName": "Dittocell Clinic",
+    "ogAlt": "Dittocell Clinic",
+    "home": {
+      "title": "Dittocell Clinic · Autologous Stem Cell Regenerative Medicine",
+      "desc": "Dittocell Clinic in Gangnam, Seoul: autologous blood and adipose stem cell regenerative medicine, signature packages and anti-aging care at a designated advanced regenerative medicine institution."
+    },
+    "signature": {
+      "title": "13 Signature Packages",
+      "desc": "Ulthera, Thermage, Sofwave, Novastem and HBOT combined by concern. The 13 signature packages of Dittocell Clinic."
+    },
+    "antiAging": {
+      "title": "Anti-Aging Clinic",
+      "desc": "Lasers such as Ulthera, Thermage and Sofwave, injections, skin boosters and hyperbaric oxygen, planned together."
+    },
+    "stemCell": {
+      "title": "Stem Cell Clinic",
+      "desc": "Fundamental skin improvement through the self-renewal of autologous blood and adipose stem cells."
+    },
+    "about": {
+      "title": "About Us",
+      "desc": "The philosophy of Dittocell Clinic, our medical director, and our clinic spaces."
+    },
+    "reviews": {
+      "title": "Reviews",
+      "desc": "Stories shared by people who have visited Dittocell."
+    },
+    "notice": {
+      "title": "News",
+      "desc": "Announcements and events from Dittocell Clinic."
+    },
+    "consult": {
+      "title": "Online Consultation",
+      "desc": "Leave your question and we will contact you after reviewing it."
+    },
+    "reservation": {
+      "title": "Reservation",
+      "desc": "Apply online and the clinic will contact you to confirm."
+    }
   }
 }

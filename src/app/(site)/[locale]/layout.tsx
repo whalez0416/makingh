@@ -1,10 +1,10 @@
 import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 import {hasLocale, NextIntlClientProvider} from 'next-intl';
-import {setRequestLocale} from 'next-intl/server';
+import {getTranslations, setRequestLocale} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 import {DEFAULT_THEME} from '@/lib/themes';
-import {site} from '@/lib/site';
+import {site, siteUrl} from '@/lib/site';
 import {getSettings} from '@/lib/settings';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -12,11 +12,16 @@ import Floating from '@/components/Floating';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
 import '@/app/globals.css';
 
-export const metadata: Metadata = {
-  title: `${site.name} | DITTOCELL`,
-  description:
-    '건강한 세포가 건강한 세포를 복제합니다. 디토셀의원 — 첨단재생의료 실시기관.'
-};
+// 사이트 공통: 정식 주소 기준(metadataBase)과 제목 틀. 페이지별 제목·설명·공유 카드는 각 page 의 generateMetadata(lib/meta.ts).
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  const {locale} = await params;
+  const t = await getTranslations({locale, namespace: 'meta'});
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {default: t('home.title'), template: `%s | ${t('siteName')}`},
+    description: t('home.desc')
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));

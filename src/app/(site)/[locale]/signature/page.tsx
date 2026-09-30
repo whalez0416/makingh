@@ -8,9 +8,15 @@ import Reveal from '@/components/Reveal';
 import {assetBase} from '@/lib/site';
 import {getSettings} from '@/lib/settings';
 import {italic, serifKr} from '@/lib/serif';
+import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /signature — 패키지 13종.
 // 2026-09-30 재구성: 매거진 시안 A(사진+주석, 세 챕터, 명조) + 고민 가이드 시안 C(고민 버튼, 상담 4단계).
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  return pageMeta(locale, 'signature', 'signature/');
+}
+
 export default function SignaturePage({params}: PageProps<'/[locale]/signature'>) {
   const {locale} = use(params);
   setRequestLocale(locale);

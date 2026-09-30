@@ -7,6 +7,7 @@ import {routing, type Locale} from '@/i18n/routing';
 import type {Notice} from '@/payload-types';
 import PageHero from '@/components/PageHero';
 import ConsultBanner from '@/components/ConsultBanner';
+import {pageMeta} from '@/lib/meta';
 
 // 정적 내보내기에서도 상세가 나오도록 전 언어 × 전 글을 빌드 시점에 펼친다.
 export async function generateStaticParams() {
@@ -19,6 +20,15 @@ export async function generateStaticParams() {
   // ponytail: output:'export' 는 빈 배열을 거부한다 (DB 없는 Pages 러너). 자리표시 id 하나 → notFound 로 404 가 나간다.
   const ids = docs.length ? docs.map((n) => String(n.id)) : ['0'];
   return routing.locales.flatMap((locale) => ids.map((id) => ({locale, id})));
+}
+
+// 소식 한 건: 제목은 글 제목, 설명·공유 카드는 소식 목록 것을 쓰고 정식 주소만 이 글로.
+export async function generateMetadata({params}: {params: Promise<{locale: string; id: string}>}) {
+  const {locale, id} = await params;
+  const base = await pageMeta(locale, 'notice', `notice/${id}/`);
+  const doc = await cmsFindByID<Notice>({collection: 'notices', id, locale: locale as Locale, depth: 0});
+  if (!doc?.title) return base;
+  return {...base, title: doc.title, openGraph: {...base.openGraph, title: doc.title}, twitter: {...base.twitter, title: doc.title}};
 }
 
 export default async function NoticeDetail({params}: PageProps<'/[locale]/notice/[id]'>) {

@@ -5,9 +5,15 @@ import PageHero from '@/components/PageHero';
 import Tabs from '@/components/Tabs';
 import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
+import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /stem-cell — 탭 4(개요/자가혈/자가지방/고압산소) + 기능 6종 + 시술 과정.
 // 설명은 전부 병원 원문 그대로다(§9 의료광고 — 효과 문구를 새로 짓지 않는다).
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  return pageMeta(locale, 'stemCell', 'stem-cell/');
+}
+
 export default function StemCellPage({params}: PageProps<'/[locale]/stem-cell'>) {
   const {locale} = use(params);
   setRequestLocale(locale);

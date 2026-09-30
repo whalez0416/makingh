@@ -6,8 +6,14 @@ import Reveal from '@/components/Reveal';
 import InquiryForm from '@/components/InquiryForm';
 import {getSettings, type Settings} from '@/lib/settings';
 import type {Locale} from '@/i18n/routing';
+import {pageMeta} from '@/lib/meta';
 
 // 온라인 상담 — 남긴 문의는 공개되지 않고 병원 접수함에만 들어간다.
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  return pageMeta(locale, 'consult', 'consult/');
+}
+
 export default async function ConsultPage({params}: PageProps<'/[locale]/consult'>) {
   const {locale} = await params;
   setRequestLocale(locale);

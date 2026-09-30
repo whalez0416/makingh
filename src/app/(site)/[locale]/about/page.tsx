@@ -7,8 +7,14 @@ import PageHero from '@/components/PageHero';
 import Doctor from '@/sections/Doctor';
 import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
+import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /about — 철학 · 원장 인사말 · 시설. 의료진 블록은 메인 §4-8 섹션 재사용.
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  return pageMeta(locale, 'about', 'about/');
+}
+
 export default function AboutPage({params}: PageProps<'/[locale]/about'>) {
   const {locale} = use(params);
   setRequestLocale(locale);
