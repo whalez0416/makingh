@@ -1,4 +1,5 @@
 import {getTranslations} from 'next-intl/server';
+import Logo from '@/components/Logo';
 import {Link} from '@/i18n/navigation';
 import {site} from '@/lib/site';
 import {getSettings} from '@/lib/settings';
@@ -13,9 +14,7 @@ export default async function Footer({locale}: {locale: Locale}) {
     <footer className="border-line text-sub border-t px-5 py-14 md:px-6 md:py-16 text-[14px]">
       <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <p className="text-ink mb-4 text-[19px] font-bold tracking-[0.22em]">
-            {site.nameEn}
-          </p>
+          <Logo className="text-ink mb-5 h-9 w-auto" />
           <p>
             {site.name} · {t('director')} {site.director}({site.directorTitle})
           </p>

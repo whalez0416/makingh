@@ -15,7 +15,8 @@ export default function DiagnosisCard({
   answer,
   href,
   tail,
-  tone
+  tone,
+  tabIndex
 }: {
   category: string;
   question: string;
@@ -23,13 +24,15 @@ export default function DiagnosisCard({
   href: string;
   tail: 'l' | 'r';
   tone: keyof typeof TONE;
+  tabIndex?: number;
 }) {
   const dark = tone !== 'surface';
 
   return (
     <Link
       href={href}
-      className={`bubble bubble-${tail} ${TONE[tone]} group flex h-full flex-col`}
+      tabIndex={tabIndex}
+      className={`bubble bubble-${tail} ${TONE[tone]} group flex h-full min-h-[170px] flex-col lg:min-h-[210px]`}
     >
       <span
         aria-hidden
@@ -47,7 +50,7 @@ export default function DiagnosisCard({
       >
         {category}
       </p>
-      <p className={`q-text mt-1 ${dark ? 'text-white' : 'text-ink'}`}>{question}</p>
+      <p className={`q-text mt-1 break-keep ${dark ? 'text-white' : 'text-ink'}`}>{question}</p>
 
       <p
         className={`mt-auto flex items-center gap-1.5 pt-5 text-[13px] transition-opacity lg:text-[15px] ${

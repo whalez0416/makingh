@@ -51,7 +51,8 @@ export default function Header({kakao}: {kakao: string}) {
     ));
 
   // 홈 최상단은 풀스크린 히어로 사진 위라 헤더를 화이트 톤으로 (스크롤·오버레이 시 원복)
-  const overHero = pathname === '/' && !solid && !open;
+  const page = pathname.replace(/(.)\/$/, '$1'); // trailingSlash: '/signature/' → '/signature'
+  const overHero = page === '/' && !solid && !open;
 
   return (
     <header

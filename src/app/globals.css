@@ -196,6 +196,48 @@ body {
   }
 }
 
+/* ── 자가진단 말풍선 흐름 (Diagnosis.tsx) ─────────────────────
+   같은 묶음 4벌을 이어 붙였으므로 절반(-50%)만큼 흐르면 한 바퀴. 두 줄이 반대로 흐른다. */
+.bubble-flow { animation: marquee 60s linear infinite; }
+.bubble-flow-rev { animation-direction: reverse; animation-duration: 70s; }
+.bubble-rows:hover .bubble-flow { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .bubble-flow { animation: none; }
+  .bubble-flow-rev { display: none; }       /* 멈춘 화면엔 한 줄이면 충분 */
+  .bubble-dup { display: none; }
+  .bubble-rows > .bubble-flow { flex-wrap: wrap; width: auto; padding-inline: 20px; }
+}
+
+/* ── 시그니처 (SignatureBody — 매거진 A + 고민 가이드 C) ────────── */
+.sig-serif { font-family: var(--font-serif), 'Noto Serif KR', serif; font-weight: 500; letter-spacing: -0.01em; }
+.sig-italic { font-family: var(--font-italic), 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; letter-spacing: 0; }
+.sig-num {
+  position: absolute; display: grid; place-items: center; width: 24px; height: 24px; margin: -12px 0 0 -12px;
+  border-radius: 999px; background: rgb(255 255 255 / 0.85); color: #221d14; font-size: 12px; font-weight: 700;
+  opacity: 0.55; transition: opacity 0.4s, transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.4s;
+}
+.sig-num.is-on { opacity: 1; background: #fff; transform: scale(1.3); box-shadow: 0 0 0 6px rgb(255 255 255 / 0.3); z-index: 2; }
+.sig-num.is-on::after { /* 켜진 번호만 숨 쉬듯 퍼지는 고리 */
+  content: ''; position: absolute; inset: -6px; border-radius: inherit;
+  border: 1px solid rgb(255 255 255 / 0.75); animation: sig-pulse 2.4s ease-out infinite;
+}
+/* 켜진 번호 옆 설명 — 번호와 같이 커지지 않게 역배율 */
+.sig-cap {
+  position: absolute; left: 30px; top: 50%; width: max-content; max-width: 200px;
+  padding: 9px 13px; border-radius: 12px; text-align: left; line-height: 1.35; word-break: keep-all;
+  background: rgb(255 255 255 / 0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  color: #221d14; opacity: 0; transform: translate3d(-6px, -50%, 0) scale(0.77); transform-origin: left center;
+  pointer-events: none; transition: opacity 0.35s, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (min-width: 1024px) { /* 넓은 화면에서만 왼쪽으로 — 폰은 사진 왼쪽 끝에 걸려 잘린다 */
+  .sig-cap-l { left: auto; right: 30px; transform-origin: right center; transform: translate3d(6px, -50%, 0) scale(0.77); }
+}
+.sig-num.is-on .sig-cap { opacity: 1; transform: translate3d(0, -50%, 0) scale(0.77); }
+.sig-cap b { display: block; font-size: 15px; }
+.sig-cap small { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: #6e6455; }
+@keyframes sig-pulse { from { transform: scale(1); opacity: 0.9; } to { transform: scale(2.1); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .sig-num, .sig-num::after, .sig-cap { animation: none; transition: none; } }
+
 /* ── 시설 갤러리 마퀴 (§4-10) ─────────────────────────────── */
 @keyframes marquee {
   from {

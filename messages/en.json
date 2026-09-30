@@ -70,7 +70,85 @@
   },
   "signaturePage": {
     "title": "Signature Package Treatments",
-    "desc": "Dittocell's special signature package programs"
+    "desc": "Dittocell's special signature package programs",
+    "eyebrow": "SIGNATURE",
+    "lead": "Experience Dittocell's special combination treatment packages",
+    "spots": [
+      {
+        "t": "Forehead Lifting",
+        "d": "Improves unnatural expression, wrinkles"
+      },
+      {
+        "t": "Wrinkles & Elasticity",
+        "d": "Fine lines, enhanced elasticity"
+      },
+      {
+        "t": "Double Chin Removal",
+        "d": "Overall jawline reduction effect"
+      },
+      {
+        "t": "Jawline Lifting",
+        "d": "Muscle reduction, slimming effect"
+      }
+    ],
+    "stats": [
+      {
+        "n": "13",
+        "l": "packages"
+      },
+      {
+        "n": "3",
+        "l": "approaches"
+      }
+    ],
+    "groupsTitle": "Three approaches, chosen by concern",
+    "all": "All",
+    "groups": [
+      {
+        "t": "Regeneration + Lifting",
+        "d": "Stem cell regeneration planned together with lifting and oxygen recovery"
+      },
+      {
+        "t": "Combined Lifting",
+        "d": "Lifting and elasticity devices layered across different skin depths"
+      },
+      {
+        "t": "Lifting + Contour Care",
+        "d": "Lifting with contour and fat care plus regenerative care"
+      }
+    ],
+    "badge": "One-Time Stem Cell P",
+    "consultTitle": "Wondering which signature package suits you?",
+    "consultDesc": "Dittocell's medical team recommends the right signature package through a 1:1 consultation.",
+    "headline": "Subtle,\nyet unmistakable.",
+    "concernQ": "What change are you looking for?",
+    "concerns": [
+      "Lifting",
+      "Elasticity & Density",
+      "Regeneration & Recovery",
+      "Contour & Fat"
+    ],
+    "concernHint": "Pick a concern to highlight matching packages. You can pick more than one.",
+    "processTitle": "Every package is finalized in consultation",
+    "ask": "Ask about this",
+    "steps": [
+      {
+        "t": "1:1 Consultation",
+        "d": "Personal consultation with our medical team"
+      },
+      {
+        "t": "Custom Plan",
+        "d": "Recommended from 13 signature packages"
+      },
+      {
+        "t": "Treatment",
+        "d": "Devices and stem cells combined"
+      },
+      {
+        "t": "Oxygen Recovery",
+        "d": "Packages with HBOT"
+      }
+    ]
   },
   "nav": {
     "signature": "Signature",

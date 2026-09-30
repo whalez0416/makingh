@@ -3,24 +3,28 @@ import DiagnosisCard from '@/components/DiagnosisCard';
 import ConsultCta from '@/components/ConsultCta';
 import Reveal from '@/components/Reveal';
 
-// 배치는 beauwell.kr 실측 (docs/beauwell-analysis.md §3):
-// 1440 = 5열 253px / 768 = 3열 227px / 375 = 2열 160px, gap 24(모바일 16),
-// 말풍선 세로 간격 32, 높이 3단 200/268/410, 컬럼 오프셋 60·106·0·162·52.
-// 폭을 실측 그대로 고정하면 375=2열 / 768=3열 / 1440=5열 이 자동으로 맞아떨어진다.
-// 지금 항목이 4개뿐이라 1440 에서 다섯째 자리가 빈다 — reference 후기에서 문장을 더 캐면 채운다.
+// 말풍선 모양은 beauwell.kr 실측 (docs/beauwell-analysis.md §3).
+// 2026-09-30 발주자 요청: 말풍선이 계속 흐르게. 두 줄이 서로 반대로 천천히 흘러 대화가 오가는 느낌을 준다.
+// 한 줄에 같은 묶음을 네 번 이어 붙여 넓은 화면도 채우고, 절반만큼 흐르면 제자리 — 끊김 없는 반복.
+// 마우스를 올리면 멈추고(글을 읽을 수 있게), 동작 줄이기 설정이면 멈춘 한 줄로 둔다.
 const ITEMS = [
-  {key: 'sagging', href: '/stem-cell', tail: 'l', tone: 'ink', h: 'lg:h-[410px]', off: 'lg:mt-[60px]'},
-  {key: 'subtle', href: '/signature', tail: 'r', tone: 'surface', h: 'lg:h-[200px]', off: 'lg:mt-[106px]'},
-  {key: 'fatigue', href: '/stem-cell', tail: 'l', tone: 'surface', h: 'lg:h-[268px]', off: ''},
-  {key: 'lifting', href: '/anti-aging', tail: 'r', tone: 'surface', h: 'lg:h-[200px]', off: 'lg:mt-[162px]'}
+  {key: 'sagging', href: '/stem-cell', tone: 'ink'},
+  {key: 'subtle', href: '/signature', tone: 'surface'},
+  {key: 'fatigue', href: '/stem-cell', tone: 'surface'},
+  {key: 'lifting', href: '/anti-aging', tone: 'surface'}
+] as const;
+
+const ROWS = [
+  {order: [0, 1, 2, 3], tail: 'l', dir: ''},
+  {order: [2, 3, 0, 1], tail: 'r', dir: 'bubble-flow-rev'}
 ] as const;
 
 export default function Diagnosis() {
   const t = useTranslations('diagnosis');
 
   return (
-    <section className="px-5 py-24 lg:px-10 lg:py-[160px]">
-      <Reveal className="mb-10 lg:mb-[60px]">
+    <section className="py-24 lg:py-[160px]">
+      <Reveal className="mb-10 px-5 lg:mb-[60px] lg:px-10">
         <p className="eyebrow mb-1 lg:mb-2.5">{t('eyebrow')}</p>
         <div className="flex items-end justify-between gap-8">
           <h2 className="h2 text-ink">{t('title')}</h2>
@@ -30,25 +34,37 @@ export default function Diagnosis() {
         </div>
       </Reveal>
 
-      <Reveal className="flex flex-wrap items-start gap-4 md:gap-6">
-        {ITEMS.map((item) => (
-          <div
-            key={item.key}
-            className={`w-[calc(50%-8px)] md:w-[226px] lg:w-[252px] ${item.h} ${item.off}`}
-          >
-            <DiagnosisCard
-              category={t(`items.${item.key}.cat`)}
-              question={t(`items.${item.key}.q`)}
-              answer={t(`items.${item.key}.a`)}
-              href={item.href}
-              tail={item.tail}
-              tone={item.tone}
-            />
+      <div className="bubble-rows flex flex-col gap-10 overflow-hidden pb-5 lg:gap-14">
+        {ROWS.map((row, r) => (
+          <div key={r} className={`bubble-flow flex w-max items-start gap-4 lg:gap-6 ${row.dir}`}>
+            {[0, 1, 2, 3].flatMap((copy) =>
+              row.order.map((n, k) => {
+                const item = ITEMS[n];
+                const dup = copy > 0; // 첫 묶음만 읽히고 눌린다 — 나머지는 흐름을 잇는 복제
+                return (
+                  <div
+                    key={`${copy}-${k}`}
+                    aria-hidden={dup || undefined}
+                    className={`w-[240px] shrink-0 lg:w-[300px] ${dup ? 'bubble-dup' : ''}`}
+                  >
+                    <DiagnosisCard
+                      category={t(`items.${item.key}.cat`)}
+                      question={t(`items.${item.key}.q`)}
+                      answer={t(`items.${item.key}.a`)}
+                      href={item.href}
+                      tail={row.tail}
+                      tone={r === 0 ? item.tone : n === 1 ? 'ink' : 'surface'}
+                      tabIndex={dup ? -1 : undefined}
+                    />
+                  </div>
+                );
+              })
+            )}
           </div>
         ))}
-      </Reveal>
+      </div>
 
-      <div className="mt-8 flex justify-center lg:hidden">
+      <div className="mt-10 flex justify-center px-5 lg:hidden">
         <ConsultCta label={t('cta')} variant="underline" />
       </div>
     </section>
