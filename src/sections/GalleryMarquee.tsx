@@ -3,7 +3,7 @@ import {useTranslations} from 'next-intl';
 import {assetBase} from '@/lib/site';
 
 // 브리프 §4-10 시설 갤러리 마퀴 — 저속으로 흐르는 이미지 띠. 애니메이션은 globals.css .marquee.
-// 병원 사진 수급 전 임시 스톡 — public/facility/ 파일만 교체하면 된다. 순서는 messages tiles 와 짝.
+// 병원 제공 인테리어 이미지(2026-09-30) — public/facility/ 파일만 교체하면 된다. 순서는 messages tiles 와 짝.
 const PHOTOS = ['consult', 'treat', 'waiting', 'counsel', 'recovery'] as const;
 
 export default function GalleryMarquee() {

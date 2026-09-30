@@ -3,6 +3,7 @@
 import {useEffect, useState} from 'react';
 import {useLocale, useTranslations} from 'next-intl';
 import {Link, usePathname} from '@/i18n/navigation';
+import Logo from '@/components/Logo';
 import {routing} from '@/i18n/routing';
 import {nav, site} from '@/lib/site';
 
@@ -91,11 +92,10 @@ export default function Header({kakao}: {kakao: string}) {
           href="/"
           data-site-logo
           onClick={() => setOpen(false)}
-          className={`text-[17px] font-bold tracking-[0.22em] transition-colors lg:text-[20px] ${
-            overHero ? 'text-white' : 'text-ink'
-          }`}
+          aria-label={site.name}
+          className={`block transition-colors ${overHero ? 'text-white' : 'text-ink'}`}
         >
-          {site.nameEn}
+          <Logo className="h-7 w-auto lg:h-9" />
         </Link>
 
         <nav

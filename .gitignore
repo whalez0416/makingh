@@ -51,3 +51,4 @@ shots/
 
 # Payload 업로드 원본 — 저장소가 아니라 서버에 쌓인다
 /media
+reference/

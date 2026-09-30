@@ -7,7 +7,7 @@ import {assetBase} from '@/lib/site';
 // 2026-08-21 재개편: 풀스크린(풀블리드) 히어로 섹션 + 그 아래 클리닉 3카드 벤토 (브리프 §4-1 풀스크린).
 // 헤더는 홈 최상단에서 화이트 톤으로 전환된다 (Header.tsx overHero).
 // 벤토 비율은 beauwell 실측(좌 884 + gap 24 + 우 452, 우측 504/220) 유지.
-// 사진은 병원 수급 전 임시 스톡 — public/hero/ 파일만 교체하면 된다.
+// 2026-09-30 기존 dittocell.com 자산으로 교체: 메인 = 롤링 영상 3개(헤드라인과 짝), 카드 = 기존 사이트 사진.
 export default function Hero() {
   const t = useTranslations('hero');
   const headlines = t.raw('headlines') as {lead: string; tail: string}[];
@@ -16,26 +16,21 @@ export default function Hero() {
     <>
       {/* 풀스크린 히어로 */}
       <section className="relative h-[92svh] min-h-[560px] overflow-hidden">
-        <div className="hero-photo absolute inset-0">
-          <Image
-            src={`${assetBase}/hero/main.jpg`}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        </div>
-        <div className="hero-scrim" />
-        <div className="absolute inset-x-0 bottom-0 px-5 pb-14 lg:px-10 lg:pb-20">
-          <HeroHeadline items={headlines} />
+        <HeroHeadline
+          items={headlines}
+          videos={[1, 2, 3].map((n) => ({
+            src: `${assetBase}/hero/rolling-${n}.mp4`,
+            srcMobile: `${assetBase}/hero/rolling-${n}-m.mp4`,
+            poster: `${assetBase}/hero/rolling-${n}.jpg`
+          }))}
+        >
           <p className="hero-rise mt-4 max-w-[560px] text-[14px] leading-relaxed text-white/85 lg:mt-6 lg:text-[17px]">
             {t('tagline')}
           </p>
           <div className="hero-rise hero-rise-2 mt-7 lg:mt-9">
             <ConsultCta label={t('cta')} variant="light" />
           </div>
-        </div>
+        </HeroHeadline>
       </section>
 
       {/* 클리닉 3카드 벤토 */}
