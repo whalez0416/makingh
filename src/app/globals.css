@@ -209,8 +209,8 @@ body {
 }
 
 /* ── 시그니처 (SignatureBody — 매거진 A + 고민 가이드 C) ────────── */
-.sig-serif { font-family: var(--font-serif), 'Noto Serif KR', serif; font-weight: 500; letter-spacing: -0.01em; }
-.sig-italic { font-family: var(--font-italic), 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; letter-spacing: 0; }
+.ed-serif { font-family: var(--font-serif), 'Noto Serif KR', serif; font-weight: 500; letter-spacing: -0.01em; }
+.ed-italic { font-family: var(--font-italic), 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; letter-spacing: 0; }
 .sig-num {
   position: absolute; display: grid; place-items: center; width: 24px; height: 24px; margin: -12px 0 0 -12px;
   border-radius: 999px; background: rgb(255 255 255 / 0.85); color: #221d14; font-size: 12px; font-weight: 700;

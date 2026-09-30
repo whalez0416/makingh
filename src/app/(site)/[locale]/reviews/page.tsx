@@ -3,7 +3,7 @@ import {setRequestLocale, getTranslations} from 'next-intl/server';
 import {cmsFind} from '@/lib/cms';
 import type {Locale} from '@/i18n/routing';
 import type {Review} from '@/payload-types';
-import PageHero from '@/components/PageHero';
+import {MagHero} from '@/components/Editorial';
 import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
 import {pageMeta} from '@/lib/meta';
@@ -30,7 +30,7 @@ export default async function ReviewsPage({params}: PageProps<'/[locale]/reviews
 
   return (
     <>
-      <PageHero title={t('title')} desc={t('desc')} en="REVIEW" />
+      <MagHero en="Reviews" title={t('title')} desc={t('desc')} />
 
       <section className="px-5 pt-14 pb-20 lg:px-10 lg:pt-[100px] lg:pb-[120px]">
         {docs.length === 0 ? (

@@ -636,7 +636,8 @@
         "name": "대기실",
         "desc": "편안한 대기 공간"
       }
-    ]
+    ],
+    "philosophyTitle": "진료 철학"
   },
   "reservationPage": {
     "title": "온라인 예약",

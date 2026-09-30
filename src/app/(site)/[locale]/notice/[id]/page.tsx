@@ -5,7 +5,7 @@ import {Link} from '@/i18n/navigation';
 import {cmsFind, cmsFindByID} from '@/lib/cms';
 import {routing, type Locale} from '@/i18n/routing';
 import type {Notice} from '@/payload-types';
-import PageHero from '@/components/PageHero';
+import {MagHero} from '@/components/Editorial';
 import ConsultBanner from '@/components/ConsultBanner';
 import {pageMeta} from '@/lib/meta';
 
@@ -47,7 +47,7 @@ export default async function NoticeDetail({params}: PageProps<'/[locale]/notice
 
   return (
     <>
-      <PageHero title={doc.title} en={t('en')} />
+      <MagHero en="News" title={doc.title} />
 
       <article className="px-5 pt-10 pb-20 lg:px-10 lg:pt-[70px] lg:pb-[120px]">
         <div className="mx-auto max-w-[760px]">

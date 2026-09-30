@@ -10,6 +10,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Floating from '@/components/Floating';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
+import {italic, serifKr} from '@/lib/serif';
 import '@/app/globals.css';
 
 // 사이트 공통: 정식 주소 기준(metadataBase)과 제목 틀. 페이지별 제목·설명·공유 카드는 각 page 의 generateMetadata(lib/meta.ts).
@@ -46,7 +47,7 @@ export default async function LocaleLayout({
   const s = await getSettings(locale);
 
   return (
-    <html lang={locale} data-theme={DEFAULT_THEME} suppressHydrationWarning>
+    <html lang={locale} data-theme={DEFAULT_THEME} className={`${serifKr.variable} ${italic.variable}`} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"

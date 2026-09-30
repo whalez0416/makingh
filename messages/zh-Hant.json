@@ -636,7 +636,8 @@
         "name": "候診室",
         "desc": "舒適的等候空間"
       }
-    ]
+    ],
+    "philosophyTitle": "診療理念"
   },
   "reservationPage": {
     "title": "線上預約",

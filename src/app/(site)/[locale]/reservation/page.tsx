@@ -1,7 +1,7 @@
 import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import {Link} from '@/i18n/navigation';
-import PageHero from '@/components/PageHero';
+import {MagHero} from '@/components/Editorial';
 import Reveal from '@/components/Reveal';
 import ReservationForm from '@/components/ReservationForm';
 import {getSettings, type Settings} from '@/lib/settings';
@@ -30,7 +30,7 @@ function Content({s}: {s: Settings}) {
 
   return (
     <>
-      <PageHero title={t('title')} desc={t('desc')} en="RESERVATION" />
+      <MagHero en="Reservation" title={t('title')} desc={t('desc')} />
 
       <section className="px-5 pt-14 pb-20 lg:px-10 lg:pt-[100px] lg:pb-[120px]">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-20">

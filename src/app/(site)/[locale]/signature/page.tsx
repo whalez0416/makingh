@@ -7,7 +7,6 @@ import ConsultBanner from '@/components/ConsultBanner';
 import Reveal from '@/components/Reveal';
 import {assetBase} from '@/lib/site';
 import {getSettings} from '@/lib/settings';
-import {italic, serifKr} from '@/lib/serif';
 import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /signature — 패키지 13종.
@@ -32,7 +31,7 @@ function Content({kakao}: {kakao: string}) {
   const steps = t.raw('steps') as {t: string; d: string}[];
 
   return (
-    <div className={`${serifKr.variable} ${italic.variable}`}>
+    <div>
       <SignatureBody
         items={tp.raw('items') as {name: string; tagline: string; desc: string}[]}
         kakao={kakao}
@@ -57,7 +56,7 @@ function Content({kakao}: {kakao: string}) {
             <Image src={`${assetBase}/facility/doctor.jpg`} alt={`${td('title')} ${td('sub')}`} fill sizes="260px" className="object-cover object-top" />
           </div>
           <div>
-            <h2 className="sig-serif text-ink text-[24px] lg:text-[32px]">{t('processTitle')}</h2>
+            <h2 className="ed-serif text-ink text-[24px] lg:text-[32px]">{t('processTitle')}</h2>
             <p className="text-sub mt-4 max-w-[640px] text-[15px] leading-relaxed whitespace-pre-line break-keep">{td('quote')}</p>
             <p className="text-ink mt-3 text-[14px] font-bold">
               {td('title')} <span className="text-sub font-normal">{td('sub')}</span>

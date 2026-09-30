@@ -3,13 +3,13 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import {assetBase} from '@/lib/site';
 import {setRequestLocale} from 'next-intl/server';
-import PageHero from '@/components/PageHero';
 import Doctor from '@/sections/Doctor';
 import ConsultBanner from '@/components/ConsultBanner';
-import Reveal from '@/components/Reveal';
+import {MagHero, ChapterNav, Chapter, Lead} from '@/components/Editorial';
 import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /about — 철학 · 원장 인사말 · 시설. 의료진 블록은 메인 §4-8 섹션 재사용.
+// 2026-09-30 매거진 문법으로 재구성 + 병원이 보낸 인테리어 이미지 전부를 공간 챕터에.
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   return pageMeta(locale, 'about', 'about/');
@@ -22,63 +22,57 @@ export default function AboutPage({params}: PageProps<'/[locale]/about'>) {
   return <Content />;
 }
 
+// 이름 붙은 3곳(facilities 배열과 짝) 다음에 나머지 공간을 이름 없이 잇는다
+const NAMED = ['consult', 'treat', 'waiting'];
+const MORE = ['reception', 'lobby', 'counsel', 'recovery', 'hall', 'powder']; // 6장 = 3열 두 줄 (한 장만 남는 줄 없게)
+
 function Content() {
   const t = useTranslations('aboutPage');
   const facilities = t.raw('facilities') as {name: string; desc: string}[];
+  const chapters = [
+    {id: 'philosophy', label: t('philosophyTitle')},
+    {id: 'greeting', label: t('greetingTitle')},
+    {id: 'space', label: t('facilityTitle')}
+  ];
 
   return (
     <>
-      <PageHero title={t('title')} en={t('en')} />
+      <MagHero en="About" title={t('title')} img="facility/reception.jpg" />
+      <ChapterNav items={chapters} />
 
-      <section className="px-5 pt-14 pb-14 lg:px-10 lg:pt-[100px] lg:pb-[80px]">
-        <Reveal>
-          <p className="h2 text-ink max-w-[860px]">{t('philosophy')}</p>
-          <p className="text-sub mt-4 max-w-[640px] text-[14px] leading-relaxed lg:mt-6 lg:text-[17px]">
-            {t('philosophyDesc')}
-          </p>
-        </Reveal>
-      </section>
+      <Chapter id="philosophy" no={0} title={t('philosophyTitle')} img="facility/entrance.jpg" first>
+        <Lead>{t('philosophy')}</Lead>
+        <p className="text-sub max-w-[640px] text-[15px] leading-relaxed break-keep lg:text-[17px]">{t('philosophyDesc')}</p>
+      </Chapter>
 
-      <section className="px-5 py-14 lg:px-10 lg:py-[80px]">
-        <Reveal>
-          <p className="eyebrow mb-3">{t('greetingTitle')}</p>
-          <p className="text-ink max-w-[760px] text-[15px] leading-relaxed lg:text-[19px]">
-            {t('greeting')}
-          </p>
-        </Reveal>
-      </section>
-
+      <Chapter id="greeting" no={1} title={t('greetingTitle')}>
+        <p className="ed-serif text-ink max-w-[760px] text-[18px] leading-[1.8] whitespace-pre-line break-keep lg:text-[21px]">{t('greeting')}</p>
+      </Chapter>
       <Doctor />
 
-      <section className="px-5 pb-10 lg:px-10 lg:pb-[80px]">
-        <Reveal>
-          <p className="eyebrow mb-6">{t('facilityTitle')}</p>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
-            {/* 사진은 갤러리 마퀴와 같은 임시 스톡 재사용 — 순서는 facilities 배열과 짝 */}
-            {facilities.map((f, i) => (
-              <figure key={f.name}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] bg-[linear-gradient(145deg,var(--color-line),var(--color-accent)_80%)]">
-                  <Image
-                    src={`${assetBase}/facility/${['consult', 'treat', 'waiting'][i]}.jpg`}
-                    alt=""
-                    fill
-                    sizes="(min-width:768px) 33vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <figcaption className="mt-3">
-                  <p className="text-ink text-[15px] font-bold lg:text-[18px]">
-                    {f.name}
-                  </p>
-                  <p className="text-sub mt-0.5 text-[13px] lg:text-[15px]">
-                    {f.desc}
-                  </p>
+      <Chapter id="space" no={2} title={t('facilityTitle')}>
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-6 lg:gap-4">
+          {NAMED.map((img, i) => (
+            <figure key={img} className={i === 0 ? 'col-span-2 lg:col-span-4 lg:row-span-2' : 'col-span-1 lg:col-span-2'}>
+              <div className={`relative overflow-hidden ${i === 0 ? 'aspect-[4/3]' : 'aspect-[4/3]'}`}>
+                <Image src={`${assetBase}/facility/${img}.jpg`} alt={facilities[i]?.name ?? ''} fill sizes="(min-width:1024px) 45vw, 50vw" className="object-cover" />
+              </div>
+              {facilities[i] && (
+                <figcaption className="mt-2">
+                  <b className="ed-serif text-ink text-[15px] lg:text-[17px]">{facilities[i].name}</b>
+                  <span className="text-sub ml-2 text-[13px]">{facilities[i].desc}</span>
                 </figcaption>
-              </figure>
-            ))}
-          </div>
-        </Reveal>
-      </section>
+              )}
+            </figure>
+          ))}
+          {MORE.map((img) => (
+            <div key={img} className="relative col-span-1 aspect-[4/3] overflow-hidden lg:col-span-2">
+              <Image src={`${assetBase}/facility/${img}.jpg`} alt="" fill sizes="(min-width:1024px) 30vw, 50vw" className="object-cover" />
+            </div>
+          ))}
+        </div>
+      </Chapter>
+
       <ConsultBanner />
     </>
   );

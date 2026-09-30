@@ -1,13 +1,12 @@
 import {use} from 'react';
 import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
-import PageHero from '@/components/PageHero';
-import Tabs from '@/components/Tabs';
+import {MagHero, ChapterNav, Chapter, Lead, EdList, Steps} from '@/components/Editorial';
 import ConsultBanner from '@/components/ConsultBanner';
-import Reveal from '@/components/Reveal';
 import {pageMeta} from '@/lib/meta';
 
-// 브리프 서브 /stem-cell — 탭 4(개요/자가혈/자가지방/고압산소) + 기능 6종 + 시술 과정.
+// 브리프 서브 /stem-cell — 개요/자가혈/자가지방/고압산소 + 디토셀 시술.
+// 2026-09-30 매거진 문법으로 재구성: 탭에 숨어 있던 내용을 챕터로 펼치고 위에 챕터 바로가기 띠.
 // 설명은 전부 병원 원문 그대로다(§9 의료광고 — 효과 문구를 새로 짓지 않는다).
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -23,133 +22,50 @@ export default function StemCellPage({params}: PageProps<'/[locale]/stem-cell'>)
 
 type Pair = {name: string; desc: string};
 
-// 번호가 붙은 이름+설명 카드. 기능·특징·시술 과정이 전부 같은 모양이라 하나로 쓴다.
-function NumberedCards({items, cols = 'lg:grid-cols-3'}: {items: Pair[]; cols?: string}) {
-  return (
-    <div className={`mt-4 grid grid-cols-1 gap-3 md:grid-cols-2 lg:mt-6 lg:gap-4 ${cols}`}>
-      {items.map((it, i) => (
-        <article
-          key={it.name}
-          className="border-line bg-surface rounded-[12px] border p-5 lg:p-7"
-        >
-          <p className="text-accent text-[13px] font-bold lg:text-[15px]">
-            {String(i + 1).padStart(2, '0')}
-          </p>
-          <p className="text-ink mt-1 text-[15px] font-bold lg:text-[18px]">
-            {it.name}
-          </p>
-          <p className="text-sub mt-2 text-[13px] leading-relaxed lg:text-[15px]">
-            {it.desc}
-          </p>
-        </article>
-      ))}
-    </div>
-  );
-}
-
 function Content() {
   const t = useTranslations('stemCellPage');
   const raw = <T,>(k: string) => t.raw(k) as T;
-
-  const overview = (
-    <div>
-      <p className="text-ink max-w-[760px] text-[17px] leading-relaxed font-bold lg:text-[24px]">
-        {t('overview.definition')}
-      </p>
-      <p className="text-accent mt-4 text-[14px] font-bold lg:text-[16px]">
-        {t('overview.features')}
-      </p>
-
-      <p className="card-title text-ink mt-10 lg:mt-14">
-        {t('overview.traitsTitle')}
-      </p>
-      <NumberedCards items={raw<Pair[]>('overview.traits')} />
-
-      <p className="card-title text-ink mt-10 lg:mt-14">
-        {t('overview.functionsTitle')}
-      </p>
-      <NumberedCards items={raw<Pair[]>('overview.functions')} />
-    </div>
-  );
+  const chapters = [
+    {id: 'overview', label: t('tabs.overview')},
+    {id: 'blood', label: t('tabs.blood')},
+    {id: 'adipose', label: t('tabs.adipose')},
+    {id: 'hbot', label: t('tabs.hbot')},
+    {id: 'dittocell', label: t('dittocellTitle')}
+  ];
 
   // 자가혈·자가지방은 구성이 같다 — 소개 → 특징 → 시술 과정.
-  const type = (key: 'blood' | 'adipose') => (
-    <div>
-      <article className="border-line bg-surface rounded-[16px] border p-6 lg:p-10">
-        <p className="text-accent text-[13px] font-bold tracking-[0.14em] uppercase lg:text-[15px]">
-          {t(`${key}.en`)}
-        </p>
-        <p className="card-title text-ink mt-2">{t(`${key}.name`)}</p>
-        <p className="text-sub mt-4 max-w-[820px] text-[14px] leading-relaxed lg:text-[17px]">
-          {t(`${key}.desc`)}
-        </p>
-      </article>
-      <NumberedCards items={raw<Pair[]>(`${key}.features`)} />
-      <p className="card-title text-ink mt-10 lg:mt-14">
-        {t(`${key}.processTitle`)}
-      </p>
-      <NumberedCards items={raw<Pair[]>(`${key}.process`)} cols="lg:grid-cols-4" />
-    </div>
-  );
-
-  const hbot = (
-    <div>
-      <article className="border-line bg-surface rounded-[16px] border p-6 lg:p-10">
-        <p className="text-accent text-[13px] font-bold lg:text-[15px]">
-          {t('hbot.tagline')}
-        </p>
-        <p className="card-title text-ink mt-2">{t('hbot.name')}</p>
-        <p className="text-sub mt-4 max-w-[820px] text-[14px] leading-relaxed lg:text-[17px]">
-          {t('hbot.desc')}
-        </p>
-        <p className="text-sub mt-3 max-w-[820px] text-[14px] leading-relaxed lg:text-[17px]">
-          {t('hbot.extra')}
-        </p>
-      </article>
-      <p className="card-title text-ink mt-10 lg:mt-14">
-        {t('hbot.featuresTitle')}
-      </p>
-      <ul className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2 lg:mt-6 lg:gap-4">
-        {raw<string[]>('hbot.features').map((f, i) => (
-          <li
-            key={f}
-            className="border-line bg-surface rounded-[12px] border p-5 lg:p-7"
-          >
-            <p className="text-accent text-[13px] font-bold lg:text-[15px]">
-              {String(i + 1).padStart(2, '0')}
-            </p>
-            <p className="text-ink mt-1 text-[14px] leading-relaxed lg:text-[17px]">
-              {f}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
+  const type = (key: 'blood' | 'adipose', no: number, img: string) => (
+    <Chapter id={key} no={no} title={t(`${key}.name`)} desc={t(`${key}.en`)} img={img}>
+      <Lead>{t(`${key}.desc`)}</Lead>
+      <EdList items={raw<Pair[]>(`${key}.features`)} />
+      <Steps title={t(`${key}.processTitle`)} items={raw<Pair[]>(`${key}.process`)} />
+    </Chapter>
   );
 
   return (
     <>
-      <PageHero title={t('title')} desc={t('desc')} en="STEM CELL" />
-      <section className="px-5 pt-14 lg:px-10 lg:pt-[100px]">
-        <Reveal>
-          <Tabs
-            labels={[
-              t('tabs.overview'),
-              t('tabs.blood'),
-              t('tabs.adipose'),
-              t('tabs.hbot')
-            ]}
-            panels={[overview, type('blood'), type('adipose'), hbot]}
-          />
-        </Reveal>
-      </section>
+      <MagHero en="Stem Cell" title={t('title')} desc={t('desc')} img="pages/stem-twin.jpg" />
+      <ChapterNav items={chapters} />
 
-      <section className="px-5 pt-24 pb-10 lg:px-10 lg:pt-[160px] lg:pb-[80px]">
-        <Reveal>
-          <p className="card-title text-ink">{t('dittocellTitle')}</p>
-          <NumberedCards items={raw<Pair[]>('dittocell')} cols="lg:grid-cols-4" />
-        </Reveal>
-      </section>
+      <Chapter id="overview" no={0} title={t('tabs.overview')} img="hero/stem.jpg" first>
+        <Lead sub={t('overview.features')}>{t('overview.definition')}</Lead>
+        <EdList title={t('overview.traitsTitle')} items={raw<Pair[]>('overview.traits')} />
+        <EdList title={t('overview.functionsTitle')} items={raw<Pair[]>('overview.functions')} cols={2} />
+      </Chapter>
+
+      {type('blood', 1, 'pages/vial.jpg')}
+      {type('adipose', 2, 'facility/treat.jpg')}
+
+      <Chapter id="hbot" no={3} title={t('hbot.name')} desc={t('hbot.tagline')} img="facility/recovery.jpg">
+        <Lead>{t('hbot.desc')}</Lead>
+        <p className="text-sub -mt-6 mb-10 text-[15px] leading-relaxed break-keep lg:-mt-8 lg:mb-14 lg:text-[16px]">{t('hbot.extra')}</p>
+        <EdList title={t('hbot.featuresTitle')} items={raw<string[]>('hbot.features').map((desc) => ({desc}))} />
+      </Chapter>
+
+      <Chapter id="dittocell" no={4} title={t('dittocellTitle')} img="facility/doctor.jpg">
+        <EdList items={raw<Pair[]>('dittocell')} />
+      </Chapter>
+
       <ConsultBanner />
     </>
   );

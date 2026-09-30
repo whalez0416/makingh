@@ -101,13 +101,13 @@ export default function SignatureBody({items, t, kakao}: {items: Pkg[]; t: T; ka
             </div>
           </div>
           <div className="flex flex-col px-5 pt-5 pb-6 lg:px-16 lg:pt-16 lg:pb-14">
-            <p className="sig-italic text-accent text-[44px] leading-[0.9] lg:text-[104px]">Signature</p>
-            <h1 className="sig-serif text-ink mt-2 text-[22px] leading-[1.3] whitespace-pre-line lg:mt-5 lg:text-[46px]">{t.headline}</h1>
+            <p className="ed-italic text-accent text-[44px] leading-[0.9] lg:text-[104px]">Signature</p>
+            <h1 className="ed-serif text-ink mt-2 text-[22px] leading-[1.3] whitespace-pre-line lg:mt-5 lg:text-[46px]">{t.headline}</h1>
             <p className="text-sub mt-5 hidden max-w-[400px] text-[15px] leading-relaxed break-keep lg:block lg:text-[17px]">{t.lead}</p>
             <ol className="border-line mt-10 hidden grid-cols-2 gap-x-6 gap-y-4 border-t pt-6 lg:mt-auto lg:grid">
               {t.spots.map((s, i) => (
                 <li key={s.t} className={`text-[14px] leading-snug transition-opacity duration-500 ${i === spot ? 'opacity-100' : 'opacity-35'}`}>
-                  <b className="sig-serif text-ink block text-[15px]">
+                  <b className="ed-serif text-ink block text-[15px]">
                     <sup className="text-accent mr-1 font-sans font-bold">{i + 1}</sup>
                     {s.t}
                   </b>
@@ -128,7 +128,7 @@ export default function SignatureBody({items, t, kakao}: {items: Pkg[]; t: T; ka
       {/* ── 가운데: 고민 가이드 (시안 C) — 챕터를 읽는 동안 헤더 아래에 붙어 따라온다 ── */}
       <div className="sig-guide border-line bg-bg/90 sticky top-14 z-30 border-y backdrop-blur lg:top-[72px]">
         <div className="flex flex-col gap-3 px-5 py-4 lg:flex-row lg:items-center lg:gap-8 lg:px-10 lg:py-5">
-          <p className="sig-serif text-ink shrink-0 text-[17px] lg:text-[20px]">{t.concernQ}</p>
+          <p className="ed-serif text-ink shrink-0 text-[17px] lg:text-[20px]">{t.concernQ}</p>
           <div className="flex flex-wrap gap-2">
             {t.concerns.map((c, k) => {
               const on = picked.includes(k);
@@ -158,8 +158,8 @@ export default function SignatureBody({items, t, kakao}: {items: Pkg[]; t: T; ka
           className={`grid gap-8 px-5 py-16 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 lg:px-16 lg:py-[100px] ${gi ? 'border-line border-t' : ''}`}
         >
           <div className="flex flex-col gap-3 self-start lg:sticky lg:top-[170px]">
-            <span className="sig-italic text-accent text-[26px]">Chapter {ROMAN[gi]}</span>
-            <h2 className="sig-serif text-ink text-[26px] lg:text-[30px]">{g.t}</h2>
+            <span className="ed-italic text-accent text-[26px]">Chapter {ROMAN[gi]}</span>
+            <h2 className="ed-serif text-ink text-[26px] lg:text-[30px]">{g.t}</h2>
             <p className="text-sub text-[14px] leading-relaxed break-keep">{g.d}</p>
             <div className="relative mt-2 hidden aspect-[4/5] overflow-hidden lg:block">
               <Image src={`${assetBase}/${CHAPTER_IMG[gi]}`} alt="" fill sizes="300px" className="object-cover" />
@@ -177,9 +177,9 @@ export default function SignatureBody({items, t, kakao}: {items: Pkg[]; t: T; ka
                     dim ? 'opacity-30' : ''
                   }`}
                 >
-                  <span className="sig-italic text-accent text-[30px] leading-none lg:text-[36px]">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="ed-italic text-accent text-[30px] leading-none lg:text-[36px]">{String(i + 1).padStart(2, '0')}</span>
                   <div>
-                    <h3 className="sig-serif text-ink text-[19px] leading-[1.45] break-keep lg:text-[23px]">
+                    <h3 className="ed-serif text-ink text-[19px] leading-[1.45] break-keep lg:text-[23px]">
                       {p.name}
                       {BADGE.has(i) && (
                         <span className="border-accent text-accent ml-2 inline-block rounded-full border px-2 py-px align-[3px] font-sans text-[11px] font-bold">

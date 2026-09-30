@@ -636,7 +636,8 @@
         "name": "候诊室",
         "desc": "舒适的等候空间"
       }
-    ]
+    ],
+    "philosophyTitle": "诊疗理念"
   },
   "reservationPage": {
     "title": "在线预约",

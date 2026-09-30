@@ -476,5 +476,8 @@
       "title": "Reservation",
       "desc": "Apply online and the clinic will contact you to confirm."
     }
+  },
+  "aboutPage": {
+    "philosophyTitle": "Our Philosophy"
   }
 }
