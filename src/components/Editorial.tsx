@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type {ReactNode} from 'react';
 import Reveal from '@/components/Reveal';
+import ResolveImage from '@/components/ResolveImage';
 import {assetBase} from '@/lib/site';
 
 // 서브 페이지 공통 문법 (2026-10-01 발주자 확정 개선안 — 아티팩트 Pzr1toCYPY5mxYay2jcRhp).
@@ -44,9 +45,9 @@ export function MagHero({
   if (!img) {
     return (
       <header className="border-line border-b px-5 pt-28 pb-12 lg:px-16 lg:pt-[170px] lg:pb-[72px]">
-        <p className="ed-italic text-accent text-[52px] leading-[0.9] lg:text-[96px]">{en}</p>
+        <p className="ed-italic text-accent resolve-text text-[52px] leading-[0.9] lg:text-[96px]">{en}</p>
         <div className="mt-4 flex flex-col gap-4 lg:mt-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-          <h1 className="ed-serif text-ink text-[30px] leading-[1.3] break-keep lg:text-[46px]">{title}</h1>
+          <h1 className="ed-serif text-ink resolve-text text-[30px] leading-[1.3] break-keep lg:text-[46px]">{title}</h1>
           {desc && <p className="text-sub max-w-[440px] text-[15px] leading-relaxed break-keep lg:pb-2 lg:text-[17px]">{desc}</p>}
         </div>
       </header>
@@ -56,8 +57,8 @@ export function MagHero({
     <section className="pt-14 lg:pt-[72px]">
       <div className="grid lg:min-h-[560px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
         <div className="order-2 flex flex-col justify-center px-5 py-12 lg:order-1 lg:px-16 lg:py-20">
-          <p className="ed-italic text-accent text-[52px] leading-[0.9] lg:text-[84px]">{en}</p>
-          <h1 className="ed-serif text-ink mt-4 text-[30px] leading-[1.3] break-keep lg:text-[44px]">{title}</h1>
+          <p className="ed-italic text-accent resolve-text text-[52px] leading-[0.9] lg:text-[84px]">{en}</p>
+          <h1 className="ed-serif text-ink resolve-text mt-4 text-[30px] leading-[1.3] break-keep lg:text-[44px]">{title}</h1>
           {desc && <p className="text-sub mt-4 max-w-[400px] text-[15px] leading-relaxed break-keep lg:text-[17px]">{desc}</p>}
           {facts && (
             <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-4 lg:mt-10">
@@ -72,7 +73,7 @@ export function MagHero({
           )}
         </div>
         <div className="relative order-1 aspect-[4/3] overflow-hidden lg:order-2 lg:aspect-auto">
-          <Image src={`${assetBase}/${img}`} alt="" fill priority sizes="(min-width:1024px) 52vw, 100vw" className="object-cover" style={{objectPosition: imgPos}} />
+          <ResolveImage src={`${assetBase}/${img}`} sizes="(min-width:1024px) 52vw, 100vw" imgPos={imgPos} />
         </div>
       </div>
     </section>

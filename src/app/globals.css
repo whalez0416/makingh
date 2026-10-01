@@ -555,3 +555,18 @@ body {
 .rich a { color: var(--color-accent); text-decoration: underline; }
 .rich strong { font-weight: 700; }
 .rich blockquote { border-left: 3px solid var(--color-line); padding-left: 1em; color: var(--color-sub); }
+
+/* 히어로 "해상도 높이기" (2026-10-01) — ResolveImage: 캔버스가 첫 장면을 그리기 전엔 사진을 흐리게, 끝나면 원본.
+   JS 가 멈춰도 3초 뒤 흐림이 풀린다. 글자만 있는 히어로는 .resolve-text 로 초점이 맞는다. */
+.resolve img { filter: blur(18px) saturate(.6); transform: scale(1.06); animation: resolve-failsafe .8s 3s forwards; }
+.resolve canvas { opacity: 0; }
+.resolve[data-state='play'] canvas { opacity: 1; }
+.resolve[data-state='done'] img { filter: none; transform: none; animation: none; }
+.resolve[data-state='done'] canvas { opacity: 0; transition: opacity .35s; }
+@keyframes resolve-failsafe { to { filter: none; transform: none; } }
+.resolve-text { animation: resolve-text 1.7s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes resolve-text { from { filter: blur(10px); opacity: .25; letter-spacing: .08em; } }
+@media (prefers-reduced-motion: reduce) {
+  .resolve img { filter: none; transform: none; animation: none; }
+  .resolve-text { animation: none; }
+}

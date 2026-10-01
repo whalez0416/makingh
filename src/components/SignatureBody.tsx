@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import ResolveImage from '@/components/ResolveImage';
 import {useEffect, useRef, useState} from 'react';
 import {assetBase} from '@/lib/site';
 
@@ -82,7 +83,7 @@ export default function SignatureBody({items, t, kakao}: {items: Pkg[]; t: T; ka
         <div className="sticky top-14 grid h-[calc(100svh-56px)] grid-rows-[minmax(0,1fr)_auto] lg:top-[72px] lg:h-[calc(100svh-72px)] lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:grid-rows-1">
           <div className="relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 aspect-[1200/1593]">
-            <Image src={`${assetBase}/signature/model.jpg`} alt="" fill priority sizes="(min-width:1024px) 52vw, 100vw" className="object-cover" />
+            <ResolveImage src={`${assetBase}/signature/model.jpg`} sizes="(min-width:1024px) 52vw, 100vw" />
             {SPOTS.map((p, i) => (
               <span
                 key={i}
