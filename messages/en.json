@@ -476,5 +476,16 @@
       "title": "Reservation",
       "desc": "Apply online and the clinic will contact you to confirm."
     }
+  },
+  "hero": {
+    "resolve": {
+      "eyebrow": "Dittocell Clinic, Seoul",
+      "title": "Raise the\n[resolution] of your skin",
+      "lines": [
+        "Over time, the texture of your skin slowly blurs.",
+        "Recovering it, one layer at a time",
+        "Back to the clarity of your healthiest skin — again."
+      ]
+    }
   }
 }

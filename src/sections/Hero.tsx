@@ -1,37 +1,31 @@
-import Image from 'next/image';
-import {useTranslations} from 'next-intl';
-import HeroHeadline from '@/components/HeroHeadline';
-import ConsultCta from '@/components/ConsultCta';
-import {assetBase} from '@/lib/site';
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import ResolveHero from "@/components/ResolveHero";
+import { italic, serifKr } from "@/lib/serif";
+import ConsultCta from "@/components/ConsultCta";
+import { assetBase } from "@/lib/site";
 
 // 2026-08-21 재개편: 풀스크린(풀블리드) 히어로 섹션 + 그 아래 클리닉 3카드 벤토 (브리프 §4-1 풀스크린).
 // 헤더는 홈 최상단에서 화이트 톤으로 전환된다 (Header.tsx overHero).
 // 벤토 비율은 beauwell 실측(좌 884 + gap 24 + 우 452, 우측 504/220) 유지.
-// 2026-09-30 기존 dittocell.com 자산으로 교체: 메인 = 롤링 영상 3개(헤드라인과 짝), 카드 = 기존 사이트 사진.
+// 2026-09-30 기존 dittocell.com 자산으로 교체: 카드 = 기존 사이트 사진.
+// 2026-10-01 메인 = "내 피부의 해상도를 높이다" 스크롤 히어로(영상 3개 롤링을 대체).
 export default function Hero() {
-  const t = useTranslations('hero');
-  const headlines = t.raw('headlines') as {lead: string; tail: string}[];
+  const t = useTranslations("hero");
 
   return (
     <>
-      {/* 풀스크린 히어로 */}
-      <section className="relative h-[92svh] min-h-[560px] overflow-hidden">
-        <HeroHeadline
-          items={headlines}
-          videos={[1, 2, 3].map((n) => ({
-            src: `${assetBase}/hero/rolling-${n}.mp4`,
-            srcMobile: `${assetBase}/hero/rolling-${n}-m.mp4`,
-            poster: `${assetBase}/hero/rolling-${n}.jpg`
-          }))}
+      {/* 풀스크린 히어로 — 스크롤하면 피부 해상도가 높아진다 (ResolveHero) */}
+      <div className={`${serifKr.variable} ${italic.variable}`}>
+        <ResolveHero
+          src={`${assetBase}/hero/skin-hd.jpg`}
+          eyebrow={t("resolve.eyebrow")}
+          title={t("resolve.title")}
+          lines={[...(t.raw("resolve.lines") as string[]), t("tagline")]}
         >
-          <p className="hero-rise mt-4 max-w-[560px] text-[14px] leading-relaxed text-white/85 lg:mt-6 lg:text-[17px]">
-            {t('tagline')}
-          </p>
-          <div className="hero-rise hero-rise-2 mt-7 lg:mt-9">
-            <ConsultCta label={t('cta')} variant="light" />
-          </div>
-        </HeroHeadline>
-      </section>
+          <ConsultCta label={t("cta")} variant="light" />
+        </ResolveHero>
+      </div>
 
       {/* 클리닉 3카드 벤토 */}
       <section className="px-5 pt-4 pb-20 lg:px-10 lg:pt-6 lg:pb-[120px]">
@@ -48,11 +42,11 @@ export default function Hero() {
             <div className="photo-veil" />
             <div className="relative">
               <p className="text-[13px] font-bold tracking-[0.06em] text-white/75 lg:text-[15px]">
-                {t('main.cat')}
+                {t("main.cat")}
               </p>
-              <p className="card-title mt-2 text-white">{t('main.title')}</p>
+              <p className="card-title mt-2 text-white">{t("main.title")}</p>
               <p className="mt-2 text-[14px] text-white/85 lg:text-[16px]">
-                {t('main.desc')}
+                {t("main.desc")}
               </p>
             </div>
           </article>
@@ -70,13 +64,13 @@ export default function Hero() {
               <div className="photo-veil" />
               <div className="relative">
                 <p className="text-[13px] font-bold tracking-[0.06em] text-white/75 lg:text-[15px]">
-                  {t('sub1.cat')}
+                  {t("sub1.cat")}
                 </p>
                 <p className="card-title mt-2 whitespace-pre-line text-white">
-                  {t('sub1.title')}
+                  {t("sub1.title")}
                 </p>
                 <p className="mt-2 text-[14px] text-white/85 lg:text-[16px]">
-                  {t('sub1.desc')}
+                  {t("sub1.desc")}
                 </p>
               </div>
             </article>
@@ -92,12 +86,14 @@ export default function Hero() {
               <div className="photo-veil" />
               <div className="relative">
                 <p className="text-[13px] font-bold tracking-[0.06em] text-white/75 lg:text-[15px]">
-                  {t('sub2.cat')}
+                  {t("sub2.cat")}
                 </p>
                 <p className="mt-2 text-[18px] leading-snug font-bold text-white lg:text-[22px]">
-                  {t('sub2.title')}
+                  {t("sub2.title")}
                 </p>
-                <p className="mt-1 text-[14px] text-white/85">{t('sub2.desc')}</p>
+                <p className="mt-1 text-[14px] text-white/85">
+                  {t("sub2.desc")}
+                </p>
               </div>
             </article>
           </div>

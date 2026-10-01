@@ -46,6 +46,15 @@
       "cat": "抗衰老門診",
       "title": "雷射 · 注射 · 皮膚助推器",
       "desc": "並配合高壓氧療法"
+    },
+    "resolve": {
+      "eyebrow": "Raise the resolution of your skin",
+      "title": "提升肌膚的\n[清晰度]",
+      "lines": [
+        "隨著時間流逝，肌膚紋理會漸漸變得模糊。",
+        "一層一層，找回模糊的肌理",
+        "回到最健康時的清晰，再一次。"
+      ]
     }
   },
   "numbers": {

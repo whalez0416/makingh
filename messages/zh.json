@@ -46,6 +46,15 @@
       "cat": "抗衰老门诊",
       "title": "激光 · 注射 · 皮肤助推器",
       "desc": "并配合高压氧疗法"
+    },
+    "resolve": {
+      "eyebrow": "Raise the resolution of your skin",
+      "title": "提升肌肤的\n[清晰度]",
+      "lines": [
+        "随着时间流逝，肌肤纹理会渐渐变得模糊。",
+        "一层一层，找回模糊的肌理",
+        "回到最健康时的清晰，再一次。"
+      ]
     }
   },
   "numbers": {
