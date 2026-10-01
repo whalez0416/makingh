@@ -1,4 +1,5 @@
 import type {CollectionConfig} from 'payload';
+import {siteHooks} from '@/lib/revalidate';
 
 // 브리프 §5 reviews — 인스타 릴스 카드. 메인 §4-7 슬라이더가 이걸 읽는다.
 export const Reviews: CollectionConfig = {
@@ -6,6 +7,7 @@ export const Reviews: CollectionConfig = {
   labels: {singular: '후기', plural: '후기'},
   admin: {useAsTitle: 'highlight', defaultColumns: ['highlight', 'order', 'published'], group: '콘텐츠'},
   access: {read: () => true},
+  hooks: siteHooks,
   defaultSort: 'order',
   fields: [
     {name: 'highlight', type: 'text', label: '한 줄 하이라이트', required: true, localized: true},

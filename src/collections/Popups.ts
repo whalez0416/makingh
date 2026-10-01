@@ -1,4 +1,5 @@
 import type {CollectionConfig} from 'payload';
+import {siteHooks} from '@/lib/revalidate';
 
 // 브리프 §5 popups — 기간이 지나면 자동으로 안 뜬다. 끄는 것을 잊어도 화면에 남지 않는다.
 export const Popups: CollectionConfig = {
@@ -6,6 +7,7 @@ export const Popups: CollectionConfig = {
   labels: {singular: '팝업', plural: '팝업'},
   admin: {useAsTitle: 'title', defaultColumns: ['title', 'startAt', 'endAt', 'enabled'], group: '콘텐츠'},
   access: {read: () => true},
+  hooks: siteHooks,
   fields: [
     {name: 'title', type: 'text', label: '제목', required: true, localized: true},
     {name: 'image', type: 'upload', relationTo: 'media', label: '이미지'},

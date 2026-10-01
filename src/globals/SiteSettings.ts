@@ -1,4 +1,5 @@
 import type {GlobalConfig} from 'payload';
+import {globalHooks} from '@/lib/revalidate';
 
 // 브리프 §5 globals site-settings — 전화·주소·진료시간·SNS.
 // §6-2 "더미 전화번호 금지" 의 단일 출처. 화면의 모든 tel: 이 여기서 나온다.
@@ -7,6 +8,7 @@ export const SiteSettings: GlobalConfig = {
   label: '병원 기본정보',
   admin: {group: '설정'},
   access: {read: () => true},
+  hooks: globalHooks,
   fields: [
     {
       type: 'row',
