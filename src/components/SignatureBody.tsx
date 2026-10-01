@@ -138,7 +138,7 @@ export default function SignatureBody({items, t, kakao}: {items: Pkg[]; t: T; ka
                   type="button"
                   aria-pressed={on}
                   onClick={() => toggle(k)}
-                  className={`h-10 rounded-full border px-4 text-[14px] font-bold transition-colors lg:h-11 lg:px-5 ${
+                  className={`echo h-10 rounded-full border px-4 text-[14px] font-bold transition-colors lg:h-11 lg:px-5 ${
                     on ? 'bg-ink border-ink text-white' : 'border-line text-sub hover:border-ink hover:text-ink bg-surface'
                   }`}
                 >

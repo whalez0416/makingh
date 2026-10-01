@@ -27,7 +27,7 @@ export default function ClinicGrid() {
             <button
               key={key}
               onClick={() => setTab(key)}
-              className={`flex min-h-11 items-center rounded-full border px-5 text-[14px] font-bold transition-colors lg:text-[16px] ${
+              className={`echo flex min-h-11 items-center rounded-full border px-5 text-[14px] font-bold transition-colors lg:text-[16px] ${
                 tab === key
                   ? 'bg-ink border-ink text-white'
                   : 'border-line text-sub hover:text-ink bg-transparent'

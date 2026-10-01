@@ -165,7 +165,7 @@ export default function ReservationForm({kakao}: {kakao: string}) {
       <button
         type="submit"
         disabled={sending}
-        className="bg-ink hover:bg-accent h-14 rounded-[8px] text-[16px] font-bold text-white transition-colors disabled:opacity-50"
+        className="echo bg-ink hover:bg-accent h-14 rounded-[8px] text-[16px] font-bold text-white transition-colors disabled:opacity-50"
       >
         {sending ? t('sending') : t('submit')}
       </button>

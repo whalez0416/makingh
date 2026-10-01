@@ -143,9 +143,9 @@ export default function Header({ kakao }: { kakao: string }) {
             href={kakao}
             target="_blank"
             rel="noreferrer"
-            className={`flex h-11 items-center rounded-[8px] px-4 text-[13px] transition-colors lg:px-5 lg:text-[15px] ${
+            className={`echo flex h-11 items-center rounded-[8px] px-4 text-[13px] transition-colors lg:px-5 lg:text-[15px] ${
               overHero
-                ? "text-ink hover:bg-accent bg-white hover:text-white"
+                ? "echo-on-dark text-ink hover:bg-accent bg-white hover:text-white"
                 : "bg-ink hover:bg-accent text-white"
             }`}
           >

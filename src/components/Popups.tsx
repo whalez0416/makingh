@@ -48,7 +48,7 @@ export default async function Popups({locale}: {locale: Locale}) {
             {p.link ? (
               <a
                 href={p.link}
-                className="border-line text-ink hover:bg-bg mt-5 flex h-12 items-center justify-center rounded-[8px] border text-[14px] transition-colors"
+                className="echo border-line text-ink hover:bg-bg mt-5 flex h-12 items-center justify-center rounded-[8px] border text-[14px] transition-colors"
               >
                 {t('more')}
               </a>
