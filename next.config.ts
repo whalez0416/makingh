@@ -20,7 +20,17 @@ const nextConfig: NextConfig = {
   ...(isPages ? {output: 'export' as const, basePath: '/makingh'} : {output: 'standalone' as const}),
   trailingSlash: true,
   images: {unoptimized: true},
-  allowedDevOrigins: lanHosts
+  allowedDevOrigins: lanHosts,
+  // 2026-10-01 영어·일본어를 뺐다 — 이미 퍼진 /en/ /ja/ 주소는 같은 한국어 페이지로 영구 이동
+  ...(isPages
+    ? {}
+    : {
+        redirects: async () =>
+          ['en', 'ja'].flatMap((l) => [
+            {source: `/${l}`, destination: '/ko/', permanent: true},
+            {source: `/${l}/:path*`, destination: '/ko/:path*', permanent: true}
+          ])
+      })
 };
 
 export default withPayload(createNextIntlPlugin()(nextConfig));
