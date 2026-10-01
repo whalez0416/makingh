@@ -5,11 +5,11 @@ import {assetBase} from '@/lib/site';
 import {setRequestLocale} from 'next-intl/server';
 import Doctor from '@/sections/Doctor';
 import ConsultBanner from '@/components/ConsultBanner';
-import {MagHero, ChapterNav, Chapter, Lead} from '@/components/Editorial';
+import {MagHero, ChapterNav, Chapter} from '@/components/Editorial';
 import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /about — 철학 · 원장 인사말 · 시설. 의료진 블록은 메인 §4-8 섹션 재사용.
-// 2026-09-30 매거진 문법으로 재구성 + 병원이 보낸 인테리어 이미지 전부를 공간 챕터에.
+// 2026-10-01 정보 중심 개선안(명조는 맨 위 제목만) + 병원이 보낸 인테리어 이미지를 공간 챕터에.
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   return pageMeta(locale, 'about', 'about/');
@@ -40,14 +40,14 @@ function Content() {
       <MagHero en="About" title={t('title')} img="facility/reception.jpg" />
       <ChapterNav items={chapters} />
 
-      <Chapter id="philosophy" no={0} title={t('philosophyTitle')} img="facility/entrance.jpg" first>
-        <Lead>{t('philosophy')}</Lead>
-        <p className="text-sub max-w-[640px] text-[15px] leading-relaxed break-keep lg:text-[17px]">{t('philosophyDesc')}</p>
-      </Chapter>
-
-      <Chapter id="greeting" no={1} title={t('greetingTitle')}>
-        <p className="ed-serif text-ink max-w-[760px] text-[18px] leading-[1.8] whitespace-pre-line break-keep lg:text-[21px]">{t('greeting')}</p>
-      </Chapter>
+      <Chapter
+        id="philosophy"
+        no={0}
+        title={t('philosophyTitle')}
+        intro={<><p className="text-[20px] leading-[1.6] font-bold tracking-[-0.02em] lg:text-[24px]">{t('philosophy')}</p><p className="text-sub mt-4">{t('philosophyDesc')}</p></>}
+        first
+      />
+      <Chapter id="greeting" no={1} title={t('greetingTitle')} intro={<p className="whitespace-pre-line">{t('greeting')}</p>} />
       <Doctor />
 
       <Chapter id="space" no={2} title={t('facilityTitle')}>
@@ -59,7 +59,7 @@ function Content() {
               </div>
               {facilities[i] && (
                 <figcaption className="mt-2">
-                  <b className="ed-serif text-ink text-[15px] lg:text-[17px]">{facilities[i].name}</b>
+                  <b className="text-ink text-[15px] font-bold lg:text-[16px]">{facilities[i].name}</b>
                   <span className="text-sub ml-2 text-[13px]">{facilities[i].desc}</span>
                 </figcaption>
               )}
