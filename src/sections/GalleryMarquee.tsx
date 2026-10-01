@@ -22,7 +22,7 @@ export default function GalleryMarquee() {
           eyebrow={t('eyebrow')}
           title={t('title')}
           right={
-            <Link href="/about" className="text-sub hover:text-ink inline-flex items-center gap-2 text-[14px] transition-colors">
+            <Link href="/about" className="arrow-fx text-sub hover:text-ink inline-flex items-center gap-2 text-[14px] transition-colors">
               {c('more')} <span aria-hidden>→</span>
             </Link>
           }

@@ -3,6 +3,7 @@ import type {CSSProperties, ReactNode} from 'react';
 import Reveal from '@/components/Reveal';
 import ResolveImage from '@/components/ResolveImage';
 import {assetBase} from '@/lib/site';
+import BtnLabel from '@/components/BtnLabel';
 
 // 서브 페이지 공통 문법 (2026-10-01 발주자 확정 개선안 — 아티팩트 Pzr1toCYPY5mxYay2jcRhp).
 // 시그니처 분위기(금색 이탤릭 영문 + 명조 페이지 제목)는 맨 위에만. 본문은 고딕으로 정돈하고,
@@ -111,9 +112,9 @@ export function ChapterNav({items}: {items: {id: string; label: string}[]}) {
           <li key={it.id} className="shrink-0">
             <a
               href={`#${it.id}`}
-              className="border-line text-sub hover:border-ink hover:text-ink bg-surface inline-flex h-10 items-center rounded-full border px-4 text-[14px] font-bold transition-colors lg:h-11 lg:px-5"
+              className="btn-fx btn-fx-ink border-line text-sub hover:border-ink hover:text-bg bg-surface inline-flex h-10 items-center rounded-full border px-4 text-[14px] font-bold lg:h-11 lg:px-5"
             >
-              {it.label}
+              <BtnLabel>{it.label}</BtnLabel>
             </a>
           </li>
         ))}

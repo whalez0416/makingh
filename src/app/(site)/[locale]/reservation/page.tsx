@@ -46,7 +46,7 @@ function Content({s}: {s: Settings}) {
                 href={s.kakao}
                 target="_blank"
                 rel="noreferrer"
-                className="border-line bg-surface rounded-[16px] border p-6 transition-colors hover:border-[color:var(--color-accent)]"
+                className="card-fx border-line bg-surface rounded-[16px] border p-6 hover:border-[color:var(--color-accent)]"
               >
                 <p className="card-title text-ink">{t('kakaoTitle')}</p>
                 <p className="text-sub mt-2 text-[14px]">{t('kakaoDesc')}</p>
@@ -57,7 +57,7 @@ function Content({s}: {s: Settings}) {
 
               <a
                 href={s.telHref}
-                className="border-line bg-surface rounded-[16px] border p-6 transition-colors hover:border-[color:var(--color-accent)]"
+                className="card-fx border-line bg-surface rounded-[16px] border p-6 hover:border-[color:var(--color-accent)]"
               >
                 <p className="card-title text-ink">{t('telTitle')}</p>
                 <p className="text-ink mt-2 text-[24px] font-bold lg:text-[28px]">{s.tel}</p>

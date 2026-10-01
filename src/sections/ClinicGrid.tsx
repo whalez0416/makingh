@@ -44,7 +44,7 @@ export default function ClinicGrid() {
               key={item.name}
               // 항목 href 는 nav 와 같은 3개 경로뿐이라 안전하다
               href={item.href as '/signature' | '/anti-aging' | '/stem-cell'}
-              className="group border-line bg-surface flex min-h-[180px] flex-col justify-between rounded-[16px] border p-6 transition-colors hover:border-[color:var(--color-accent)] lg:min-h-[220px] lg:p-8"
+              className="card-fx group border-line bg-surface flex min-h-[180px] flex-col justify-between rounded-[16px] border p-6 hover:border-[color:var(--color-accent)] lg:min-h-[220px] lg:p-8"
             >
               <p className="text-accent text-[13px] font-bold lg:text-[15px]">
                 {item.cat}
