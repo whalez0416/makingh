@@ -57,7 +57,7 @@ function Content() {
       <ChapterNav items={chapters} />
 
       <Chapter id="overview" no={0} title={t('tabs.overview')} first>
-        <Definition text={t('overview.definition')} sub={t('overview.features')} img="pages/vial.jpg" />
+        <Definition text={t('overview.definition')} sub={t('overview.features')} img="pages/skin-layer.jpg" />
         <Label>{t('overview.traitsTitle')}</Label>
         <Grid3 items={raw<Pair[]>('overview.traits')} />
         <Label>{t('overview.functionsTitle')}</Label>
