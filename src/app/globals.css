@@ -560,7 +560,8 @@ body {
    JS 가 멈춰도 3초 뒤 흐림이 풀린다. 글자만 있는 히어로는 .resolve-text 로 초점이 맞는다. */
 .resolve img { filter: blur(18px) saturate(.6); transform: scale(1.06); animation: resolve-failsafe .8s 3s forwards; }
 .resolve canvas { opacity: 0; }
-.resolve[data-state='play'] canvas { opacity: 1; }
+.resolve[data-state='play'] canvas { opacity: 1; animation: resolve-tone 1.9s ease-out both; }
+@keyframes resolve-tone { from { filter: saturate(.5) brightness(.94); } }
 .resolve[data-state='done'] img { filter: none; transform: none; animation: none; }
 .resolve[data-state='done'] canvas { opacity: 0; transition: opacity .35s; }
 @keyframes resolve-failsafe { to { filter: none; transform: none; } }
