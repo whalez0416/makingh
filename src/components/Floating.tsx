@@ -12,10 +12,10 @@ export default function Floating({kakao, telHref}: {kakao: string; telHref: stri
   return (
     <div className="fixed right-4 bottom-4 md:right-5 md:bottom-5 z-40 flex flex-col gap-2">
       <a href={kakao} target="_blank" rel="noreferrer" className={cls} title={t('kakao')}>
-        톡
+        {t('chatShort')}
       </a>
       <a href={telHref} className={cls} title={t('call')}>
-        전화
+        {t('callShort')}
       </a>
       <button
         type="button"

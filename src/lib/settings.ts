@@ -14,6 +14,8 @@ export type Settings = {
   kakao: string;
   hours: {days: string; time: string}[];
   telHref: string;
+  wechatId?: string; // 중국어 상담(위챗) — 비어 있으면 상담 폼으로
+  wechatQr?: string;
 };
 
 const toHref = (tel: string) => `tel:+82-${tel.replace(/^0/, '').replace(/[.\-\s]/g, '-')}`;
@@ -33,7 +35,7 @@ export const getSettings = cache(async (locale?: Locale): Promise<Settings> => {
 
   try {
     const cms = await getCms();
-    const s = await cms.findGlobal({slug: 'site-settings', locale, depth: 0});
+    const s = await cms.findGlobal({slug: 'site-settings', locale, depth: 1});
     if (!s?.tel) return fallback;
     return {
       tel: s.tel,
@@ -45,7 +47,9 @@ export const getSettings = cache(async (locale?: Locale): Promise<Settings> => {
       hours: s.hours?.length
         ? s.hours.map((h) => ({days: h.days, time: h.time}))
         : fallback.hours,
-      telHref: toHref(s.tel)
+      telHref: toHref(s.tel),
+      wechatId: s.wechatId || undefined,
+      wechatQr: typeof s.wechatQr === 'object' && s.wechatQr?.url ? s.wechatQr.url : undefined
     };
   } catch {
     // DB 가 없는 환경에서도 페이지는 떠야 한다.

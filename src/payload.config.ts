@@ -44,10 +44,8 @@ export default buildConfig({
   localization: {
     locales: [
       {label: '한국어', code: 'ko'},
-      {label: 'English', code: 'en'},
       {label: '简体中文', code: 'zh'},
-      {label: '繁體中文', code: 'zh-Hant'},
-      {label: '日本語', code: 'ja'}
+      {label: '繁體中文', code: 'zh-Hant'}
     ],
     defaultLocale: 'ko',
     fallback: true

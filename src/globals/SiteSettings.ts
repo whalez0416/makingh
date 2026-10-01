@@ -19,6 +19,14 @@ export const SiteSettings: GlobalConfig = {
     },
     {name: 'address', type: 'text', label: '주소', required: true, localized: true},
     {name: 'mapUrl', type: 'text', label: '지도 링크'},
+    // 중국어(간체·번체) 페이지의 상담 버튼은 카카오 대신 위챗 창을 연다(WeChatGate). 비어 있으면 중국어 상담 폼으로 간다.
+    {
+      type: 'row',
+      fields: [
+        {name: 'wechatId', type: 'text', label: '위챗 ID (중국어 상담)', admin: {width: '50%'}},
+        {name: 'wechatQr', type: 'upload', relationTo: 'media', label: '위챗 QR 이미지', admin: {width: '50%'}}
+      ]
+    },
     {
       name: 'hours',
       type: 'array',
