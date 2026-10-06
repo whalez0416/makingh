@@ -112,7 +112,7 @@ function Content() {
           />
         </Reveal>
       </section>
-      <WikiLinks cats={['lifting']} />
+      <WikiLinks cats={['lifting', 'injection']} />
       <ConsultBanner />
     </>
   );
