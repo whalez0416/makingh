@@ -10,7 +10,7 @@
 
 ## 올리기만 하면 되는 브랜치 (원격에 푸시됨, 검증 끝)
 
-### 1. `feat/zh-wechat-langs` — 사용자 "올려줘" 대기
+### 1. `feat/zh-wechat-langs` — ✅ 2026-10-06 배포
 - 영어·일본어 제거 → 한국어·간체·번체 3개. `/en/` `/ja/` 는 `/ko/` 로 308.
 - 중국어 페이지 상담 = 위챗 창(QR·ID·복사). 관리자 "병원 기본정보 → 위챗 ID / 위챗 QR" 이 비어 있으면 `/zh/consult/` 로.
 - DB 마이그레이션 `20261001_082704_zh_only_wechat` (칸 2개 추가만). 서버 기동 때 prodMigrations 가 자동 적용.
@@ -27,7 +27,7 @@
 
 1. **위키** — 사용자: "다음 주부터 위키 올리자". 참고로 aeo-sync `daily-publish-dittocell` 은 이미 평일 KST 09:40 자동 발행 중(10-01 첫 발행 확인, 한국어·간체·번체, `dittocellseoul.com/docs/`). 무엇을 "올릴지"(새 주제·노출 위치·메인에서 위키로 가는 길 등) 사용자에게 먼저 확인.
    - 영어·일본어를 빼는 브랜치를 올리면 위키는 원래 ko·zh·zh-hant 라 영향 없음.
-2. `feat/zh-wechat-langs` 배포 (위 1번)
+2. ~~`feat/zh-wechat-langs` 배포~~ (10-06 완료) — 병원 위챗 ID·QR 받으면 관리자에 입력
 3. `feat/resolve-hero` 정리·배포 (위 2번)
 4. **방문 로그 보관** — 메이린은 매일 액세스 로그를 gz 로 떠 두고(aeo-sync `deploy/maylin_server/maylin_logdump.sh`) AEO 대시보드가 가져감. 디토셀은 nginx `/var/log/nginx/dittocell.access.log` 만 있고 보관이 없음 → 같은 방식 추가 필요(서버 SSH 키는 회사 PC 에만).
 5. 사용자가 할 것: 슬랙 #디토셀-보고 웹훅 → 터미널에서 `gh secret set SLACK_WEBHOOK_DITTOCELL --repo whalez0416/aeo-sync` (대화창에 URL 붙이지 않기)
