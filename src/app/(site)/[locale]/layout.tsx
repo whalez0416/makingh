@@ -4,7 +4,7 @@ import {hasLocale, NextIntlClientProvider} from 'next-intl';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 import {DEFAULT_THEME} from '@/lib/themes';
-import {site, siteUrl} from '@/lib/site';
+import {naverSiteVerification, site, siteUrl} from '@/lib/site';
 import {getSettings} from '@/lib/settings';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -20,7 +20,8 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   return {
     metadataBase: new URL(siteUrl),
     title: {default: t('home.title'), template: `%s | ${t('siteName')}`},
-    description: t('home.desc')
+    description: t('home.desc'),
+    verification: {other: {'naver-site-verification': naverSiteVerification}}
   };
 }
 

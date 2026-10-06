@@ -1,4 +1,5 @@
 import {routing} from '@/i18n/routing';
+import {naverSiteVerification} from '@/lib/site';
 
 // 정적 내보내기에는 미들웨어가 없어서 "/" 를 기본 언어로 보내는 일을 이 페이지가 한다.
 // redirect() 는 export 하면 에러 페이지로 굳는다 → meta refresh 로 넘긴다.
@@ -9,6 +10,7 @@ export default function RootPage() {
   return (
     <html lang={routing.defaultLocale}>
       <head>
+        <meta name="naver-site-verification" content={naverSiteVerification} />
         <meta httpEquiv="refresh" content={`0; url=${target}`} />
       </head>
       <body>

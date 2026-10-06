@@ -38,3 +38,6 @@ export const nav = [
   {key: 'about', href: '/about'},
   {key: 'reservation', href: '/reservation'}
 ] as const;
+
+// 네이버 서치어드바이저 소유확인(HTML 태그 방식, 2026-10-06). 지우면 네이버 확인이 풀린다.
+export const naverSiteVerification = '9d2e0fdd584066f550721c0da850d6d9e6d78441';
