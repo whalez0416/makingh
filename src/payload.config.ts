@@ -2,6 +2,7 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import {buildConfig} from 'payload';
 import {sqliteAdapter} from '@payloadcms/db-sqlite';
+import {revalidateSite} from './lib/revalidate';
 import {lexicalEditor} from '@payloadcms/richtext-lexical';
 import {ko} from '@payloadcms/translations/languages/ko';
 import {en} from '@payloadcms/translations/languages/en';
@@ -24,16 +25,27 @@ export default buildConfig({
   i18n: {supportedLanguages: {ko, en}, fallbackLanguage: 'ko'},
   admin: {user: Users.slug},
   collections: [Users, Media, Notices, Popups, Reviews, Reservations, Inquiries],
+  // 배포 직후 deploy-server 가 한 번 부른다 — 빈 DB 로 빌드된 페이지를 실제 DB 내용으로 다시 그리게(POST, 비밀키 필요)
+  endpoints: [
+    {
+      path: '/revalidate',
+      method: 'post',
+      handler: async (req) => {
+        if (!process.env.PAYLOAD_SECRET || req.headers.get('x-revalidate') !== process.env.PAYLOAD_SECRET)
+          return Response.json({ok: false}, {status: 401});
+        revalidateSite();
+        return Response.json({ok: true});
+      }
+    }
+  ],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   // ko 만 필수. en·zh·ja 는 비워두면 ko 가 대신 나간다 (브리프 §5).
   localization: {
     locales: [
       {label: '한국어', code: 'ko'},
-      {label: 'English', code: 'en'},
       {label: '简体中文', code: 'zh'},
-      {label: '繁體中文', code: 'zh-Hant'},
-      {label: '日本語', code: 'ja'}
+      {label: '繁體中文', code: 'zh-Hant'}
     ],
     defaultLocale: 'ko',
     fallback: true

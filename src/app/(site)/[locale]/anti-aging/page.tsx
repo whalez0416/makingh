@@ -3,6 +3,7 @@ import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import {MagHero, ChapterNav, Chapter, Label, DeviceCards, TwoColList, Grid3} from '@/components/Editorial';
 import ConsultBanner from '@/components/ConsultBanner';
+import WikiLinks from '@/components/WikiLinks';
 import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /anti-aging — 레이저 / 주사 / 스킨부스터 / 고압산소.
@@ -57,6 +58,7 @@ function Content() {
         <Grid3 items={(t.raw('hbot.features') as string[]).map((desc) => ({desc}))} />
       </Chapter>
 
+      <WikiLinks cats={['lifting', 'injection']} />
       <ConsultBanner />
     </>
   );

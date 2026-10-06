@@ -13,7 +13,9 @@
     "call": "전화 상담",
     "kakao": "카카오톡 상담",
     "top": "맨 위로",
-    "more": "더보기"
+    "more": "더보기",
+    "chatShort": "톡",
+    "callShort": "전화"
   },
   "hero": {
     "tagline": "자가 줄기세포 재생의학 · 첨단재생의료 실시기관",
@@ -46,6 +48,15 @@
       "cat": "안티에이징 클리닉",
       "title": "레이저 · 주사 · 스킨부스터",
       "desc": "고압산소까지 함께"
+    },
+    "resolve": {
+      "eyebrow": "Raise the resolution of your skin",
+      "title": "내 피부의\n[해상도]를 높이다",
+      "lines": [
+        "시간이 지나면, 피부의 결은 조금씩 흐려집니다.",
+        "흐려진 결을, 한 겹씩 되찾아",
+        "가장 건강했던 그때의 선명함으로, 다시."
+      ]
     }
   },
   "numbers": {
@@ -658,7 +669,8 @@
     "rights": "© DITTOCELL CLINIC. All rights reserved.",
     "consult": "온라인 상담",
     "notice": "소식",
-    "reviews": "후기"
+    "reviews": "후기",
+    "wiki": "의료 정보"
   },
   "noticePage": {
     "title": "소식",
@@ -776,5 +788,17 @@
       "title": "온라인 예약",
       "desc": "온라인으로 신청하시면 확인 후 병원에서 연락드립니다."
     }
+  },
+  "wechat": {
+    "title": "위챗으로 상담하기",
+    "desc": "QR을 찍거나 위챗 ID를 검색해 친구 추가해 주세요.",
+    "idLabel": "위챗 ID",
+    "copy": "위챗 ID 복사",
+    "copied": "복사됨",
+    "close": "닫기"
+  },
+  "wiki": {
+    "faq": "자주 묻는 질문",
+    "more": "의료 정보 전체 보기"
   }
 }

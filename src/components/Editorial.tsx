@@ -111,7 +111,7 @@ export function ChapterNav({items}: {items: {id: string; label: string}[]}) {
           <li key={it.id} className="shrink-0">
             <a
               href={`#${it.id}`}
-              className="border-line text-sub hover:border-ink hover:text-ink bg-surface inline-flex h-10 items-center rounded-full border px-4 text-[14px] font-bold transition-colors lg:h-11 lg:px-5"
+              className="echo border-line text-sub hover:border-ink hover:text-ink bg-surface inline-flex h-10 items-center rounded-full border px-4 text-[14px] font-bold transition-colors lg:h-11 lg:px-5"
             >
               {it.label}
             </a>

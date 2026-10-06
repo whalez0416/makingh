@@ -96,19 +96,14 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale:
-    | ('false' | 'none' | 'null')
-    | false
-    | null
-    | ('ko' | 'en' | 'zh' | 'zh-Hant' | 'ja')
-    | ('ko' | 'en' | 'zh' | 'zh-Hant' | 'ja')[];
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('ko' | 'zh' | 'zh-Hant') | ('ko' | 'zh' | 'zh-Hant')[];
   globals: {
     'site-settings': SiteSetting;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
-  locale: 'ko' | 'en' | 'zh' | 'zh-Hant' | 'ja';
+  locale: 'ko' | 'zh' | 'zh-Hant';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -573,6 +568,8 @@ export interface SiteSetting {
   fax?: string | null;
   address: string;
   mapUrl?: string | null;
+  wechatId?: string | null;
+  wechatQr?: (number | null) | Media;
   hours?:
     | {
         days: string;
@@ -594,6 +591,8 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   fax?: T;
   address?: T;
   mapUrl?: T;
+  wechatId?: T;
+  wechatQr?: T;
   hours?:
     | T
     | {

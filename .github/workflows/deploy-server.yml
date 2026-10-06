@@ -59,3 +59,10 @@ jobs:
           $S "rm -rf /data/dittocell/app.old; [ -d /data/dittocell/app ] && mv /data/dittocell/app /data/dittocell/app.old; mv /data/dittocell/app.new /data/dittocell/app && systemctl restart dittocell && sleep 5 && systemctl is-active dittocell"
           # HTTPS 전(certbot 이전)에도 통과하게 http 로 들어가 리다이렉트를 따라간다.
           curl -sfLk --resolve dittocellseoul.com:80:$HOST --resolve dittocellseoul.com:443:$HOST http://dittocellseoul.com/ko/ | grep -qi "dittocell" || { echo "서버 응답 확인 실패"; exit 1; }
+
+      # 빌드는 빈 DB 로 했으니, 새 앱이 뜨면 실제 DB 내용(소식·팝업·후기·병원정보)으로 페이지를 다시 그리게 한다.
+      - name: 페이지를 실제 DB 내용으로 다시 그리기
+        env:
+          PS: ${{ secrets.PAYLOAD_SECRET }}
+        run: |
+          curl -sfk --resolve dittocellseoul.com:443:$HOST -X POST -H "x-revalidate: $PS" https://dittocellseoul.com/api/revalidate/ | grep -q '"ok":true' || { echo "다시 그리기 실패"; exit 1; }

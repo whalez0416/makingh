@@ -16,7 +16,7 @@ export default async function ConsultCta({
         href={s.kakao}
         target="_blank"
         rel="noreferrer"
-        className="text-ink hover:bg-accent inline-flex h-12 items-center rounded-[8px] bg-white px-7 text-[15px] font-bold transition-colors hover:text-white"
+        className="echo echo-on-dark text-ink hover:bg-accent inline-flex h-12 items-center rounded-[8px] bg-white px-7 text-[15px] font-bold transition-colors hover:text-white"
       >
         {label}
       </a>
@@ -47,7 +47,7 @@ export default async function ConsultCta({
       href={s.kakao}
       target="_blank"
       rel="noreferrer"
-      className="bg-ink text-bg hover:bg-accent inline-flex h-12 items-center rounded-[8px] px-7 text-[15px] transition-colors"
+      className="echo bg-ink text-bg hover:bg-accent inline-flex h-12 items-center rounded-[8px] px-7 text-[15px] transition-colors"
     >
       {label}
     </a>

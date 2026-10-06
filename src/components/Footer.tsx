@@ -1,7 +1,8 @@
 import {getTranslations} from 'next-intl/server';
 import Logo from '@/components/Logo';
 import {Link} from '@/i18n/navigation';
-import {site} from '@/lib/site';
+import {site, siteUrl} from '@/lib/site';
+import {WIKI_HUB} from '@/lib/wiki';
 import {getSettings} from '@/lib/settings';
 import type {Locale} from '@/i18n/routing';
 
@@ -62,6 +63,9 @@ export default async function Footer({locale}: {locale: Locale}) {
             <Link href="/reviews" className="hover:text-ink">
               {t('reviews')}
             </Link>
+            <a href={`${siteUrl}${WIKI_HUB[locale] ?? WIKI_HUB.ko}`} className="hover:text-ink">
+              {t('wiki')}
+            </a>
           </div>
           <div className="mt-4 flex gap-4">
             <a href={s.instagram} target="_blank" rel="noreferrer" className="hover:text-ink">

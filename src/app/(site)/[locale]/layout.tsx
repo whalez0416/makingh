@@ -4,13 +4,14 @@ import {hasLocale, NextIntlClientProvider} from 'next-intl';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 import {DEFAULT_THEME} from '@/lib/themes';
-import {site, siteUrl} from '@/lib/site';
+import {naverSiteVerification, site, siteUrl} from '@/lib/site';
 import {getSettings} from '@/lib/settings';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Floating from '@/components/Floating';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
 import {italic, serifKr} from '@/lib/serif';
+import WeChatGate from '@/components/WeChatGate';
 import '@/app/globals.css';
 
 // 사이트 공통: 정식 주소 기준(metadataBase)과 제목 틀. 페이지별 제목·설명·공유 카드는 각 page 의 generateMetadata(lib/meta.ts).
@@ -20,7 +21,8 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   return {
     metadataBase: new URL(siteUrl),
     title: {default: t('home.title'), template: `%s | ${t('siteName')}`},
-    description: t('home.desc')
+    description: t('home.desc'),
+    verification: {other: {'naver-site-verification': naverSiteVerification}}
   };
 }
 
@@ -45,6 +47,7 @@ export default async function LocaleLayout({
 
   // Header·Floating 은 클라이언트 컴포넌트라 CMS 를 직접 못 읽는다 — 여기서 받아 내린다.
   const s = await getSettings(locale);
+  const tw = await getTranslations({locale, namespace: 'wechat'});
 
   return (
     <html lang={locale} data-theme={DEFAULT_THEME} className={`${serifKr.variable} ${italic.variable}`} suppressHydrationWarning>
@@ -64,6 +67,22 @@ export default async function LocaleLayout({
           <main>{children}</main>
           <Footer locale={locale} />
           <Floating kakao={s.kakao} telHref={s.telHref} />
+          {locale !== 'ko' && (
+            <WeChatGate
+              kakao={s.kakao}
+              wechatId={s.wechatId}
+              qr={s.wechatQr}
+              consultHref={`/${locale}/consult/`}
+              t={{
+                title: tw('title'),
+                desc: tw('desc'),
+                idLabel: tw('idLabel'),
+                copy: tw('copy'),
+                copied: tw('copied'),
+                close: tw('close')
+              }}
+            />
+          )}
         </NextIntlClientProvider>
       </body>
     </html>

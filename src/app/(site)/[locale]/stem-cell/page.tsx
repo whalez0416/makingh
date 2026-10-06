@@ -3,6 +3,7 @@ import {useTranslations} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import {MagHero, ChapterNav, Chapter, Label, Grid3, Steps, Definition} from '@/components/Editorial';
 import ConsultBanner from '@/components/ConsultBanner';
+import WikiLinks from '@/components/WikiLinks';
 import {pageMeta} from '@/lib/meta';
 
 // 브리프 서브 /stem-cell — 개요/자가혈/자가지방/고압산소 + 디토셀 시술.
@@ -76,6 +77,7 @@ function Content() {
         <Grid3 items={raw<Pair[]>('dittocell')} />
       </Chapter>
 
+      <WikiLinks cats={['stemcell']} />
       <ConsultBanner />
     </>
   );

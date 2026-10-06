@@ -1,21 +1,19 @@
-'use client';
+"use client";
 
-import {useEffect, useState} from 'react';
-import {useLocale, useTranslations} from 'next-intl';
-import {Link, usePathname} from '@/i18n/navigation';
-import Logo from '@/components/Logo';
-import {routing} from '@/i18n/routing';
-import {nav, site} from '@/lib/site';
+import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
+import Logo from "@/components/Logo";
+import { routing } from "@/i18n/routing";
+import { nav, site } from "@/lib/site";
 
 const LOCALE_LABEL: Record<string, string> = {
-  ko: 'KO',
-  en: 'EN',
-  zh: '简体中文',
-  'zh-Hant': '繁體中文',
-  ja: '日本語'
+  ko: "KO",
+  zh: "简体中文",
+  "zh-Hant": "繁體中文",
 };
 
-export default function Header({kakao}: {kakao: string}) {
+export default function Header({ kakao }: { kakao: string }) {
   const t = useTranslations();
   const locale = useLocale();
   const pathname = usePathname();
@@ -23,21 +21,32 @@ export default function Header({kakao}: {kakao: string}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 24);
+    // 홈은 화면이 고정된 히어로 구간(#home-hero)이 끝날 때까지 투명 헤더
+    const onScroll = () => {
+      const h = document.getElementById("home-hero");
+      setSolid(
+        window.scrollY >
+          (h ? h.offsetTop + h.offsetHeight - window.innerHeight + 24 : 24),
+      );
+    };
     onScroll();
-    window.addEventListener('scroll', onScroll, {passive: true});
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   // 오버레이가 열린 동안 뒤 스크롤 잠금
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [open]);
 
-  const localeLinks = (cls: string, active: string, inactive = 'hover:text-ink') =>
+  const localeLinks = (
+    cls: string,
+    active: string,
+    inactive = "hover:text-ink",
+  ) =>
     routing.locales.map((l) => (
       <Link
         key={l}
@@ -51,15 +60,15 @@ export default function Header({kakao}: {kakao: string}) {
     ));
 
   // 홈 최상단은 풀스크린 히어로 사진 위라 헤더를 화이트 톤으로 (스크롤·오버레이 시 원복)
-  const page = pathname.replace(/(.)\/$/, '$1'); // trailingSlash: '/signature/' → '/signature'
-  const overHero = page === '/' && !solid && !open;
+  const page = pathname.replace(/(.)\/$/, "$1"); // trailingSlash: '/signature/' → '/signature'
+  const overHero = page === "/" && !solid && !open;
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         solid || open
-          ? 'bg-bg/95 border-line border-b backdrop-blur'
-          : 'bg-transparent'
+          ? "bg-bg/95 border-line border-b backdrop-blur"
+          : "bg-transparent"
       }`}
     >
       <div className="flex h-14 items-center gap-4 px-5 lg:h-20 lg:gap-8 lg:px-10">
@@ -68,22 +77,22 @@ export default function Header({kakao}: {kakao: string}) {
           aria-label="메뉴"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className={`-ml-2 flex h-11 w-11 items-center justify-center lg:hidden ${overHero ? 'text-white' : 'text-ink'}`}
+          className={`-ml-2 flex h-11 w-11 items-center justify-center lg:hidden ${overHero ? "text-white" : "text-ink"}`}
         >
           <span className="relative block h-4 w-5">
             <span
-              className={`${overHero ? 'bg-white' : 'bg-ink'} absolute left-0 block h-px w-5 transition-transform ${
-                open ? 'top-2 rotate-45' : 'top-0'
+              className={`${overHero ? "bg-white" : "bg-ink"} absolute left-0 block h-px w-5 transition-transform ${
+                open ? "top-2 rotate-45" : "top-0"
               }`}
             />
             <span
-              className={`${overHero ? 'bg-white' : 'bg-ink'} absolute top-2 left-0 block h-px w-5 transition-opacity ${
-                open ? 'opacity-0' : 'opacity-100'
+              className={`${overHero ? "bg-white" : "bg-ink"} absolute top-2 left-0 block h-px w-5 transition-opacity ${
+                open ? "opacity-0" : "opacity-100"
               }`}
             />
             <span
-              className={`${overHero ? 'bg-white' : 'bg-ink'} absolute left-0 block h-px w-5 transition-transform ${
-                open ? 'top-2 -rotate-45' : 'top-4'
+              className={`${overHero ? "bg-white" : "bg-ink"} absolute left-0 block h-px w-5 transition-transform ${
+                open ? "top-2 -rotate-45" : "top-4"
               }`}
             />
           </span>
@@ -94,21 +103,21 @@ export default function Header({kakao}: {kakao: string}) {
           data-site-logo
           onClick={() => setOpen(false)}
           aria-label={site.name}
-          className={`block transition-colors ${overHero ? 'text-white' : 'text-ink'}`}
+          className={`block transition-colors ${overHero ? "text-white" : "text-ink"}`}
         >
           <Logo className="h-7 w-auto lg:h-9" />
         </Link>
 
         <nav
           className={`ml-4 hidden items-center gap-7 text-[15px] lg:flex ${
-            overHero ? 'text-white/80' : 'text-sub'
+            overHero ? "text-white/80" : "text-sub"
           }`}
         >
           {nav.map((item) => (
             <Link
               key={item.key}
               href={item.href}
-              className={`transition-colors ${overHero ? 'hover:text-white' : 'hover:text-ink'}`}
+              className={`transition-colors ${overHero ? "hover:text-white" : "hover:text-ink"}`}
             >
               {t(`nav.${item.key}`)}
             </Link>
@@ -118,13 +127,13 @@ export default function Header({kakao}: {kakao: string}) {
         <div className="ml-auto flex items-center gap-5">
           <div
             className={`hidden items-center gap-3 text-[12px] tracking-wider lg:flex ${
-              overHero ? 'text-white/70' : 'text-sub'
+              overHero ? "text-white/70" : "text-sub"
             }`}
           >
             {localeLinks(
-              'transition-colors',
-              overHero ? 'text-white' : 'text-ink',
-              overHero ? 'hover:text-white' : 'hover:text-ink'
+              "transition-colors",
+              overHero ? "text-white" : "text-ink",
+              overHero ? "hover:text-white" : "hover:text-ink",
             )}
           </div>
           {/* 예약 CTA 는 모바일에서도 유지 */}
@@ -132,13 +141,13 @@ export default function Header({kakao}: {kakao: string}) {
             href={kakao}
             target="_blank"
             rel="noreferrer"
-            className={`flex h-11 items-center rounded-[8px] px-4 text-[13px] transition-colors lg:px-5 lg:text-[15px] ${
+            className={`echo flex h-11 items-center rounded-[8px] px-4 text-[13px] transition-colors lg:px-5 lg:text-[15px] ${
               overHero
-                ? 'text-ink hover:bg-accent bg-white hover:text-white'
-                : 'bg-ink hover:bg-accent text-white'
+                ? "echo-on-dark text-ink hover:bg-accent bg-white hover:text-white"
+                : "bg-ink hover:bg-accent text-white"
             }`}
           >
-            {t('common.reserve')}
+            {t("common.reserve")}
           </a>
         </div>
       </div>
@@ -160,8 +169,8 @@ export default function Header({kakao}: {kakao: string}) {
           </nav>
           <div className="text-sub mt-auto flex gap-2 pt-10 text-[14px]">
             {localeLinks(
-              'flex min-h-11 min-w-11 items-center justify-center px-3 transition-colors',
-              'text-ink border-line border'
+              "flex min-h-11 min-w-11 items-center justify-center px-3 transition-colors",
+              "text-ink border-line border",
             )}
           </div>
         </div>
