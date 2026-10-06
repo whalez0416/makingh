@@ -11,7 +11,7 @@ function MoreLink({label}: {label: string}) {
   return (
     <Link
       href="/signature"
-      className="arrow-fx text-ink hover:text-accent inline-flex items-center gap-2 text-[15px] font-bold transition-colors lg:text-[17px]"
+      className="text-ink hover:text-accent inline-flex items-center gap-2 text-[15px] font-bold transition-colors lg:text-[17px]"
     >
       {label} <span aria-hidden>➞</span>
     </Link>

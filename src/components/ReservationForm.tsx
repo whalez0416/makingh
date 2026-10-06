@@ -5,7 +5,6 @@ import {useTranslations} from 'next-intl';
 import {TREATMENTS, TIME_SLOTS} from '@/lib/treatments';
 import {Field, inputCls, areaCls} from '@/components/FormField';
 import ConsentBox from '@/components/ConsentBox';
-import BtnLabel from '@/components/BtnLabel';
 
 // 브리프 Phase 5 — 예약 신청. 병원이 접수함에서 보고 전화로 확정한다.
 // 제출은 Payload REST 로 보낸다. 서버가 없는 정적 사본에서는 실패하고 카톡 안내로 떨어진다.
@@ -166,9 +165,9 @@ export default function ReservationForm({kakao}: {kakao: string}) {
       <button
         type="submit"
         disabled={sending}
-        className="btn-fx bg-ink h-14 rounded-[8px] text-[16px] font-bold text-white disabled:opacity-50"
+        className="bg-ink hover:bg-accent h-14 rounded-[8px] text-[16px] font-bold text-white transition-colors disabled:opacity-50"
       >
-        <BtnLabel>{sending ? t('sending') : t('submit')}</BtnLabel>
+        {sending ? t('sending') : t('submit')}
       </button>
 
       <p className="text-sub text-center text-[13px]">{t('confirmNote')}</p>

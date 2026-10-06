@@ -1,5 +1,4 @@
 import {getSettings} from '@/lib/settings';
-import BtnLabel from '@/components/BtnLabel';
 
 // 예약은 Phase 5 전까지 카카오톡 채널로 보낸다 (브리프 §4 서브페이지).
 export default async function ConsultCta({
@@ -17,9 +16,9 @@ export default async function ConsultCta({
         href={s.kakao}
         target="_blank"
         rel="noreferrer"
-        className="btn-fx text-ink inline-flex h-12 items-center rounded-[8px] bg-white px-7 text-[15px] font-bold hover:text-white"
+        className="text-ink hover:bg-accent inline-flex h-12 items-center rounded-[8px] bg-white px-7 text-[15px] font-bold transition-colors hover:text-white"
       >
-        <BtnLabel>{label}</BtnLabel>
+        {label}
       </a>
     );
   }
@@ -48,9 +47,9 @@ export default async function ConsultCta({
       href={s.kakao}
       target="_blank"
       rel="noreferrer"
-      className="btn-fx bg-ink text-bg inline-flex h-12 items-center rounded-[8px] px-7 text-[15px]"
+      className="bg-ink text-bg hover:bg-accent inline-flex h-12 items-center rounded-[8px] px-7 text-[15px] transition-colors"
     >
-      <BtnLabel>{label}</BtnLabel>
+      {label}
     </a>
   );
 }

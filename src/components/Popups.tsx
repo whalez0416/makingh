@@ -5,7 +5,6 @@ import {cmsFind} from '@/lib/cms';
 import type {Locale} from '@/i18n/routing';
 import type {Popup} from '@/payload-types';
 import PopupModal, {type PopupItem} from './PopupModal';
-import BtnLabel from '@/components/BtnLabel';
 
 // 브리프 §5 popups. 켜 둔 것만 내려보내고, 기간 판정·닫기 기억은 브라우저가 한다.
 export default async function Popups({locale}: {locale: Locale}) {
@@ -49,9 +48,9 @@ export default async function Popups({locale}: {locale: Locale}) {
             {p.link ? (
               <a
                 href={p.link}
-                className="btn-fx btn-fx-ink border-line text-ink hover:text-bg mt-5 flex h-12 items-center justify-center rounded-[8px] border text-[14px]"
+                className="border-line text-ink hover:bg-bg mt-5 flex h-12 items-center justify-center rounded-[8px] border text-[14px] transition-colors"
               >
-                <BtnLabel>{t('more')}</BtnLabel>
+                {t('more')}
               </a>
             ) : null}
           </div>

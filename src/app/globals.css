@@ -571,33 +571,3 @@ body {
   .resolve img { filter: none; transform: none; animation: none; }
   .rch { animation: none; }
 }
-
-/* 버튼 모션 (2026-10-01) — 확대(scale) 없이(브리프 §3):
-   .btn-fx  색이 아래에서 차오르고, 글자가 위로 굴러가며 같은 글자가 올라온다(ditto). 누르면 1px 눌림.
-   .btn-fx-ink  차오르는 색을 먹색으로(테두리 버튼·바로가기 칩)
-   .float-fx 떠 있는 버튼은 살짝 떠오름 · .card-fx 카드는 살짝 떠오르며 그림자 · .link-fx 글자 링크는 밑줄이 그어짐 · .arrow-fx 화살표가 살짝 나아감 */
-.btn-fx { position: relative; overflow: hidden; isolation: isolate; transition: color .45s cubic-bezier(.2, .7, .2, 1), border-color .45s, transform .15s; -webkit-tap-highlight-color: transparent; }
-.btn-fx::before { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: var(--color-accent); transform: translateY(102%); transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
-.btn-fx-ink::before { background: var(--color-ink); }
-.btn-label { position: relative; display: inline-block; overflow: hidden; vertical-align: middle; line-height: 1.25; }
-.btn-label > span, .btn-label::after { display: block; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
-.btn-label::after { content: attr(data-t); position: absolute; left: 0; right: 0; top: 100%; text-align: inherit; }
-@media (hover: hover) {
-  .btn-fx:hover::before { transform: none; }
-  .btn-fx:hover .btn-label > span, .btn-fx:hover .btn-label::after { transform: translateY(-100%); }
-  .float-fx:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -10px rgb(0 0 0 / .35); }
-  .card-fx:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -24px rgb(0 0 0 / .3); }
-}
-.btn-fx:active { transform: translateY(1px); }
-.btn-fx:disabled::before { transform: translateY(102%); }
-.btn-fx:focus-visible, .float-fx:focus-visible, .card-fx:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-.float-fx, .card-fx { transition: transform .35s cubic-bezier(.2, .7, .2, 1), box-shadow .35s, color .2s, border-color .3s; }
-.float-fx:active, .card-fx:active { transform: translateY(0); }
-.arrow-fx > span[aria-hidden] { display: inline-block; transition: transform .4s cubic-bezier(.2, .7, .2, 1); }
-.arrow-fx:hover > span[aria-hidden] { transform: translateX(4px); }
-.link-fx { background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat; transition: background-size .4s cubic-bezier(.2, .7, .2, 1), color .2s; padding-bottom: 1px; }
-.link-fx:hover { background-size: 100% 1px; }
-@media (prefers-reduced-motion: reduce) {
-  .btn-fx::before, .btn-label > span, .btn-label::after, .float-fx, .card-fx, .link-fx { transition: none; }
-  .btn-fx:hover .btn-label > span, .btn-fx:hover .btn-label::after { transform: none; }
-}

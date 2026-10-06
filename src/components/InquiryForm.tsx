@@ -4,7 +4,6 @@ import {useState} from 'react';
 import {useTranslations} from 'next-intl';
 import {Field, inputCls, areaCls} from '@/components/FormField';
 import ConsentBox from '@/components/ConsentBox';
-import BtnLabel from '@/components/BtnLabel';
 
 // 온라인 상담 — 이름·연락처·내용만. 공개되지 않고 병원 접수함에만 쌓인다.
 export default function InquiryForm({kakao}: {kakao: string}) {
@@ -108,9 +107,9 @@ export default function InquiryForm({kakao}: {kakao: string}) {
       <button
         type="submit"
         disabled={sending}
-        className="btn-fx bg-ink h-14 rounded-[8px] text-[16px] font-bold text-white disabled:opacity-50"
+        className="bg-ink hover:bg-accent h-14 rounded-[8px] text-[16px] font-bold text-white transition-colors disabled:opacity-50"
       >
-        <BtnLabel>{sending ? t('sending') : t('submit')}</BtnLabel>
+        {sending ? t('sending') : t('submit')}
       </button>
     </form>
   );

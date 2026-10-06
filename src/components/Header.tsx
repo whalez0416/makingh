@@ -6,7 +6,6 @@ import {Link, usePathname} from '@/i18n/navigation';
 import Logo from '@/components/Logo';
 import {routing} from '@/i18n/routing';
 import {nav, site} from '@/lib/site';
-import BtnLabel from '@/components/BtnLabel';
 
 const LOCALE_LABEL: Record<string, string> = {
   ko: 'KO',
@@ -133,11 +132,13 @@ export default function Header({kakao}: {kakao: string}) {
             href={kakao}
             target="_blank"
             rel="noreferrer"
-            className={`btn-fx flex h-11 items-center rounded-[8px] px-4 text-[13px] lg:px-5 lg:text-[15px] ${
-              overHero ? 'text-ink bg-white hover:text-white' : 'bg-ink text-white'
+            className={`flex h-11 items-center rounded-[8px] px-4 text-[13px] transition-colors lg:px-5 lg:text-[15px] ${
+              overHero
+                ? 'text-ink hover:bg-accent bg-white hover:text-white'
+                : 'bg-ink hover:bg-accent text-white'
             }`}
           >
-            <BtnLabel>{t('common.reserve')}</BtnLabel>
+            {t('common.reserve')}
           </a>
         </div>
       </div>

@@ -22,7 +22,7 @@ export default async function Footer({locale}: {locale: Locale}) {
             {t('bizNo')} {site.bizNo}
           </p>
           <p className="mt-4">
-            <a href={s.telHref} className="link-fx hover:text-ink">
+            <a href={s.telHref} className="hover:text-ink">
               T. {s.tel}
             </a>{' '}
             · F. {s.fax}
@@ -53,21 +53,21 @@ export default async function Footer({locale}: {locale: Locale}) {
             ))}
           </dl>
           <div className="border-line mt-6 flex gap-4 border-t pt-4">
-            <Link href="/consult" className="link-fx hover:text-ink">
+            <Link href="/consult" className="hover:text-ink">
               {t('consult')}
             </Link>
-            <Link href="/notice" className="link-fx hover:text-ink">
+            <Link href="/notice" className="hover:text-ink">
               {t('notice')}
             </Link>
-            <Link href="/reviews" className="link-fx hover:text-ink">
+            <Link href="/reviews" className="hover:text-ink">
               {t('reviews')}
             </Link>
           </div>
           <div className="mt-4 flex gap-4">
-            <a href={s.instagram} target="_blank" rel="noreferrer" className="link-fx hover:text-ink">
+            <a href={s.instagram} target="_blank" rel="noreferrer" className="hover:text-ink">
               Instagram
             </a>
-            <a href={s.kakao} target="_blank" rel="noreferrer" className="link-fx hover:text-ink">
+            <a href={s.kakao} target="_blank" rel="noreferrer" className="hover:text-ink">
               KakaoTalk
             </a>
           </div>
