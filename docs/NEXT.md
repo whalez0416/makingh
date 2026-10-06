@@ -29,7 +29,8 @@
 - ✅ 위키 발행 뒤 홈페이지 다시 그리기 (aeo-sync PR #46)
 - ✅ 구글 서치콘솔: 도메인 속성 `sc-domain:dittocellseoul.com`(Cloudflare TXT 자동 확인), 사이트맵 4개 제출 — 홈·간체 성공, 한국어·번체 위키는 제출 직후 '가져올 수 없음'(봇 접근 정상 확인) → 다시 볼 것
 - ✅ Bing: 서치콘솔에서 디토셀만 가져오기(다른 병원·NC 사이트 체크 해제), 사이트맵 4개 Processing
-- ⏳ 네이버 서치어드바이저: 브라우저 도구가 차단 → 사용자가 사이트 등록·HTML 태그 받아 주면 layout 에 meta 넣고 배포
+- ✅ 네이버 서치어드바이저: 소유확인(HTML 태그, a67d374) 완료, 사이트맵·RSS(/docs/rss.xml — aeo-sync PR #48) 제출은 사용자
+- ✅ 위키 RSS(판마다 최신 30개), 발행 전 점검에 OpenAI 크레딧 확인(PR #49)
 
 ## 다음 주 할 일
 
@@ -37,7 +38,7 @@
    - 영어·일본어를 빼는 브랜치를 올리면 위키는 원래 ko·zh·zh-hant 라 영향 없음.
 2. ~~`feat/zh-wechat-langs` 배포~~ (10-06 완료) — 병원 위챗 ID·QR 받으면 관리자에 입력
 3. `feat/resolve-hero` 정리·배포 (위 2번)
-4. **방문 로그 보관** — 메이린은 매일 액세스 로그를 gz 로 떠 두고(aeo-sync `deploy/maylin_server/maylin_logdump.sh`) AEO 대시보드가 가져감. 디토셀은 nginx `/var/log/nginx/dittocell.access.log` 만 있고 보관이 없음 → 같은 방식 추가 필요(서버 SSH 키는 회사 PC 에만).
+4. ~~**방문 로그 보관**~~ ✅ 10-06 설치(서버 `/data/dittocell/logs/access-날짜.log.gz`, 400일, aeo-sync PR #52). 남은 것: aeo-log-analyzer 대시보드에 디토셀 등록. (옛 메모: 메이린은 매일 액세스 로그를 gz 로 떠 두고(aeo-sync `deploy/maylin_server/maylin_logdump.sh`) AEO 대시보드가 가져감. 디토셀은 nginx `/var/log/nginx/dittocell.access.log` 만 있고 보관이 없음 → 같은 방식 추가 필요(서버 SSH 키는 회사 PC 에만).)
 5. 사용자가 할 것: 슬랙 #디토셀-보고 웹훅 → 터미널에서 `gh secret set SLACK_WEBHOOK_DITTOCELL --repo whalez0416/aeo-sync` (대화창에 URL 붙이지 않기)
 6. 병원에 받을 것: 위챗 ID·QR, 로고 원본(AI/SVG), 실내 실사 사진, 바이알 원본(있으면)
 
