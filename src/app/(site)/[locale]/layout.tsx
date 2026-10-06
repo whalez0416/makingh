@@ -12,6 +12,7 @@ import Floating from '@/components/Floating';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
 import {italic, serifKr} from '@/lib/serif';
 import WeChatGate from '@/components/WeChatGate';
+import ClinicJsonLd from '@/components/ClinicJsonLd';
 import '@/app/globals.css';
 
 // 사이트 공통: 정식 주소 기준(metadataBase)과 제목 틀. 페이지별 제목·설명·공유 카드는 각 page 의 generateMetadata(lib/meta.ts).
@@ -48,6 +49,7 @@ export default async function LocaleLayout({
   // Header·Floating 은 클라이언트 컴포넌트라 CMS 를 직접 못 읽는다 — 여기서 받아 내린다.
   const s = await getSettings(locale);
   const tw = await getTranslations({locale, namespace: 'wechat'});
+  const tm = await getTranslations({locale, namespace: 'meta'});
 
   return (
     <html lang={locale} data-theme={DEFAULT_THEME} className={`${serifKr.variable} ${italic.variable}`} suppressHydrationWarning>
@@ -57,6 +59,7 @@ export default async function LocaleLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
         <script dangerouslySetInnerHTML={{__html: restoreTheme}} />
+        <ClinicJsonLd locale={locale} name={tm('siteName')} />
       </head>
       {/* 확장 프로그램(번역기·문법검사 등)이 hydration 전에 body 에 속성을 붙인다.
           우리 서버 출력은 <body> 뿐이라 그 경고만 끈다 — 자식 요소 경고는 그대로 뜬다. */}
