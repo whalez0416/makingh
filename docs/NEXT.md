@@ -17,7 +17,7 @@
 - 올리는 법: `git checkout master && git merge --ff-only feat/zh-wechat-langs && git push` → 배포 후 링크·버튼 전수 확인(메모리 deploy-test-section).
 - **병원에 받을 것: 위챗 ID, 위챗 QR 이미지.**
 
-### 2. `feat/resolve-hero` — 아직 보류 (master 보다 오래된 줄기에서 갈라짐, 합칠 때 충돌 정리 필요)
+### 2. `feat/resolve-hero` — ✅ 2026-10-06 배포 (`feat/subpages-merge` 로 master 와 합침, 롤 버튼 되돌리고 디토 에코로 통일)
 - 서브 페이지 정보 중심 개선안(발주자 확정 Pzr1toCYPY5mxYay2jcRhp) + 서브 히어로 해상도 모션(`ResolveImage`) + 제목 한 글자씩
 - 사진 해상도: 실내 렌더 10장 AI 2배(로컬 Real-ESRGAN), 시그니처 모델·메인 카드·실험실·원장 원본 재출력 (전후 비교 아티팩트 2ikqAGde8MhVWZ14B5XaNm)
 - **버튼은 "디토 롤"(btn-fx/BtnLabel)로 들어가 있음 → 사용자가 디토 에코를 골랐으니 합칠 때 `.echo` 로 바꿀 것.**
@@ -37,7 +37,7 @@
 1. **위키** — 사용자: "다음 주부터 위키 올리자". 참고로 aeo-sync `daily-publish-dittocell` 은 이미 평일 KST 09:40 자동 발행 중(10-01 첫 발행 확인, 한국어·간체·번체, `dittocellseoul.com/docs/`). 무엇을 "올릴지"(새 주제·노출 위치·메인에서 위키로 가는 길 등) 사용자에게 먼저 확인.
    - 영어·일본어를 빼는 브랜치를 올리면 위키는 원래 ko·zh·zh-hant 라 영향 없음.
 2. ~~`feat/zh-wechat-langs` 배포~~ (10-06 완료) — 병원 위챗 ID·QR 받으면 관리자에 입력
-3. `feat/resolve-hero` 정리·배포 (위 2번)
+3. ~~`feat/resolve-hero` 정리·배포~~ (10-06 완료)
 4. ~~**방문 로그 보관**~~ ✅ 10-06 설치(서버 `/data/dittocell/logs/access-날짜.log.gz`, 400일, aeo-sync PR #52). 남은 것: aeo-log-analyzer 대시보드에 디토셀 등록. (옛 메모: 메이린은 매일 액세스 로그를 gz 로 떠 두고(aeo-sync `deploy/maylin_server/maylin_logdump.sh`) AEO 대시보드가 가져감. 디토셀은 nginx `/var/log/nginx/dittocell.access.log` 만 있고 보관이 없음 → 같은 방식 추가 필요(서버 SSH 키는 회사 PC 에만).)
 5. 사용자가 할 것: 슬랙 #디토셀-보고 웹훅 → 터미널에서 `gh secret set SLACK_WEBHOOK_DITTOCELL --repo whalez0416/aeo-sync` (대화창에 URL 붙이지 않기)
 6. 병원에 받을 것: 위챗 ID·QR, 로고 원본(AI/SVG), 실내 실사 사진, 바이알 원본(있으면)
