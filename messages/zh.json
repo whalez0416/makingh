@@ -668,7 +668,8 @@
     "rights": "Copyright © 2024 Dittocell Clinic. All Rights Reserved.",
     "consult": "在线咨询",
     "notice": "公告",
-    "reviews": "顾客评价"
+    "reviews": "顾客评价",
+    "wiki": "医疗信息"
   },
   "noticePage": {
     "title": "公告",
@@ -794,5 +795,9 @@
     "copy": "复制微信号",
     "copied": "已复制",
     "close": "关闭"
+  },
+  "wiki": {
+    "faq": "常见问题",
+    "more": "查看全部医疗信息"
   }
 }

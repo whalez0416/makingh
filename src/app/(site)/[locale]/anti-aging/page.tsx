@@ -4,6 +4,7 @@ import {setRequestLocale} from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import Tabs from '@/components/Tabs';
 import ConsultBanner from '@/components/ConsultBanner';
+import WikiLinks from '@/components/WikiLinks';
 import Reveal from '@/components/Reveal';
 import {pageMeta} from '@/lib/meta';
 
@@ -111,6 +112,7 @@ function Content() {
           />
         </Reveal>
       </section>
+      <WikiLinks cats={['lifting']} />
       <ConsultBanner />
     </>
   );

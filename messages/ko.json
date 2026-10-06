@@ -668,7 +668,8 @@
     "rights": "© DITTOCELL CLINIC. All rights reserved.",
     "consult": "온라인 상담",
     "notice": "소식",
-    "reviews": "후기"
+    "reviews": "후기",
+    "wiki": "의료 정보"
   },
   "noticePage": {
     "title": "소식",
@@ -794,5 +795,9 @@
     "copy": "위챗 ID 복사",
     "copied": "복사됨",
     "close": "닫기"
+  },
+  "wiki": {
+    "faq": "자주 묻는 질문",
+    "more": "의료 정보 전체 보기"
   }
 }
