@@ -31,6 +31,15 @@
 - ✅ 네이버 서치어드바이저: 소유확인(HTML 태그, a67d374) 완료, 사이트맵·RSS(/docs/rss.xml — aeo-sync PR #48) 제출은 사용자
 - ✅ 위키 RSS(판마다 최신 30개), 발행 전 점검에 OpenAI 크레딧 확인(PR #49)
 
+## 2026-10-06 국내 노출 (집 PC)
+
+- **옛 사이트 www.dittocell.com(Vercel)과 새 사이트를 둘 다 운영** — 사용자 결정. 실측 문장 중복은 메인 0%·줄기세포 8%(3문장)·안티에이징 0% 라 문제 없음
+- ✅ 배포 2da711e: 병원 구조화 데이터 `src/components/ClinicJsonLd.tsx`(MedicalClinic·Physician, 전 언어, sameAs 에 옛 사이트) + 옛 사이트와 같던 줄기세포 문장 3개 고쳐 씀
+- ✅ robots.txt 를 `src/app/robots.txt/route.ts`(글자 그대로)로 바꿈 — 다음 웹마스터도구 인증 줄(#DaumWebMasterTool) 때문. **robots.ts 로 되돌리면 인증 줄이 사라진다**
+- ✅ 구글: 한국어 위키 사이트맵(`/docs/sitemap.xml`, '가져올 수 없음'이던 것) 다시 제출. 나머지 3개 성공. `/ko/` 는 이미 색인됨, `/docs/` 는 미색인(색인 요청 버튼 무반응 — 사이트맵으로 대기)
+- ✅ 다음: PIN 발급·robots 인증 완료. 로그인·사이트맵 제출은 보류(사용자 "다음은 일단 놔두고")
+- ⏳ 네이버: 사이트맵 4개 + RSS(`/docs/rss.xml`) 제출 — 클로드 크롬 확장이 searchadvisor.naver.com 을 막아서 사용자가 직접
+
 ## 다음 주 할 일
 
 1. **위키** — 사용자: "다음 주부터 위키 올리자". 참고로 aeo-sync `daily-publish-dittocell` 은 이미 평일 KST 09:40 자동 발행 중(10-01 첫 발행 확인, 한국어·간체·번체, `dittocellseoul.com/docs/`). 무엇을 "올릴지"(새 주제·노출 위치·메인에서 위키로 가는 길 등) 사용자에게 먼저 확인.
