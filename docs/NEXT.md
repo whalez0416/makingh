@@ -2,7 +2,7 @@
 
 > 이 파일만 읽으면 이어서 할 수 있게. 위에서부터 순서대로.
 
-## 라이브(dittocellseoul.com, master facc9b6)에 이미 올라간 것
+## 라이브(dittocellseoul.com)에 이미 올라간 것
 
 - 메인 히어로 "내 피부의 해상도를 높이다" — 스크롤하면 저해상도 피부가 선명해짐 (`src/components/ResolveHero.tsx`, 시안 아티팩트 3trM29GvvHfWVvzhV4ouyh)
 - 버튼 "디토 에코" — 어긋난 복제 선이 마우스를 올리면 겹침 (`globals.css .echo`, 시안 Awx4nwfnseecTVvTMJHDQS ⑤)
@@ -20,8 +20,7 @@
 ### 2. `feat/resolve-hero` — ✅ 2026-10-06 배포 (`feat/subpages-merge` 로 master 와 합침, 롤 버튼 되돌리고 디토 에코로 통일)
 - 서브 페이지 정보 중심 개선안(발주자 확정 Pzr1toCYPY5mxYay2jcRhp) + 서브 히어로 해상도 모션(`ResolveImage`) + 제목 한 글자씩
 - 사진 해상도: 실내 렌더 10장 AI 2배(로컬 Real-ESRGAN), 시그니처 모델·메인 카드·실험실·원장 원본 재출력 (전후 비교 아티팩트 2ikqAGde8MhVWZ14B5XaNm)
-- **버튼은 "디토 롤"(btn-fx/BtnLabel)로 들어가 있음 → 사용자가 디토 에코를 골랐으니 합칠 때 `.echo` 로 바꿀 것.**
-- 합칠 때 master 의 변경(메인 히어로·에코·관리자 반영·언어 3개)과 겹치는 파일: Editorial.tsx, globals.css, Header.tsx, messages/*.
+- 버튼은 롤(ad543b0)을 되돌리고 디토 에코로 통일함(챕터 칩 포함). 미배포 브랜치 없음.
 
 ## 2026-10-06 위키 노출 작업
 
