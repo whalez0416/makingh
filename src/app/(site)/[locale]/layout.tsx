@@ -73,6 +73,8 @@ export default async function LocaleLayout({
               kakao={s.kakao}
               wechatId={s.wechatId}
               qr={s.wechatQr}
+              whatsapp={s.whatsapp}
+              line={s.line}
               consultHref={`/${locale}/consult/`}
               t={{
                 title: tw('title'),

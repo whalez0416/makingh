@@ -574,6 +574,8 @@ export interface SiteSetting {
   mapUrl?: string | null;
   wechatId?: string | null;
   wechatQr?: (number | null) | Media;
+  whatsapp?: string | null;
+  line?: string | null;
   hours?:
     | {
         days: string;
@@ -597,6 +599,8 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   mapUrl?: T;
   wechatId?: T;
   wechatQr?: T;
+  whatsapp?: T;
+  line?: T;
   hours?:
     | T
     | {

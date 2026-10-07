@@ -16,6 +16,8 @@ export type Settings = {
   telHref: string;
   wechatId?: string; // 중국어 상담(위챗) — 비어 있으면 상담 폼으로
   wechatQr?: string;
+  whatsapp?: string; // 홍콩·싱가포르·말레이시아
+  line?: string; // 대만
 };
 
 const toHref = (tel: string) => `tel:+82-${tel.replace(/^0/, '').replace(/[.\-\s]/g, '-')}`;
@@ -49,7 +51,9 @@ export const getSettings = cache(async (locale?: Locale): Promise<Settings> => {
         : fallback.hours,
       telHref: toHref(s.tel),
       wechatId: s.wechatId || undefined,
-      wechatQr: typeof s.wechatQr === 'object' && s.wechatQr?.url ? s.wechatQr.url : undefined
+      wechatQr: typeof s.wechatQr === 'object' && s.wechatQr?.url ? s.wechatQr.url : undefined,
+      whatsapp: s.whatsapp || undefined,
+      line: s.line || undefined
     };
   } catch {
     // DB 가 없는 환경에서도 페이지는 떠야 한다.

@@ -27,6 +27,14 @@ export const SiteSettings: GlobalConfig = {
         {name: 'wechatQr', type: 'upload', relationTo: 'media', label: '위챗 QR 이미지', admin: {width: '50%'}}
       ]
     },
+    // 대만은 라인, 홍콩·싱가포르·말레이시아는 왓츠앱 (2026-10-07 중화권 피벗). 넣은 것만 중국어 상담 창에 버튼으로 뜬다.
+    {
+      type: 'row',
+      fields: [
+        {name: 'whatsapp', type: 'text', label: '왓츠앱 링크 (예: https://wa.me/8225647774)', admin: {width: '50%'}},
+        {name: 'line', type: 'text', label: '라인 링크 (예: https://line.me/R/ti/p/@아이디)', admin: {width: '50%'}}
+      ]
+    },
     {
       name: 'hours',
       type: 'array',
