@@ -98,6 +98,9 @@ body {
   letter-spacing: -0.02em;
   -webkit-font-smoothing: antialiased;
 }
+/* 중국어 페이지(2026-10-07): 한자는 Pretendard 조각에 몇 자씩만 흩어져 있어 조각 13개를 받고도 글꼴이 섞였다 →
+   영문·숫자·한글은 사이트 글꼴, 한자는 기기 중국어 글꼴로 */
+html:lang(zh) body { font-family: 'Pretendard Site', 'PingFang SC', 'PingFang TC', 'Microsoft YaHei', 'Microsoft JhengHei', system-ui, sans-serif; }
 
 /* ── 실측 타이포 스케일 ───────────────────────────────────── */
 .h1 {
