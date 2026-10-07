@@ -1,5 +1,6 @@
 'use client';
 
+import {useTranslations} from 'next-intl';
 import {useState} from 'react';
 
 // 개인정보 수집·이용 동의. 무엇을 왜 받는지 펼쳐 볼 수 있어야 한다.
@@ -17,6 +18,7 @@ export default function ConsentBox({
   detail: string;
 }) {
   const [open, setOpen] = useState(false);
+  const tc = useTranslations('common');
 
   return (
     <div>
@@ -32,7 +34,7 @@ export default function ConsentBox({
           onClick={() => onChange(!checked)}
         >
           {label}
-          <span className="text-sub ml-1">({required ? '필수' : '선택'})</span>
+          <span className="text-sub ml-1">({required ? tc('required') : tc('optional')})</span>
         </span>
         <button
           type="button"

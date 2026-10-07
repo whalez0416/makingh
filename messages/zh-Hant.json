@@ -15,7 +15,9 @@
     "top": "返回頂部",
     "more": "檢視更多",
     "chatShort": "微信",
-    "callShort": "電話"
+    "callShort": "電話",
+    "required": "必填",
+    "optional": "選填"
   },
   "hero": {
     "tagline": "自體幹細胞再生醫學 · 先進再生醫療實施機構",
@@ -698,7 +700,7 @@
   },
   "reservationForm": {
     "name": "姓名",
-    "phone": "聯絡方式",
+    "phone": "聯絡方式（電話/微信）",
     "treatment": "希望的治療項目",
     "gender": "性別",
     "female": "女",
@@ -718,11 +720,12 @@
     "useKakao": "通過微信預約",
     "confirmNote": "提交申請後，醫院會與您聯絡確認。僅提交申請並不代表預約已確定。",
     "doneTitle": "預約申請已提交",
-    "doneDesc": "醫院確認後會與您聯絡。僅提交申請並不代表預約已確定，請等待我們的聯絡。"
+    "doneDesc": "醫院確認後會與您聯絡。僅提交申請並不代表預約已確定，請等待我們的聯絡。",
+    "phonePlaceholder": "電話或微訊號"
   },
   "inquiryForm": {
     "name": "姓名",
-    "phone": "聯絡方式",
+    "phone": "聯絡方式（電話/微信）",
     "message": "諮詢內容",
     "privacy": "同意收集及使用個人資訊",
     "privacyDetail": "收集項目：姓名、聯絡方式、諮詢內容\n收集目的：確認諮詢內容及回覆聯絡\n儲存期限：諮詢完成後 1 年 〈確認〉，期限屆滿後立即銷毀\n\n您可以拒絕同意。但在此情況下，線上諮詢申請將受到限制，您可以通過電話或 微信 諮詢。",
@@ -732,7 +735,8 @@
     "failed": "提交失敗。請稍後重試，或",
     "useKakao": "通過微信諮詢",
     "doneTitle": "諮詢已提交",
-    "doneDesc": "醫院確認後會與您聯絡。"
+    "doneDesc": "醫院確認後會與您聯絡。",
+    "phonePlaceholder": "電話或微訊號"
   },
   "consultPage": {
     "title": "線上諮詢",

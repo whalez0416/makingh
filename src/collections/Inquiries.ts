@@ -1,6 +1,7 @@
 import type {CollectionConfig} from 'payload';
 import {APIError} from 'payload';
 import {slackAlert} from '@/lib/alert';
+import {intakeBadge, intakeLangField, normalizeLang} from '@/lib/intake';
 
 // 온라인 상담 문의함. 공개되지 않는다 — 병원만 본다.
 export const Inquiries: CollectionConfig = {
@@ -8,7 +9,7 @@ export const Inquiries: CollectionConfig = {
   labels: {singular: '상담 문의', plural: '상담 문의'},
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'phone', 'status', 'createdAt'],
+    defaultColumns: ['name', 'phone', 'lang', 'status', 'createdAt'],
     group: '접수함'
   },
   access: {
@@ -23,18 +24,20 @@ export const Inquiries: CollectionConfig = {
         if (data && typeof data.website === 'string' && data.website.trim() !== '') {
           throw new APIError('invalid submission', 400);
         }
+        if (data) data.lang = normalizeLang(data.lang);
         return data;
       }
     ],
     afterChange: [
       async ({doc, operation}) => {
         if (operation === 'create') {
-          await slackAlert('디토셀 상담 문의 새 접수', {이름: doc.name, 연락처: doc.phone, 문의: doc.message});
+          await slackAlert(`${intakeBadge(doc.lang)} ` + '디토셀 상담 문의 새 접수', {이름: doc.name, 연락처: doc.phone, 문의: doc.message});
         }
       }
     ]
   },
   fields: [
+    intakeLangField,
     {
       type: 'row',
       fields: [

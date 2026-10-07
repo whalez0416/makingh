@@ -15,7 +15,9 @@
     "top": "返回顶部",
     "more": "查看更多",
     "chatShort": "微信",
-    "callShort": "电话"
+    "callShort": "电话",
+    "required": "必填",
+    "optional": "选填"
   },
   "hero": {
     "tagline": "自体干细胞再生医学 · 先进再生医疗实施机构",
@@ -698,7 +700,7 @@
   },
   "reservationForm": {
     "name": "姓名",
-    "phone": "联系方式",
+    "phone": "联系方式（电话/微信）",
     "treatment": "希望的治疗项目",
     "gender": "性别",
     "female": "女",
@@ -718,11 +720,12 @@
     "useKakao": "通过微信预约",
     "confirmNote": "提交申请后，医院会与您联系确认。仅提交申请并不代表预约已确定。",
     "doneTitle": "预约申请已提交",
-    "doneDesc": "医院确认后会与您联系。仅提交申请并不代表预约已确定，请等待我们的联系。"
+    "doneDesc": "医院确认后会与您联系。仅提交申请并不代表预约已确定，请等待我们的联系。",
+    "phonePlaceholder": "电话或微信号"
   },
   "inquiryForm": {
     "name": "姓名",
-    "phone": "联系方式",
+    "phone": "联系方式（电话/微信）",
     "message": "咨询内容",
     "privacy": "同意收集及使用个人信息",
     "privacyDetail": "收集项目：姓名、联系方式、咨询内容\n收集目的：确认咨询内容及回复联系\n保存期限：咨询完成后 1 年 〈确认〉，期限届满后立即销毁\n\n您可以拒绝同意。但在此情况下，在线咨询申请将受到限制，您可以通过电话或 微信 咨询。",
@@ -732,7 +735,8 @@
     "failed": "提交失败。请稍后重试，或",
     "useKakao": "通过微信咨询",
     "doneTitle": "咨询已提交",
-    "doneDesc": "医院确认后会与您联系。"
+    "doneDesc": "医院确认后会与您联系。",
+    "phonePlaceholder": "电话或微信号"
   },
   "consultPage": {
     "title": "在线咨询",

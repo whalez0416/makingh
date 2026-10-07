@@ -260,6 +260,7 @@ export interface Review {
  */
 export interface Reservation {
   id: number;
+  lang?: ('ko' | 'zh' | 'zh-Hant') | null;
   name: string;
   phone: string;
   treatment: 'signature' | 'laser' | 'injection' | 'hbot' | 'stemBlood' | 'stemFat' | 'etc';
@@ -298,6 +299,7 @@ export interface Reservation {
  */
 export interface Inquiry {
   id: number;
+  lang?: ('ko' | 'zh' | 'zh-Hant') | null;
   name: string;
   phone: string;
   message: string;
@@ -490,6 +492,7 @@ export interface ReviewsSelect<T extends boolean = true> {
  * via the `definition` "reservations_select".
  */
 export interface ReservationsSelect<T extends boolean = true> {
+  lang?: T;
   name?: T;
   phone?: T;
   treatment?: T;
@@ -509,6 +512,7 @@ export interface ReservationsSelect<T extends boolean = true> {
  * via the `definition` "inquiries_select".
  */
 export interface InquiriesSelect<T extends boolean = true> {
+  lang?: T;
   name?: T;
   phone?: T;
   message?: T;

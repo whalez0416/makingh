@@ -1,13 +1,14 @@
 'use client';
 
 import {useState} from 'react';
-import {useTranslations} from 'next-intl';
+import {useLocale, useTranslations} from 'next-intl';
 import {Field, inputCls, areaCls} from '@/components/FormField';
 import ConsentBox from '@/components/ConsentBox';
 
 // 온라인 상담 — 이름·연락처·내용만. 공개되지 않고 병원 접수함에만 쌓인다.
 export default function InquiryForm({kakao}: {kakao: string}) {
   const t = useTranslations('inquiryForm');
+  const locale = useLocale();
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState('');
@@ -29,6 +30,7 @@ export default function InquiryForm({kakao}: {kakao: string}) {
         body: JSON.stringify({
           name: fd.get('name'),
           phone: fd.get('phone'),
+          lang: locale,
           message: fd.get('message'),
           agreePrivacy: true,
           website: fd.get('website') || ''
@@ -67,7 +69,7 @@ export default function InquiryForm({kakao}: {kakao: string}) {
             type="tel"
             inputMode="tel"
             maxLength={20}
-            placeholder="010-0000-0000"
+            placeholder={t('phonePlaceholder')}
             className={inputCls}
           />
         </Field>

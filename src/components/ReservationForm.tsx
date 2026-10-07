@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {useTranslations} from 'next-intl';
+import {useLocale, useTranslations} from 'next-intl';
 import {TREATMENTS, TIME_SLOTS} from '@/lib/treatments';
 import {Field, inputCls, areaCls} from '@/components/FormField';
 import ConsentBox from '@/components/ConsentBox';
@@ -10,6 +10,7 @@ import ConsentBox from '@/components/ConsentBox';
 // 제출은 Payload REST 로 보낸다. 서버가 없는 정적 사본에서는 실패하고 카톡 안내로 떨어진다.
 export default function ReservationForm({kakao}: {kakao: string}) {
   const t = useTranslations('reservationForm');
+  const locale = useLocale();
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState('');
@@ -35,6 +36,7 @@ export default function ReservationForm({kakao}: {kakao: string}) {
         body: JSON.stringify({
           name: fd.get('name'),
           phone: fd.get('phone'),
+          lang: locale,
           treatment: fd.get('treatment'),
           gender: fd.get('gender') || undefined,
           preferredDate: fd.get('preferredDate'),
@@ -78,7 +80,7 @@ export default function ReservationForm({kakao}: {kakao: string}) {
             type="tel"
             inputMode="tel"
             maxLength={20}
-            placeholder="010-0000-0000"
+            placeholder={t('phonePlaceholder')}
             className={inputCls}
           />
         </Field>
