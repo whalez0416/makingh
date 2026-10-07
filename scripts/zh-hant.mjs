@@ -5,7 +5,8 @@ import * as OpenCC from 'opencc-js';
 
 const base = OpenCC.Converter({from: 'cn', to: 'twp'});
 // twp 가 문맥을 모르고 바꾸는 단어만 되돌린다. 項目(시술 항목)을 專案(프로젝트)으로, 激活(세포 활성화)을 啟用(기능 켜기)으로 바꿔 버린다.
-const FIX = [['專案', '項目'], ['啟用', '活化'], ['銷燬', '銷毀']];
+// 2026-10-07: 优化→最佳化(대만 IT 용어, 광고법 검사 '最佳'), 后制定→後製定('后制'를 後製로 끊음) — aeo-sync pipelines/zh_hant.py 와 같이.
+const FIX = [['專案', '項目'], ['啟用', '活化'], ['銷燬', '銷毀'], ['最佳化', '優化'], ['製定', '制定']];
 const convert = (s) => FIX.reduce((acc, [a, b]) => acc.replaceAll(a, b), base(s));
 const walk = (v) =>
   Array.isArray(v) ? v.map(walk)
