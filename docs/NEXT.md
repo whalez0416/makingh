@@ -26,7 +26,7 @@
 
 - ✅ 홈페이지 → 위키 길: 줄기세포·안티에이징 페이지 '자주 묻는 질문'(위키 사이트맵에서 자동), 하단 '의료 정보', robots 에 위키 사이트맵 3개 (makingh d28bf47)
 - ✅ 위키 발행 뒤 홈페이지 다시 그리기 (aeo-sync PR #46)
-- ✅ 구글 서치콘솔: 도메인 속성 `sc-domain:dittocellseoul.com`(Cloudflare TXT 자동 확인), 사이트맵 4개 제출 — 홈·간체 성공, 한국어·번체 위키는 제출 직후 '가져올 수 없음'(봇 접근 정상 확인) → 다시 볼 것
+- ✅ 구글 서치콘솔: 도메인 속성 `sc-domain:dittocellseoul.com`(Cloudflare TXT 자동 확인), 사이트맵 4개 제출 — 10-07 확인: 4개 모두 성공(홈 27·위키 ko 9·zh 7·zh-hant 7)
 - ✅ Bing: 서치콘솔에서 디토셀만 가져오기(다른 병원·NC 사이트 체크 해제), 사이트맵 4개 Processing
 - ✅ 네이버 서치어드바이저: 소유확인(HTML 태그, a67d374) 완료, 사이트맵·RSS(/docs/rss.xml — aeo-sync PR #48) 제출은 사용자
 - ✅ 위키 RSS(판마다 최신 30개), 발행 전 점검에 OpenAI 크레딧 확인(PR #49)
