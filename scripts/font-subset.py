@@ -47,3 +47,21 @@ urls = re.findall(r'url\((https://[^)]+)\)', css)
 assert len(urls) == 1, f'명조 파일이 {len(urls)}개 — text= 응답이 바뀌었다'
 SERIF.write_bytes(urllib.request.urlopen(urllib.request.Request(urls[0], headers=UA), timeout=30).read())
 print(f'{SERIF.name}: {SERIF.stat().st_size // 1024}KB')
+
+# 없는 글자용 보조 글꼴 목록 — Pretendard 조각 CSS 에서 한자 범위를 뺀다.
+# 한국어 페이지의 '前' 같은 한자 한 글자 때문에 조각(26KB)을 통째로 받던 것 → 한자는 기기 글꼴로.
+CJK = [(0x2E80, 0x2FDF), (0x3400, 0x4DBF), (0x4E00, 0x9FFF), (0xF900, 0xFAFF)]
+pcss = (ROOT / 'node_modules/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css').read_text(encoding='utf-8')
+faces = []
+for face in re.findall(r'@font-face\s*{[^}]+}', pcss):
+    keep = []
+    for part in re.search(r'unicode-range:([^;]+);', face).group(1).split(','):
+        a, _, b = part.strip()[2:].partition('-')
+        lo, hi = int(a, 16), int(b or a, 16)
+        if not any(lo <= ce and hi >= cs for cs, ce in CJK):
+            keep.append(part.strip())
+    if keep:
+        face = re.sub(r'unicode-range:[^;]+;', 'unicode-range: ' + ', '.join(keep) + ';', face)
+        faces.append(face.replace("url(./woff2-dynamic-subset/", "url(../../node_modules/pretendard/dist/web/variable/woff2-dynamic-subset/"))
+(ROOT / 'src/fonts/pretendard-fallback.css').write_text('/* scripts/font-subset.py 가 만든다 — 손으로 고치지 말 것 */\n' + '\n'.join(faces) + '\n', encoding='utf-8')
+print(f'pretendard-fallback.css: 조각 {len(faces)}개')

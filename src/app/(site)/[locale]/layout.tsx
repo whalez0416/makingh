@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 import Floating from '@/components/Floating';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
 // 본문 글꼴 — 우리 서버에서 (2026-10-07). 외부(jsdelivr) CSS 가 첫 화면을 막던 시간 제거. HTTP/2 전제 — HTTP/1.1 에선 글꼴 19개가 줄을 서 더 느렸다
-import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
+import '@/fonts/pretendard-fallback.css'; // 사이트 글꼴에 없는 글자용 조각(한자 범위 뺌) — scripts/font-subset.py
 import {italic, serifKr} from '@/lib/serif';
 import WeChatGate from '@/components/WeChatGate';
 import ClinicJsonLd from '@/components/ClinicJsonLd';

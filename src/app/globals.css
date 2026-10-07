@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /* 본문 글꼴 (2026-10-07): 사이트에 쓰는 글자만 담은 파일 하나(scripts/font-subset.py).
-   없는 글자만 다음 글꼴 'Pretendard Variable'(조각 92개, layout.tsx 에서 불러옴)이 그 조각만 받아 그린다. */
+   없는 글자만 다음 글꼴 'Pretendard Variable'(조각 92개·한자 범위 뺌, src/fonts/pretendard-fallback.css)이 그 조각만 받아 그린다. */
 @font-face {
   font-family: 'Pretendard Site';
   src: url('../fonts/pretendard-site.woff2') format('woff2-variations'), url('../fonts/pretendard-site.woff2') format('woff2');
