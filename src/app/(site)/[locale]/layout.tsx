@@ -10,6 +10,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Floating from '@/components/Floating';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
+// 본문 글꼴 — 우리 서버에서 (2026-10-07). 외부(jsdelivr) CSS 가 첫 화면을 막던 시간 제거. HTTP/2 전제 — HTTP/1.1 에선 글꼴 19개가 줄을 서 더 느렸다
+import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
 import {italic, serifKr} from '@/lib/serif';
 import WeChatGate from '@/components/WeChatGate';
 import ClinicJsonLd from '@/components/ClinicJsonLd';
@@ -54,13 +56,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} data-theme={DEFAULT_THEME} className={`${serifKr.variable} ${italic.variable}`} suppressHydrationWarning>
       <head>
-        {/* 2026-10-07 글꼴 서버 연결을 미리 열어 둔다(CSS 용·글꼴 용 연결이 따로라 둘). 우리 서버로 옮겨 봤더니 HTTP/1.1(동시 6개)이라 글꼴 19개가 사진·스크립트와 줄을 서서 더 느렸다 — HTTP/2 켜면 다시 검토 */}
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-        />
         <script dangerouslySetInnerHTML={{__html: restoreTheme}} />
         <ClinicJsonLd locale={locale} name={tm('siteName')} />
       </head>
