@@ -1,5 +1,17 @@
 @import 'tailwindcss';
 
+/* 본문 글꼴 (2026-10-07): 사이트에 쓰는 글자만 담은 파일 하나(scripts/font-subset.py).
+   없는 글자만 다음 글꼴 'Pretendard Variable'(조각 92개, layout.tsx 에서 불러옴)이 그 조각만 받아 그린다. */
+@font-face {
+  font-family: 'Pretendard Site';
+  src: url('../fonts/pretendard-site.woff2') format('woff2-variations'), url('../fonts/pretendard-site.woff2') format('woff2');
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+}
+/* 언어 메뉴의 简体中文·繁體中文 한자는 Pretendard 에 없어 조각 2개(약 50KB)를 더 받게 된다 — 기기 글꼴로 */
+header a[lang|='zh'] { font-family: 'Pretendard Site', system-ui, sans-serif; }
+
 /* ── VI 3안 = 색상만 ─────────────────────────────────────────
    레이아웃·그리드·서체·라운딩은 beauwell.kr 실측값으로 통일한다
    (docs/beauwell-analysis.md). 테마는 색 팔레트만 갈아끼운다.       */
@@ -10,7 +22,7 @@
   --color-sub: var(--t-sub);
   --color-accent: var(--t-accent);
   --color-line: var(--t-line);
-  --font-body: 'Pretendard Variable', Pretendard, system-ui, sans-serif;
+  --font-body: 'Pretendard Site', 'Pretendard Variable', Pretendard, system-ui, sans-serif;
 }
 
 :root,

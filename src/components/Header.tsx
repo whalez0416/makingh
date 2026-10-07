@@ -52,6 +52,7 @@ export default function Header({ kakao }: { kakao: string }) {
         key={l}
         href={pathname}
         locale={l}
+        lang={l}
         onClick={() => setOpen(false)}
         className={`${cls} ${l === locale ? active : inactive}`}
       >
