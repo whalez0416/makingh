@@ -24,6 +24,12 @@ export const site = {
 // 정식 주소 (2026-09-29 오픈). sitemap·robots 의 절대 URL 기준.
 export const siteUrl = 'https://dittocellseoul.com';
 
+// 지역 hreflang — 중문 대상을 본토 대신 대만·홍콩(번체)·싱가포르·말레이시아(간체)로 (2026-10-07 피벗).
+// 페이지는 그대로 두고 같은 주소에 지역 코드만 더 붙인다.
+export const hreflangAliases = {'zh-TW': 'zh-Hant', 'zh-HK': 'zh-Hant', 'zh-SG': 'zh', 'zh-MY': 'zh'} as const;
+export const regionAlternates = (path: string) =>
+  Object.fromEntries(Object.entries(hreflangAliases).map(([h, l]) => [h, `${siteUrl}/${l}/${path}`]));
+
 export const telHref = `tel:+82-2-564-7774`;
 
 // public/ 정적 파일 경로 접두어. images.unoptimized 모드의 next/image 는 basePath 를

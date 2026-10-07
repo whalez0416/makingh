@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import {getTranslations} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
-import {siteUrl} from '@/lib/site';
+import {regionAlternates, siteUrl} from '@/lib/site';
 
 // 페이지·언어별 제목·설명·공유 카드(Open Graph)·정식 주소·언어별 짝(hreflang) — 브리프 §6-3·4.
 // 2026-09-30 이전엔 전 페이지가 같은 제목·설명이었고 공유 이미지·정식 주소가 없었다.
@@ -36,6 +36,7 @@ export async function pageMeta(locale: string, key: MetaKey, path: string): Prom
       canonical: url,
       languages: {
         ...Object.fromEntries(routing.locales.map((l) => [l, `${siteUrl}/${l}/${path}`])),
+        ...regionAlternates(path),
         'x-default': `${siteUrl}/ko/${path}`
       }
     },
