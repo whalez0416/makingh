@@ -1,5 +1,14 @@
 # 작업 기록 (최신이 위)
 
+## 2026-10-07 글꼴 경량화 (튠업 2 재시도, 커밋 d2d2971·3b5d804·중국어·한자 제외)
+- HTTP/2 위에서 Pretendard 자체 호스팅(d2d2971) → 메인 +, 서브 − 로 혼조. 원인 = 페이지당 글꼴 24개(약 550KB)
+- `scripts/font-subset.py`: 사이트 글자(messages·src·라이브 사이트맵 27쪽)만 담은 `src/fonts/pretendard-site.woff2`(한글 666자 161KB) + 명조 `serif-kr-site.woff2`(Google text=, 116KB, serif.ts 를 next/font/local 로) + 보조 `pretendard-fallback.css`(Pretendard 조각 92개에서 한자 범위 제외 — 한국어 페이지 '前' 한 글자로 조각 받던 것)
+- 중국어 페이지: `html:lang(zh) body` 는 사이트 글꼴 + 기기 중국어 글꼴(한자가 Pretendard 조각 13개를 끌어오던 것). 언어 메뉴 简体中文·繁體中文 도 기기 글꼴
+- 검증: 라이브 27쪽 한글 누락 0, 드문 글자(똠·뷁)는 보조 조각으로 그려짐(로컬), 링크 30·WebP 88 전부 200
+- 라이브 모바일(2회): 메인 66/85 · 시그니처 75/75 · 안티에이징 74/75 · 줄기세포 75/75 · 간체 69/77, 글꼴 3개. (시작 때 66·63·64·61·73)
+- 문구를 많이 바꾸거나 새 페이지를 만들면 `python scripts/font-subset.py`(fonttools·brotli) 후 src/fonts 커밋 — 안 해도 깨지지 않고 보조 조각으로 그려짐
+- 롤백: 해당 커밋들 `git revert`
+
 ## 2026-10-07 ESA HTTP/2 켜기 (튠업 4·3)
 - ESA 콘솔 dittocellseoul.com → Speed and Network → Optimization → **HTTP/2 켬**(꺼져 있었음. HTTP/3 은 원래 켜짐). 확인: TLS ALPN h2, Lighthouse 프로토콜 h2
 - 점수 변화 없음(모바일 65·64·66·69) — 병목은 연결 수가 아니라 렌더 차단 CSS(jsdelivr Pretendard 771ms 추정 + 우리 CSS 2개)
