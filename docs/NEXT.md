@@ -22,6 +22,12 @@
 - 사진 해상도: 실내 렌더 10장 AI 2배(로컬 Real-ESRGAN), 시그니처 모델·메인 카드·실험실·원장 원본 재출력 (전후 비교 아티팩트 2ikqAGde8MhVWZ14B5XaNm)
 - 버튼은 롤(ad543b0)을 되돌리고 디토 에코로 통일함(챕터 칩 포함). 미배포 브랜치 없음.
 
+## 2026-10-07 접수 경로 구분
+
+- ✅ 상담·예약 접수에 `lang`(국내 ko / 중국 zh / 중화권 zh-Hant) — 관리자 목록 '접수 경로' 칸, 슬랙 머리말 🇰🇷/🇨🇳/🇭🇰 (makingh 721e314, 마이그레이션 intake_lang). 중국어 연락처 안내 '电话或微信号', 동의 '(필수)' 번역.
+- ✅ 슬랙 #디토셀-보고 연결(앱 dittocell-report, 시크릿 SLACK_WEBHOOK_DITTOCELL → 서버 동기화, 시험 메시지 200)
+- 국내 연락 수단: 떠 있는 버튼(톡·전화), 상담 페이지(신청서·카카오·전화 카드), 헤더·첫 화면 버튼은 카카오
+
 ## 2026-10-06 위키 노출 작업
 
 - ✅ 홈페이지 → 위키 길: 줄기세포·안티에이징 페이지 '자주 묻는 질문'(위키 사이트맵에서 자동), 하단 '의료 정보', robots 에 위키 사이트맵 3개 (makingh d28bf47)
@@ -47,7 +53,7 @@
 2. ~~`feat/zh-wechat-langs` 배포~~ (10-06 완료) — 병원 위챗 ID·QR 받으면 관리자에 입력
 3. ~~`feat/resolve-hero` 정리·배포~~ (10-06 완료)
 4. ~~**방문 로그 보관**~~ ✅ 10-06 설치(서버 `/data/dittocell/logs/access-날짜.log.gz`, 400일, aeo-sync PR #52). 남은 것: aeo-log-analyzer 대시보드에 디토셀 등록. (옛 메모: 메이린은 매일 액세스 로그를 gz 로 떠 두고(aeo-sync `deploy/maylin_server/maylin_logdump.sh`) AEO 대시보드가 가져감. 디토셀은 nginx `/var/log/nginx/dittocell.access.log` 만 있고 보관이 없음 → 같은 방식 추가 필요(서버 SSH 키는 회사 PC 에만).)
-5. 사용자가 할 것: 슬랙 #디토셀-보고 웹훅 → 터미널에서 `gh secret set SLACK_WEBHOOK_DITTOCELL --repo whalez0416/aeo-sync` (대화창에 URL 붙이지 않기)
+5. ~~사용자가 할 것: 슬랙 #디토셀-보고 웹훅~~ (10-07 완료) → 터미널에서 `gh secret set SLACK_WEBHOOK_DITTOCELL --repo whalez0416/aeo-sync` (대화창에 URL 붙이지 않기)
 6. 병원에 받을 것: 위챗 ID·QR, 로고 원본(AI/SVG), 실내 실사 사진, 바이알 원본(있으면)
 
 ## 폐기·참고
