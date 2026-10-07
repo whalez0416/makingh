@@ -1,5 +1,11 @@
 # 작업 기록 (최신이 위)
 
+## 2026-10-07 ESA HTTP/2 켜기 (튠업 4·3)
+- ESA 콘솔 dittocellseoul.com → Speed and Network → Optimization → **HTTP/2 켬**(꺼져 있었음. HTTP/3 은 원래 켜짐). 확인: TLS ALPN h2, Lighthouse 프로토콜 h2
+- 점수 변화 없음(모바일 65·64·66·69) — 병목은 연결 수가 아니라 렌더 차단 CSS(jsdelivr Pretendard 771ms 추정 + 우리 CSS 2개)
+- 첫 방문 307 은 서버가 아니라 크롬 내부 리다이렉트("307 Internal Redirect", Location 동일 주소) — ESA 보안 설정 문제 아님, curl 로는 재현 안 됨. 손대지 않음
+- 롤백: 같은 화면에서 HTTP/2 스위치 끄기
+
 ## 2026-10-07 모바일 속도 (튠업 1·5·6, 커밋 0135df1)
 - 측정(로컬 Lighthouse, PSI API 429): 모바일 /ko/ 66 · 시그니처 63 · 안티에이징 64 · 줄기세포 61, 데스크톱 89~98. 첫 화면 4초대 = 렌더 차단 CSS + 글꼴 19개 + HTTP/1.1(ESA)
 - 1 사진: `scripts/img-variants.mjs` → `public/_v/<경로>.<해시>.<폭>.webp`(384~1920) + `src/lib/img-manifest.json`, next/image 로더 `src/lib/img-loader.ts`. 메인 첫 사진 383→130KB
