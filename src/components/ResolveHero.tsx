@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { srcSet } from "@/lib/img-loader";
 
 // 메인 히어로 "내 피부의 해상도를 높이다" (2026-10-01, 시안 아티팩트 3trM29GvvHfWVvzhV4ouyh).
 // 스크롤하는 동안 화면이 멈춰 있고, 흐릿한 저해상도 피부가 입술·뺨 한 점부터 선명해져 원본 해상도까지 맺힌다.
@@ -258,7 +259,8 @@ export default function ResolveHero({
       raf = requestAnimationFrame(frame);
     };
     im.onload = onLoad;
-    im.src = src;
+    // 첫 장면 <img> 가 화면 크기에 맞춰 고른 WebP 를 그대로 (같은 파일이라 다시 안 받는다)
+    im.src = section.querySelector<HTMLImageElement>(".rh-poster")?.currentSrc || src;
     if (im.complete && im.naturalWidth) onLoad();
     window.addEventListener("resize", size);
     return () => {
@@ -274,6 +276,8 @@ export default function ResolveHero({
         {/* eslint-disable-next-line @next/next/no-img-element -- 캔버스가 쓰는 같은 파일을 첫 장면으로 */}
         <img
           src={src}
+          srcSet={srcSet(src)}
+          sizes="max(100vw, 156svh)" /* 가로 사진(2400×1542)을 세로 화면에 꽉 채우면 높이 기준 폭이 필요 */
           alt=""
           className="rh-poster absolute inset-0 h-full w-full object-cover"
         />

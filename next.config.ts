@@ -19,12 +19,21 @@ const nextConfig: NextConfig = {
   // 서버 모드는 standalone — node_modules 없이 server.js 한 폴더로 서버에 올린다(.github/workflows/deploy-server.yml).
   ...(isPages ? {output: 'export' as const, basePath: '/makingh'} : {output: 'standalone' as const}),
   trailingSlash: true,
-  images: {unoptimized: true},
+  // 2026-10-07 모바일 속도: 사진은 미리 만든 폭별 WebP(scripts/img-variants.mjs)를 로더가 고른다. 서버에서 그때그때 변환하지 않는다.
+  images: {loader: 'custom', loaderFile: './src/lib/img-loader.ts', deviceSizes: [640, 828, 1200, 1920], imageSizes: [256, 384]},
   allowedDevOrigins: lanHosts,
   // 2026-10-01 영어·일본어를 뺐다 — 이미 퍼진 /en/ /ja/ 주소는 같은 한국어 페이지로 영구 이동
   ...(isPages
     ? {}
     : {
+        // 폭별 WebP 는 이름에 내용 해시가 있어 1년 캐시, 원본 사진은 1주 (기본값은 매번 다시 확인 = max-age=0)
+        headers: async () => [
+          {source: '/_v/:path*', headers: [{key: 'Cache-Control', value: 'public, max-age=31536000, immutable'}]},
+          ...['hero', 'facility', 'pages', 'signature'].map((d) => ({
+            source: `/${d}/:path*`,
+            headers: [{key: 'Cache-Control', value: 'public, max-age=604800'}]
+          }))
+        ],
         redirects: async () =>
           ['en', 'ja'].flatMap((l) => [
             {source: `/${l}`, destination: '/ko/', permanent: true},

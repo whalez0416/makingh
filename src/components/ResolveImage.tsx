@@ -129,7 +129,8 @@ export default function ResolveImage({src, sizes, imgPos = 'center', priority = 
       raf = requestAnimationFrame(frame);
     };
     im.onerror = done;
-    im.src = src;
+    // 화면에 이미 받은 그 파일(폭별 WebP 중 브라우저가 고른 것)을 그대로 — 두 번 받지 않는다
+    im.src = wrap.querySelector('img')?.currentSrc || src;
     return () => cancelAnimationFrame(raf);
   }, [src, imgPos]);
 
